@@ -1,12 +1,15 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 enum ProgrammerColor {
-    Purple (1), Blue (2), Green (3), Brown(4);
+    PURPLE (1), BLUE (2), GREEN (3), BROWN(4);
 
-    Integer value;
+    int colorCode;
 
     ProgrammerColor(Integer value) {
-        this.value = value;
+        this.colorCode = value;
     }
+
+
+
 
 }
