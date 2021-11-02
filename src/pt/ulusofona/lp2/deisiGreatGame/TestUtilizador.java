@@ -1,5 +1,4 @@
 package pt.ulusofona.lp2.deisiGreatGame;
-import org.junit.Assert;
 import org.junit.Test;
 
 import static org.junit.Assert.assertFalse;
@@ -9,6 +8,7 @@ public class TestUtilizador {
 
     @Test(timeout = 1000)
     public void test000_createInitialBoard() {
+        /* 1 exemplo*/
         GameManager g1 = new GameManager();
 
         String[][] playerInfo = new String[4][4];
@@ -35,7 +35,7 @@ public class TestUtilizador {
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
 
 
-
+        /* 2 exemplo*/
         GameManager g2 = new GameManager();
 
         playerInfo[0][0] = "1";
@@ -60,7 +60,7 @@ public class TestUtilizador {
 
         assertFalse("Deveria dar false pois temos dois jogadores com o mesmo ID",g2.createInitialBoard(playerInfo,79));
 
-
+        /* 3 exemplo*/
 
         GameManager g3 = new GameManager();
 
@@ -87,6 +87,7 @@ public class TestUtilizador {
         assertFalse("Deveria dar false pois o nome do jogador não pode ser igual a null",g3.createInitialBoard(playerInfo,79));
 
 
+        /* 4 exemplo*/
         GameManager g4 = new GameManager();
 
         playerInfo[0][0] = "1";
@@ -112,6 +113,8 @@ public class TestUtilizador {
         assertFalse("Deveria dar false pois nao pode haver cores diferentes" +
                 "do azul , castanho, verde e roxo",g4.createInitialBoard(playerInfo,79));
 
+
+        /* 5 exemplo*/
         GameManager g5 = new GameManager();
 
         playerInfo[0][0] = "1";
@@ -124,6 +127,8 @@ public class TestUtilizador {
                 g5.createInitialBoard(playerInfo,79));
 
 
+
+        /* 6 exemplo*/
         GameManager g6 = new GameManager();
 
 
@@ -152,4 +157,15 @@ public class TestUtilizador {
 
 
     }
+
+    @Test(timeout = 1000)
+    public void test001_moveCurrentPlayer() {
+    }
+
+    @Test(timeout = 1000)
+    public void test002_gameIsOver() {
+
+    }
+
+
 }

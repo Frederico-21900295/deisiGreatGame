@@ -182,6 +182,10 @@ public class GameManager {
 
 
         for (Programmer player : jogadores) {
+            if (player.posicao > GameManager.boardSize)
+            {
+                return false;
+            }
 
             if (player.jogadorID.equals(calculoAux)) {
                 if (player.posicao + nrPositions > GameManager.boardSize)
