@@ -31,10 +31,10 @@ public class GameManager {
             return false;
         }
         String [] corJogadores = new String[4];
-        corJogadores[0] = "PURPLE";
-        corJogadores[1] = "BLUE";
-        corJogadores[2] = "GREEN";
-        corJogadores[3] = "BROWN";
+        corJogadores[0] = "Purple";
+        corJogadores[1] = "Blue";
+        corJogadores[2] = "Green";
+        corJogadores[3] = "Brown";
         int aux_cores;
 
         int totalJogadores = playerInfo.length;
@@ -55,6 +55,7 @@ public class GameManager {
             }
         }
         System.out.println("comecou");
+
         for (int i = 0; i <totalJogadores;i++) {
             aux_cores = 0;
             for (int z=0; z<4; z++)
@@ -66,6 +67,8 @@ public class GameManager {
                     return false;
                 }
         }
+
+
         System.out.println("Saiu");
 
         System.out.println(totalJogadores);
@@ -103,10 +106,10 @@ public class GameManager {
         new GameManager(boardSize);
 
         if (totalJogadores == 4) {
-            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.PURPLE);
-            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.BLUE);
-            Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.GREEN);
-            Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], ProgrammerColor.BROWN);
+            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.Purple);
+            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.Blue);
+            Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.Green);
+            Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], ProgrammerColor.Brown);
             players.add(jogador1);
             players.add(jogador2);
             players.add(jogador3);
@@ -115,17 +118,17 @@ public class GameManager {
         }
 
         else if (totalJogadores == 3) {
-            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.PURPLE);
-            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.BLUE);
-            Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.GREEN);
+            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.Purple);
+            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.Blue);
+            Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.Green);
             players.add(jogador1);
             players.add(jogador2);
             players.add(jogador3);
             numeroJogadores = totalJogadores;
         }
         else if (totalJogadores == 2) {
-            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.PURPLE);
-            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.BLUE);
+            Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.Purple);
+            Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.Blue);
             players.add(jogador1);
             players.add(jogador2);
             numeroJogadores = totalJogadores;

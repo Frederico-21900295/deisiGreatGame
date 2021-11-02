@@ -1,7 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 enum ProgrammerColor {
-    PURPLE (1), BLUE (2), GREEN (3), BROWN(4);
+    Purple (1), Blue (2), Green (3), Brown(4);
 
     int colorCode;
 
