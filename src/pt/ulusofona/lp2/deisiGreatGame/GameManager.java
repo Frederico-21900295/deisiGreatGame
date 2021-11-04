@@ -4,8 +4,9 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
+
 public class GameManager {
-    ArrayList<Programmer> players = new ArrayList<>();
+    ArrayList<Programmer> players;
     int turnos;
     static int boardSize;
     int currentPlayer;
@@ -13,34 +14,36 @@ public class GameManager {
     int numeroJogadores;
 
 
-    public GameManager() {
-        this.turnos = 1;
-        currentPlayer = 1;
-    }
+    public GameManager() { }
 
     public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
     }
 
-    
+
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
-    /*Do que estive a ver esta função ja esta com todas as exceções*/
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
+
         if (boardSize <= 0) {
             return false;
         }
+
+        players = new ArrayList<>();
+
+
+        int aux_cores;
+        int totalJogadores = playerInfo.length;
+
+
+
         String [] corJogadores = new String[4];
         corJogadores[0] = "Purple";
         corJogadores[1] = "Blue";
         corJogadores[2] = "Green";
         corJogadores[3] = "Brown";
-        int aux_cores;
 
-        int totalJogadores = playerInfo.length;
-        System.out.println(totalJogadores);
 
-        int aux = 0;
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < 1; y++) {
                 if (playerInfo[i][y] == null) {
@@ -54,37 +57,23 @@ public class GameManager {
 
             }
         }
-        System.out.println("comecou");
 
-        for (int i = 0; i <totalJogadores;i++) {
+
+
+        for (int i = 0; i < totalJogadores;i++) {
             aux_cores = 0;
-            for (int z=0; z<4; z++)
+            for (int z = 0; z < 4; z++)
                 if (!playerInfo[i][3].equals(corJogadores[z])) {
                     aux_cores++;
-
                 }
-                if (aux_cores==4) {
-                    return false;
-                }
+            if (aux_cores==4) {
+                return false;
+            }
         }
 
-
-        System.out.println("Saiu");
-
-        System.out.println(totalJogadores);
         for (int i = 0; i < totalJogadores; i++) {
-            if (aux!=0) {
-                aux--;
-            }
             for (int y = 0; y < totalJogadores; y++) {
-                System.out.println(i);
-                if (i == y || aux>0) {
-                    break;
-                }
-                else if(playerInfo[i][0] == null)
-                {
-                    totalJogadores--;
-                    aux++;
+                if (i == y) {
                     break;
                 }
                 else if ((playerInfo[i][1] == null ) || playerInfo[i][1].isEmpty()) {
@@ -101,9 +90,11 @@ public class GameManager {
                 }
             }
         }
-        System.out.println(totalJogadores);
 
         new GameManager(boardSize);
+        this.turnos = 0;
+        currentPlayer = 1;
+
 
         if (totalJogadores == 4) {
             Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.Purple);
@@ -225,9 +216,10 @@ public class GameManager {
         if (position == boardSize) {
             return this.imagem = "glory.png";
         }
+        /*
         else if(position == 1) {
             return this.imagem = "glory.png";
-        }
+        }*/
         else if (position > boardSize) {
             return null;
         }
@@ -241,17 +233,23 @@ public class GameManager {
     }
 
 
+    // Função que vai disponibilizar os resultados do jogo com o output desejado pelo projeto
     public ArrayList<String> getGameResults() {
         ArrayList<String> resultados = new ArrayList<>();
 
+        //Usado para guardar os nomes dos jogadores
         String primeiro = null;
         String segundo = null;
         String terceiro = null;
         String quarto = null;
+
+        //Usado para guardar as posições dos jogadores
         int calAuxPrimeiro=90;
         int calAuxSegundo=90;
         int calAuxTerceiro=90;
         int calAuxQuarto=90;
+
+
         int auxiliar = 0;
         int outroAux = 0;
 
@@ -259,11 +257,12 @@ public class GameManager {
         jogadores = getProgrammers();
 
         for (Programmer jogador: jogadores) {
-            if (jogador.posicao >= boardSize) {
+            if (jogador.posicao >= GameManager.boardSize) {
                 primeiro = jogador.nome;
             }
         }
 
+        System.out.println("Numero de jogadores" + numeroJogadores);
 
         resultados.add("O GRANDE JOGO DO DEISI");
         resultados.add("");
@@ -275,6 +274,7 @@ public class GameManager {
         resultados.add(primeiro);
         resultados.add("");
         resultados.add("Restantes");
+
         if (numeroJogadores==2) {
             for (Programmer jogador: jogadores) {
                 if (!jogador.nome.equals(primeiro)){
@@ -285,14 +285,14 @@ public class GameManager {
             resultados.add(segundo + ' ' + calAuxPrimeiro);
         }
 
-        if (numeroJogadores==3) {
+
+
+        if (numeroJogadores == 3) {
 
             for (Programmer jogador : jogadores) {
-                if (jogador.nome.equals(primeiro)) {
-                    break;
-                }
+                if (jogador.nome.equals(primeiro));
                 else {
-                    if (jogador.posicao < GameManager.boardSize && auxiliar == 0){
+                    if (auxiliar == 0){
                         segundo = jogador.nome;
                         calAuxSegundo = jogador.posicao;
                         auxiliar++;
@@ -301,24 +301,34 @@ public class GameManager {
                         terceiro = jogador.nome;
                         calAuxTerceiro = jogador.posicao;
                     }
+                    else {
+                        terceiro = segundo;
+                        calAuxTerceiro = calAuxSegundo;
+
+                        segundo = jogador.nome;
+                        calAuxSegundo = jogador.posicao;
+                    }
                 }
             }
             resultados.add(segundo + ' ' + calAuxSegundo);
             resultados.add(terceiro + ' ' + calAuxTerceiro);
         }
 
+
         if (numeroJogadores==4) {
 
             for (Programmer jogador : jogadores) {
-                if (jogador.nome.equals(primeiro)) {
-                    break;
-                }
+
+                if (jogador.nome.equals(primeiro));
                 else {
+
                     if (jogador.posicao < GameManager.boardSize && auxiliar == 0){
                         segundo = jogador.nome;
                         calAuxSegundo = jogador.posicao;
                         auxiliar++;
                     }
+
+
                     else if (auxiliar == 1 && outroAux == 0){
                         outroAux= 30;
                         if (jogador.posicao < calAuxSegundo) {
@@ -336,19 +346,19 @@ public class GameManager {
                 if (outroAux == 30) {
                     quarto = jogador.nome;
                     calAuxQuarto = jogador.posicao;
-
                 }
 
             }
 
-            if (calAuxQuarto > calAuxTerceiro || calAuxQuarto > calAuxSegundo)
+            if (calAuxQuarto > calAuxTerceiro)
             {
+                //Verificamos se também é maior que a posição do segundo lugar
                 if (calAuxQuarto > calAuxSegundo) {
                     resultados.add(quarto + ' ' + calAuxQuarto);
                     resultados.add(segundo + ' ' + calAuxSegundo);
                     resultados.add(terceiro + ' ' + calAuxTerceiro);
                 }
-                if (calAuxQuarto > calAuxTerceiro) {
+                else {
                     resultados.add(segundo + ' ' + calAuxSegundo);
                     resultados.add(quarto + ' ' + calAuxQuarto);
                     resultados.add(terceiro + ' ' + calAuxTerceiro);
@@ -360,13 +370,17 @@ public class GameManager {
                 resultados.add(quarto + ' ' + calAuxQuarto);
             }
 
-        }
 
+
+
+
+        }
 
         return resultados;
     }
 
 
+    //Função que vai verificar se existe algum jogador na última casa do tabuleiro e caso haja o jogo acaba
     public boolean gameIsOver() {
         ArrayList<Programmer> jogadores;
         jogadores = getProgrammers();
@@ -382,21 +396,6 @@ public class GameManager {
 
 
 
-    public void restart()
-    {
-        ArrayList<Programmer> jogadores;
-        jogadores = getProgrammers();
-
-        for (Programmer player : jogadores) {
-            player.posicao=1;
-        }
-    }
-
-
-
-
 
 
 }
-
-
