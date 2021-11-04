@@ -1,6 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 import org.junit.Test;
 
+
+// Verificar Caso alguma destas regras não seja cumprida, então a função deve devolver false e o turno continua a ser do jogador actual. Em caso contrário, a função deve devolver true.
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
@@ -277,6 +279,8 @@ public class TestUtilizador {
         g3.moveCurrentPlayer(5);
         System.out.println(g3.getCurrentPlayerID());
         g3.moveCurrentPlayer(2);
+        System.out.println(g3.getGameResults());
+
         System.out.println(g3.getCurrentPlayerID());
         g3.moveCurrentPlayer(5);
         System.out.println(g3.getGameResults());

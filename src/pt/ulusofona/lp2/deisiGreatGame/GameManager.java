@@ -152,15 +152,23 @@ public class GameManager {
 
     /*Função que vai imprimir que estao na posição X */
     public ArrayList<Programmer> getProgrammers(int position) {
+        int auxiliar = 0;
         ArrayList<Programmer> jogadores = new ArrayList<>();
         for (Programmer j : players) {
             if (j.posicao == position) {
                 jogadores.add(j);
+                auxiliar++;
             }
         }
 
+        if (auxiliar > 0) {
+            return jogadores;
+        }
+        else {
+            return null;
+        }
 
-        return jogadores;
+
     }
 
 
@@ -229,15 +237,13 @@ public class GameManager {
 
 
     public String getImagePng(int position) {
-        if (position == boardSize) {
-            return this.imagem = "glory.png";
-        }
-        /*
-        else if(position == 1) {
-            return this.imagem = "glory.png";
-        }*/
-        else if (position > boardSize) {
-            return null;
+        if (position <= GameManager.boardSize && position > 0) {
+            if (position == boardSize) {
+                return this.imagem = "glory.png";
+            } else if (position == 1) {
+                return this.imagem = "glory.png";
+
+            }
         }
         return null;
     }
@@ -254,10 +260,10 @@ public class GameManager {
         ArrayList<String> resultados = new ArrayList<>();
 
         //Usado para guardar os nomes dos jogadores
-        String primeiro = null;
-        String segundo = null;
-        String terceiro = null;
-        String quarto = null;
+        String primeiro = "";
+        String segundo = "";
+        String terceiro = "";
+        String quarto = "";
 
         //Usado para guardar as posições dos jogadores
         int calAuxPrimeiro=90;
@@ -274,98 +280,86 @@ public class GameManager {
 
         // O primeiro é o jogador que está na última casa do tabuleiro
         for (Programmer jogador: jogadores) {
-            if (jogador.posicao >= GameManager.boardSize) {
+            if (jogador.posicao == GameManager.boardSize) {
                 primeiro = jogador.nome;
             }
         }
 
-        System.out.println("Numero de jogadores" + numeroJogadores);
+        //Só entra aqui caso já tenha sido atribuído o primeiro lugar; caso não tenha retorna uma lista vazia
+        if ((!primeiro.isEmpty())) {
+            resultados.add("O GRANDE JOGO DO DEISI");
+            resultados.add("");
+            resultados.add("");
+            resultados.add("NR. DE TURNOS ");
+            resultados.add(String.valueOf(turnos));
+            resultados.add("");
+            resultados.add("VENCEDOR ");
+            resultados.add(primeiro);
+            resultados.add("");
+            resultados.add("Restantes");
+            //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
 
-        resultados.add("O GRANDE JOGO DO DEISI");
-        resultados.add("");
-        resultados.add("");
-        resultados.add("NR. DE TURNOS ");
-        resultados.add(String.valueOf(turnos));
-        resultados.add("");
-        resultados.add("VENCEDOR ");
-        resultados.add(primeiro);
-        resultados.add("");
-        resultados.add("Restantes");
-
-        //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
-        if (numeroJogadores==2) {
-            for (Programmer jogador: jogadores) {
-                if (!jogador.nome.equals(primeiro)){
-                    segundo = jogador.nome;
-                    calAuxPrimeiro = jogador.posicao;
+            if (numeroJogadores == 2) {
+                for (Programmer jogador : jogadores) {
+                    if (!jogador.nome.equals(primeiro)) {
+                        segundo = jogador.nome;
+                        calAuxPrimeiro = jogador.posicao;
+                    }
                 }
-            }
-            resultados.add(segundo + ' ' + calAuxPrimeiro);
-        }
+                resultados.add(segundo + ' ' + calAuxPrimeiro);
+            } else if (numeroJogadores == 3) {
 
+                for (Programmer jogador : jogadores) {
 
-        /*
-        Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
-        Logo, percorremos a lista de jogadores, e verificamos quais dos dois está numa posição superior face ao outro
-        e esse vai para a variavel segundo e o outro jogador vai para a variavel terceiro
-         */
-        if (numeroJogadores == 3) {
-
-            for (Programmer jogador : jogadores) {
-
-                //Se o jogador for igual ao que está na variável primeiro passa para o próximo
-                if (jogador.nome.equals(primeiro)) {
-                    continue;
-                }
-                else if (auxiliar==0){
-                    segundo = jogador.nome;
-                    calAuxSegundo = jogador.posicao;
-                    auxiliar=30;
-                }
+                    //Se o jogador for igual ao que está na variável primeiro passa para o próximo
+                    if (jogador.nome.equals(primeiro)) {
+                        continue;
+                    } else if (auxiliar == 0) {
+                        segundo = jogador.nome;
+                        calAuxSegundo = jogador.posicao;
+                        auxiliar = 30;
+                    }
 
                 /*
                 Verifica se o segundo ja tem alguma inserida caso tenha vai verificar a posiçao dele com a do
                 jogador e caso a posição do segundo seja menor troca
                  */
-               if (!segundo.isEmpty()) {
-                   if (jogador.posicao < calAuxSegundo) {
-                           terceiro = jogador.nome;
-                           calAuxTerceiro = jogador.posicao;
+                    if (!segundo.isEmpty()) {
+                        if (jogador.posicao < calAuxSegundo) {
+                            terceiro = jogador.nome;
+                            calAuxTerceiro = jogador.posicao;
+                        } else {
+                            terceiro = segundo;
+                            calAuxTerceiro = calAuxSegundo;
+                            segundo = jogador.nome;
+                            calAuxSegundo = jogador.posicao;
+                        }
                     }
-                   else {
-                       terceiro = segundo;
-                       calAuxTerceiro = calAuxSegundo;
-                       segundo = jogador.nome;
-                       calAuxSegundo = jogador.posicao;
-                   }
-               }
 
+                }
+
+                resultados.add(segundo + ' ' + calAuxSegundo);
+                resultados.add(terceiro + ' ' + calAuxTerceiro);
             }
 
-            resultados.add(segundo + ' ' + calAuxSegundo);
-            resultados.add(terceiro + ' ' + calAuxTerceiro);
-        }
-
-
-        /*
+            /*
         Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
         Logo, percorremos a lista de jogadores
          */
-        if (numeroJogadores==4) {
+            if (numeroJogadores == 4) {
 
-            for (Programmer jogador : jogadores) {
+                for (Programmer jogador : jogadores) {
 
-                //Se o jogador for igual ao que está na variável primeiro passa para o próximo
-                if (jogador.nome.equals(primeiro)) {
-                    continue;
-                }
-                else {
-                    // O segundo jogador a ser lido é posto logo no segundo lugar
-                    if (jogador.posicao < GameManager.boardSize && auxiliar == 0){
-                        segundo = jogador.nome;
-                        calAuxSegundo = jogador.posicao;
-                        auxiliar++;
-                    }
+                    //Se o jogador for igual ao que está na variável primeiro passa para o próximo
+                    if (jogador.nome.equals(primeiro)) {
+                        continue;
+                    } else {
+                        // O segundo jogador a ser lido é posto logo no segundo lugar
+                        if (jogador.posicao < GameManager.boardSize && auxiliar == 0) {
+                            segundo = jogador.nome;
+                            calAuxSegundo = jogador.posicao;
+                            auxiliar++;
+                        }
 
                     /*
                      Só chegamos aqui quando estivermos a ver o terceiro jogador.
@@ -374,53 +368,46 @@ public class GameManager {
                      E usamos uma variavel auxiliar para não voltarmos a entrar dentro deste if; e entrarmos
                      logo noutro if
                      */
-                    else if (auxiliar == 1 && outroAux == 0){
-                        outroAux= 30;
-                        if (jogador.posicao < calAuxSegundo) {
-                            terceiro = jogador.nome;
-                            calAuxTerceiro = jogador.posicao;
-                        }
-                        else {
-                            terceiro = segundo;
-                            calAuxTerceiro = calAuxSegundo;
-                            segundo = jogador.nome;
-                            calAuxSegundo = jogador.posicao;
+                        else if (auxiliar == 1 && outroAux == 0) {
+                            outroAux = 30;
+                            if (jogador.posicao < calAuxSegundo) {
+                                terceiro = jogador.nome;
+                                calAuxTerceiro = jogador.posicao;
+                            } else {
+                                terceiro = segundo;
+                                calAuxTerceiro = calAuxSegundo;
+                                segundo = jogador.nome;
+                                calAuxSegundo = jogador.posicao;
+                            }
                         }
                     }
-                }
-                //Colocamos o 4 jogador a ser lido na variável quarto
-                if (outroAux == 30) {
-                    quarto = jogador.nome;
-                    calAuxQuarto = jogador.posicao;
+                    //Colocamos o 4 jogador a ser lido na variável quarto
+                    if (outroAux == 30) {
+                        quarto = jogador.nome;
+                        calAuxQuarto = jogador.posicao;
+                    }
+
                 }
 
-            }
-
-            //Começamos por verificar se a posição é superior ao do que está em terceiro
-            if (calAuxQuarto > calAuxTerceiro)
-            {
-                //Verificamos se também é maior que a posição do segundo lugar
-                if (calAuxQuarto > calAuxSegundo) {
-                    resultados.add(quarto + ' ' + calAuxQuarto);
+                //Começamos por verificar se a posição é superior ao do que está em terceiro
+                if (calAuxQuarto > calAuxTerceiro) {
+                    //Verificamos se também é maior que a posição do segundo lugar
+                    if (calAuxQuarto > calAuxSegundo) {
+                        resultados.add(quarto + ' ' + calAuxQuarto);
+                        resultados.add(segundo + ' ' + calAuxSegundo);
+                        resultados.add(terceiro + ' ' + calAuxTerceiro);
+                    } else {
+                        resultados.add(segundo + ' ' + calAuxSegundo);
+                        resultados.add(quarto + ' ' + calAuxQuarto);
+                        resultados.add(terceiro + ' ' + calAuxTerceiro);
+                    }
+                } else {
                     resultados.add(segundo + ' ' + calAuxSegundo);
                     resultados.add(terceiro + ' ' + calAuxTerceiro);
-                }
-                else {
-                    resultados.add(segundo + ' ' + calAuxSegundo);
                     resultados.add(quarto + ' ' + calAuxQuarto);
-                    resultados.add(terceiro + ' ' + calAuxTerceiro);
                 }
+
             }
-            else {
-                resultados.add(segundo + ' ' + calAuxSegundo);
-                resultados.add(terceiro + ' ' + calAuxTerceiro);
-                resultados.add(quarto + ' ' + calAuxQuarto);
-            }
-
-
-
-
-
         }
 
         return resultados;

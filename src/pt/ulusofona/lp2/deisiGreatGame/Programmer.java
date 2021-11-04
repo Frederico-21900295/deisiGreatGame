@@ -1,9 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.List;
 
 public class Programmer {
     Integer jogadorID;
@@ -42,11 +39,9 @@ public class Programmer {
     public String toString() {
         StringBuilder texto = new StringBuilder(this.jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         String aux = this.linguagens;
-        int i = 0;
-        int y = 1;
         ArrayList<String> aux1 = new ArrayList<>();
 
-        //Retirar os espaços entre palavras da variavel linguagens
+        //Retirar os espaços entre palavras da variável linguagens
         aux = aux.replace(" ", "");
 
 
@@ -59,24 +54,24 @@ public class Programmer {
         }
 
         /*
-        Colocar dentro da variavel texto as linguagens de programaçao preferidas com o output desejado ;
-        Caso so tenhas escolhido uma linguagem não faz este if
+        Colocar na variável texto as linguagens de programação preferidas com o output desejado;
+        Caso só tenha escolhido uma linguagem não faz este if
          */
         if (!aux1.isEmpty()) {
             for (int x = 0; x < aux1.size(); x++) {
                 if ((aux1.size() - x) > 1) {
-                    texto.append(aux1.get(x)).append(" ; ");
+                    texto.append(aux1.get(x)).append("; ");
                 }
                 else {
                     texto.append(aux1.get(x));
                 }
 
             }
-            return texto +  " | " + this.color;
+            return texto +  " | " + this.estado;
 
         }
 
-        return texto + this.linguagens +  " | " + this.color;
+        return texto + this.linguagens +  " | " + this.estado;
     }
 
 
