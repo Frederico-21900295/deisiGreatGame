@@ -4,7 +4,6 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 
-
 public class GameManager {
     ArrayList<Programmer> players;
     int turnos;
@@ -23,12 +22,15 @@ public class GameManager {
 
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
+    /*Do que estive a ver esta função ja esta com todas as exceções*/
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
 
+        //Se o campo for menor que 0 retorna false
         if (boardSize <= 0) {
             return false;
         }
 
+        //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
         players = new ArrayList<>();
 
 
@@ -37,6 +39,7 @@ public class GameManager {
 
 
 
+        // Usado para verificar mais tarde se as cores são diferentes destas 4 cores
         String [] corJogadores = new String[4];
         corJogadores[0] = "Purple";
         corJogadores[1] = "Blue";
@@ -44,6 +47,10 @@ public class GameManager {
         corJogadores[3] = "Brown";
 
 
+        /*
+         Verificar o número de jogadores e esse valor é colocado na variável totalJogadores e caso seja menor que 2 ou
+         maior que 4 retorna false
+         */
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < 1; y++) {
                 if (playerInfo[i][y] == null) {
@@ -58,7 +65,11 @@ public class GameManager {
             }
         }
 
-
+        // Vamos verificar se as cores escolhidas pelos jogadores diferem das 4 cores escolhidas pelo programa
+        /*
+         Verificamos jogador a jogador caso a cor difira das 4 outras cores a variável aux_cores fica com o
+         valor 4 e retorna false. Caso esteja a variável aux_cores volta a ficar igual a 0 e volta a fazer a verificação
+         */
 
         for (int i = 0; i < totalJogadores;i++) {
             aux_cores = 0;
@@ -66,11 +77,14 @@ public class GameManager {
                 if (!playerInfo[i][3].equals(corJogadores[z])) {
                     aux_cores++;
                 }
-            if (aux_cores==4) {
-                return false;
-            }
+                if (aux_cores==4) {
+                    return false;
+                }
         }
-
+        /*
+         Neste for é onde fazemos todas as validações pedidas pelo projeto; Validamos se os (nomes dos jogadores, o ID
+         e a cor) são iguais ou se estão como null e caso seja retorna false
+         */
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < totalJogadores; y++) {
                 if (i == y) {
@@ -91,7 +105,9 @@ public class GameManager {
             }
         }
 
+        //Estamos a criar o objeto Game manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
+
         this.turnos = 0;
         currentPlayer = 1;
 
@@ -256,6 +272,7 @@ public class GameManager {
         ArrayList<Programmer> jogadores;
         jogadores = getProgrammers();
 
+        // O primeiro é o jogador que está na última casa do tabuleiro
         for (Programmer jogador: jogadores) {
             if (jogador.posicao >= GameManager.boardSize) {
                 primeiro = jogador.nome;
@@ -275,6 +292,7 @@ public class GameManager {
         resultados.add("");
         resultados.add("Restantes");
 
+        //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
         if (numeroJogadores==2) {
             for (Programmer jogador: jogadores) {
                 if (!jogador.nome.equals(primeiro)){
@@ -286,49 +304,76 @@ public class GameManager {
         }
 
 
-
+        /*
+        Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
+        Logo, percorremos a lista de jogadores, e verificamos quais dos dois está numa posição superior face ao outro
+        e esse vai para a variavel segundo e o outro jogador vai para a variavel terceiro
+         */
         if (numeroJogadores == 3) {
 
             for (Programmer jogador : jogadores) {
-                if (jogador.nome.equals(primeiro));
-                else {
-                    if (auxiliar == 0){
-                        segundo = jogador.nome;
-                        calAuxSegundo = jogador.posicao;
-                        auxiliar++;
-                    }
-                    else if (jogador.posicao < calAuxSegundo){
-                        terceiro = jogador.nome;
-                        calAuxTerceiro = jogador.posicao;
-                    }
-                    else {
-                        terceiro = segundo;
-                        calAuxTerceiro = calAuxSegundo;
 
-                        segundo = jogador.nome;
-                        calAuxSegundo = jogador.posicao;
-                    }
+                //Se o jogador for igual ao que está na variável primeiro passa para o próximo
+                if (jogador.nome.equals(primeiro)) {
+                    continue;
                 }
+                else if (auxiliar==0){
+                    segundo = jogador.nome;
+                    calAuxSegundo = jogador.posicao;
+                    auxiliar=30;
+                }
+
+                /*
+                Verifica se o segundo ja tem alguma inserida caso tenha vai verificar a posiçao dele com a do
+                jogador e caso a posição do segundo seja menor troca
+                 */
+               if (!segundo.isEmpty()) {
+                   if (jogador.posicao < calAuxSegundo) {
+                           terceiro = jogador.nome;
+                           calAuxTerceiro = jogador.posicao;
+                    }
+                   else {
+                       terceiro = segundo;
+                       calAuxTerceiro = calAuxSegundo;
+                       segundo = jogador.nome;
+                       calAuxSegundo = jogador.posicao;
+                   }
+               }
+
             }
+
             resultados.add(segundo + ' ' + calAuxSegundo);
             resultados.add(terceiro + ' ' + calAuxTerceiro);
         }
 
 
+        /*
+        Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
+        Logo, percorremos a lista de jogadores
+         */
         if (numeroJogadores==4) {
 
             for (Programmer jogador : jogadores) {
 
-                if (jogador.nome.equals(primeiro));
+                //Se o jogador for igual ao que está na variável primeiro passa para o próximo
+                if (jogador.nome.equals(primeiro)) {
+                    continue;
+                }
                 else {
-
+                    // O segundo jogador a ser lido é posto logo no segundo lugar
                     if (jogador.posicao < GameManager.boardSize && auxiliar == 0){
                         segundo = jogador.nome;
                         calAuxSegundo = jogador.posicao;
                         auxiliar++;
                     }
 
-
+                    /*
+                     Só chegamos aqui quando estivermos a ver o terceiro jogador.
+                     Verificamos se a posição deste é maior que o da posição que ja colocamos em segundo, e caso seja
+                     trocamos ( o que está em segundo passa para terceiro).
+                     E usamos uma variavel auxiliar para não voltarmos a entrar dentro deste if; e entrarmos
+                     logo noutro if
+                     */
                     else if (auxiliar == 1 && outroAux == 0){
                         outroAux= 30;
                         if (jogador.posicao < calAuxSegundo) {
@@ -343,6 +388,7 @@ public class GameManager {
                         }
                     }
                 }
+                //Colocamos o 4 jogador a ser lido na variável quarto
                 if (outroAux == 30) {
                     quarto = jogador.nome;
                     calAuxQuarto = jogador.posicao;
@@ -350,6 +396,7 @@ public class GameManager {
 
             }
 
+            //Começamos por verificar se a posição é superior ao do que está em terceiro
             if (calAuxQuarto > calAuxTerceiro)
             {
                 //Verificamos se também é maior que a posição do segundo lugar
@@ -399,3 +446,5 @@ public class GameManager {
 
 
 }
+
+

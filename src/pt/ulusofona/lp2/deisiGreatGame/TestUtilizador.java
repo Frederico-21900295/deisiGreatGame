@@ -231,9 +231,9 @@ public class TestUtilizador {
         System.out.println(g2.getCurrentPlayerID());
         g2.moveCurrentPlayer(4);
         System.out.println(g2.getCurrentPlayerID());
-        g2.moveCurrentPlayer(4);
-        System.out.println(g2.getCurrentPlayerID());
         g2.moveCurrentPlayer(3);
+        System.out.println(g2.getCurrentPlayerID());
+        g2.moveCurrentPlayer(4);
         System.out.println(g2.getCurrentPlayerID());
         g2.moveCurrentPlayer(5);
         System.out.println(g2.getGameResults());
@@ -242,7 +242,6 @@ public class TestUtilizador {
 
 
         // 4 jogadores esta correto
-
 
         GameManager g3 = new GameManager();
 
