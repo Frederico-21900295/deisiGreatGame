@@ -53,7 +53,7 @@ public class GameManager {
          */
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < 1; y++) {
-                if (playerInfo[i][y] == null) {
+                if (playerInfo[i][y] == null || playerInfo[i][y].isEmpty()) {
                     if (i >= 2 && i <= 4) {
                         totalJogadores = i;
                         break;
@@ -65,12 +65,12 @@ public class GameManager {
             }
         }
 
-        // Vamos verificar se as cores escolhidas pelos jogadores diferem das 4 cores escolhidas pelo programa
+
+
         /*
          Verificamos jogador a jogador caso a cor difira das 4 outras cores a variável aux_cores fica com o
          valor 4 e retorna false. Caso esteja a variável aux_cores volta a ficar igual a 0 e volta a fazer a verificação
          */
-
         for (int i = 0; i < totalJogadores;i++) {
             aux_cores = 0;
             for (int z = 0; z < 4; z++)
@@ -81,31 +81,33 @@ public class GameManager {
                     return false;
                 }
         }
+
+
+
+
         /*
          Neste for é onde fazemos todas as validações pedidas pelo projeto; Validamos se os (nomes dos jogadores, o ID
          e a cor) são iguais ou se estão como null e caso seja retorna false
          */
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < totalJogadores; y++) {
-                if (i == y) {
-                    break;
-                }
-                else if ((playerInfo[i][1] == null ) || playerInfo[i][1].isEmpty()) {
-                    return false;
-                }
-
-                else {
-                    if (playerInfo[i][0].equals(playerInfo[y][0])
-                            || playerInfo[i][1].equals(playerInfo[y][1]) ||
-                            playerInfo[i][3].equals(playerInfo[y][3])) {
-
+                if (i != y) {
+                    if ((playerInfo[i][1] == null) || (playerInfo[i][1].isEmpty())) {
                         return false;
+                    } else {
+                        if (playerInfo[i][0].equals(playerInfo[y][0])
+                                || playerInfo[i][1].equals(playerInfo[y][1]) ||
+                                playerInfo[i][3].equals(playerInfo[y][3])) {
+
+                            return false;
+                        }
                     }
                 }
+
             }
         }
 
-        //Estamos a criar o objeto Game manager e inserir a tamanho do tabuleiro
+        //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
 
         this.turnos = 0;
@@ -145,12 +147,12 @@ public class GameManager {
     }
 
 
-    /*Funçao que vai imprimir todos os jogadores*/
+    /*Função que vai imprimir todos os jogadores*/
     public ArrayList<Programmer> getProgrammers(){
         return players;
     }
 
-    /*Função que vai imprimir que estao na posição X */
+    /*Função que vai imprimir que estão na posição X */
     public ArrayList<Programmer> getProgrammers(int position) {
         int auxiliar = 0;
         ArrayList<Programmer> jogadores = new ArrayList<>();
@@ -172,7 +174,7 @@ public class GameManager {
     }
 
 
-    /*Funçao que vai imprimir o jogador que tem de jogar*/
+    /*Função que vai imprimir o jogador que tem de jogar*/
     public int getCurrentPlayerID() {
         for (Programmer player : players) {
             if (player.jogadorID.equals(currentPlayer)) {
@@ -186,7 +188,7 @@ public class GameManager {
     /*Função que vai movimentar os jogadores */
     public boolean moveCurrentPlayer(int nrPositions) {
 
-        int calculoAux;
+        int id;
         int outroAux;
 
         if (nrPositions > 6 || nrPositions <= 0)
@@ -194,18 +196,12 @@ public class GameManager {
             return false;
         }
 
-        calculoAux = getCurrentPlayerID();
-        ArrayList<Programmer> jogadores;
-        jogadores = getProgrammers();
+        id = getCurrentPlayerID();
+        ArrayList<Programmer> jogadores  = getProgrammers();
 
 
         for (Programmer player : jogadores) {
-            if (player.posicao > GameManager.boardSize)
-            {
-                return false;
-            }
-
-            if (player.jogadorID.equals(calculoAux)) {
+            if (player.jogadorID.equals(id)) {
                 if (player.posicao + nrPositions > GameManager.boardSize)
                 {
 
@@ -249,8 +245,9 @@ public class GameManager {
     }
 
 
+    public JFrame getAuthorsPanel() {
 
-    public JPanel getAuthorsPanel() {
+
         return null;
     }
 
@@ -289,7 +286,6 @@ public class GameManager {
         if ((!primeiro.isEmpty())) {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
-            resultados.add("");
             resultados.add("NR. DE TURNOS ");
             resultados.add(String.valueOf(turnos));
             resultados.add("");
@@ -297,8 +293,9 @@ public class GameManager {
             resultados.add(primeiro);
             resultados.add("");
             resultados.add("Restantes");
-            //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
 
+
+            //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
             if (numeroJogadores == 2) {
                 for (Programmer jogador : jogadores) {
                     if (!jogador.nome.equals(primeiro)) {
@@ -307,10 +304,13 @@ public class GameManager {
                     }
                 }
                 resultados.add(segundo + ' ' + calAuxPrimeiro);
-            } else if (numeroJogadores == 3) {
+            }
+            /*
+             Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
+             Logo, percorremos a lista de jogadores
+             */            else if (numeroJogadores == 3) {
 
                 for (Programmer jogador : jogadores) {
-
                     //Se o jogador for igual ao que está na variável primeiro passa para o próximo
                     if (jogador.nome.equals(primeiro)) {
                         continue;
@@ -321,7 +321,7 @@ public class GameManager {
                     }
 
                 /*
-                Verifica se o segundo ja tem alguma inserida caso tenha vai verificar a posiçao dele com a do
+                Verifica se o segundo ja tem alguma inserida caso tenha vai verificar a posição dele com a do
                 jogador e caso a posição do segundo seja menor troca
                  */
                     if (!segundo.isEmpty()) {
@@ -342,10 +342,7 @@ public class GameManager {
                 resultados.add(terceiro + ' ' + calAuxTerceiro);
             }
 
-            /*
-        Caso haja 3 jogadores. O primeiro lugar ja foi feito no início.
-        Logo, percorremos a lista de jogadores
-         */
+
             if (numeroJogadores == 4) {
 
                 for (Programmer jogador : jogadores) {
@@ -364,9 +361,9 @@ public class GameManager {
                     /*
                      Só chegamos aqui quando estivermos a ver o terceiro jogador.
                      Verificamos se a posição deste é maior que o da posição que ja colocamos em segundo, e caso seja
-                     trocamos ( o que está em segundo passa para terceiro).
-                     E usamos uma variavel auxiliar para não voltarmos a entrar dentro deste if; e entrarmos
-                     logo noutro if
+                     trocamos (o que está em segundo passa para terceiro).
+                     E usamos uma variável auxiliar para não voltarmos a entrar neste if; e assim entrarmos
+                     logo no próximo if
                      */
                         else if (auxiliar == 1 && outroAux == 0) {
                             outroAux = 30;
@@ -388,6 +385,8 @@ public class GameManager {
                     }
 
                 }
+
+
 
                 //Começamos por verificar se a posição é superior ao do que está em terceiro
                 if (calAuxQuarto > calAuxTerceiro) {
@@ -416,8 +415,7 @@ public class GameManager {
 
     //Função que vai verificar se existe algum jogador na última casa do tabuleiro e caso haja o jogo acaba
     public boolean gameIsOver() {
-        ArrayList<Programmer> jogadores;
-        jogadores = getProgrammers();
+        ArrayList<Programmer> jogadores = getProgrammers();
 
         for (Programmer player : jogadores) {
             if (player.posicao == boardSize) {
