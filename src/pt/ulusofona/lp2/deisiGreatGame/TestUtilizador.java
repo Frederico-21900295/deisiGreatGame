@@ -17,7 +17,7 @@ public class TestUtilizador {
         //4) Verificar se houver ID igual (done)
         //5) Verificar se houver um nome igual a null (done)
         //6) Verificar se houver um nome vazio (done)
-        //7) Verificar o que acontece se dermos um valor à variável cor diferente de (PURPLE,BLUE,GREEN,BROWN) (done)
+        //7) Verificar o que acontece se dermos um valor à variável cor diferente de (Purple,Blue,Green,Brown) (done)
         //8) Verificar com 3 jogadores com tudo correto (done)
         //9) Verificar com 3 jogadores com null (done)
         //10) Verificar com 2 jogadores (done)
@@ -34,27 +34,27 @@ public class TestUtilizador {
         playerInfo5jogadores[0][0] = "1";
         playerInfo5jogadores[0][1] = "Frederico";
         playerInfo5jogadores[0][2] = "Java";
-        playerInfo5jogadores[0][3] = "PURPLE";
+        playerInfo5jogadores[0][3] = "Purple";
 
         playerInfo5jogadores[1][0] = "2";
         playerInfo5jogadores[1][1] = "Pedro";
         playerInfo5jogadores[1][2] = "Java";
-        playerInfo5jogadores[1][3] = "BLUE";
+        playerInfo5jogadores[1][3] = "Blue";
 
         playerInfo5jogadores[2][0] = "3";
         playerInfo5jogadores[2][1] = "Rui";
         playerInfo5jogadores[2][2] = "Kotlin";
-        playerInfo5jogadores[2][3] = "GREEN";
+        playerInfo5jogadores[2][3] = "Green";
 
         playerInfo5jogadores[3][0] = "4";
         playerInfo5jogadores[3][1] = "Joana";
         playerInfo5jogadores[3][2] = "C";
-        playerInfo5jogadores[3][3] = "BROWN";
+        playerInfo5jogadores[3][3] = "Brown";
 
         playerInfo5jogadores[4][0] = "5";
         playerInfo5jogadores[4][1] = "Tiago";
         playerInfo5jogadores[4][2] = "C";
-        playerInfo5jogadores[4][3] = "BROWN";
+        playerInfo5jogadores[4][3] = "Brown";
         assertFalse("Deve dar incorreto", g1.createInitialBoard(playerInfo5jogadores, 79));
 
 
@@ -64,7 +64,7 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
         assertFalse("Deveria dar false pois nao pode haver somente 1 jogador",
                 g2.createInitialBoard(playerInfo,79));
 
@@ -76,22 +76,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Joana";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
         assertTrue("Deve dar correto",g3.createInitialBoard(playerInfo,79));
 
 
@@ -101,22 +101,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "1";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Joana";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
 
         assertFalse("Deveria dar false pois existem jogadores com o mesmo ID",g4.createInitialBoard(playerInfo,79));
 
@@ -127,22 +127,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = null;
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Joana";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
 
         assertFalse("Deveria dar false pois o nome do jogador não pode ser igual a null",g5.createInitialBoard(playerInfo,79));
 
@@ -153,22 +153,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
 
         assertFalse("Os programadores não podem ter o nome vazio",g6.createInitialBoard(playerInfo,79));
 
@@ -179,17 +179,17 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Joana";
@@ -210,17 +210,17 @@ public class TestUtilizador {
         playerInfo3Jogadores[0][0] = "1";
         playerInfo3Jogadores[0][1] = "Frederico";
         playerInfo3Jogadores[0][2] = "Java";
-        playerInfo3Jogadores[0][3] = "PURPLE";
+        playerInfo3Jogadores[0][3] = "Purple";
 
         playerInfo3Jogadores[1][0] = "2";
         playerInfo3Jogadores[1][1] = "Pedro";
         playerInfo3Jogadores[1][2] = "Java";
-        playerInfo3Jogadores[1][3] = "BLUE";
+        playerInfo3Jogadores[1][3] = "Blue";
 
         playerInfo3Jogadores[2][0] = "3";
         playerInfo3Jogadores[2][1] = "Rui";
         playerInfo3Jogadores[2][2] = "Kotlin";
-        playerInfo3Jogadores[2][3] = "GREEN";
+        playerInfo3Jogadores[2][3] = "Green";
 
 
 
@@ -233,17 +233,17 @@ public class TestUtilizador {
         playerInfo3Jogadores[0][0] = "1";
         playerInfo3Jogadores[0][1] = "Frederico";
         playerInfo3Jogadores[0][2] = "Java";
-        playerInfo3Jogadores[0][3] = "PURPLE";
+        playerInfo3Jogadores[0][3] = "Purple";
 
         playerInfo3Jogadores[1][0] = "2";
         playerInfo3Jogadores[1][1] = null;
         playerInfo3Jogadores[1][2] = "Java";
-        playerInfo3Jogadores[1][3] = "BLUE";
+        playerInfo3Jogadores[1][3] = "Blue";
 
         playerInfo3Jogadores[2][0] = "3";
         playerInfo3Jogadores[2][1] = "Rui";
         playerInfo3Jogadores[2][2] = "Kotlin";
-        playerInfo3Jogadores[2][3] = "GREEN";
+        playerInfo3Jogadores[2][3] = "Green";
 
 
         assertFalse("Não pode haver nomes com null 1",g9.createInitialBoard(playerInfo3Jogadores,79));
@@ -258,12 +258,12 @@ public class TestUtilizador {
         playerInfo2Jogadores[0][0] = "1";
         playerInfo2Jogadores[0][1] = "Frederico";
         playerInfo2Jogadores[0][2] = "Java";
-        playerInfo2Jogadores[0][3] = "PURPLE";
+        playerInfo2Jogadores[0][3] = "Purple";
 
         playerInfo2Jogadores[1][0] = "2";
         playerInfo2Jogadores[1][1] = "Pedro";
         playerInfo2Jogadores[1][2] = "Java";
-        playerInfo2Jogadores[1][3] = "BLUE";
+        playerInfo2Jogadores[1][3] = "Blue";
 
 
 
@@ -276,12 +276,12 @@ public class TestUtilizador {
         playerInfo2Jogadores[0][0] = "1";
         playerInfo2Jogadores[0][1] = null;
         playerInfo2Jogadores[0][2] = "Java";
-        playerInfo2Jogadores[0][3] = "PURPLE";
+        playerInfo2Jogadores[0][3] = "Purple";
 
         playerInfo2Jogadores[1][0] = "2";
         playerInfo2Jogadores[1][1] = "Pedro";
         playerInfo2Jogadores[1][2] = "Java";
-        playerInfo2Jogadores[1][3] = "BLUE";
+        playerInfo2Jogadores[1][3] = "Blue";
 
 
 
@@ -303,22 +303,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Joana";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
 
         assertTrue("Deve dar correto", g4.createInitialBoard(playerInfo, 79));
 
@@ -338,12 +338,12 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java ; C ";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java ; Kotlin";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         assertTrue("Deveria dar correto",g1.createInitialBoard(playerInfo,10));
         System.out.println(g1.getProgrammers());
@@ -370,17 +370,17 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java ; C ";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java ; Kotlin";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin ; C";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
 
 
@@ -410,22 +410,22 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java ; C ";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java ; Kotlin";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Kotlin ; C";
-        playerInfo[2][3] = "GREEN";
+        playerInfo[2][3] = "Green";
 
         playerInfo[3][0] = "4";
         playerInfo[3][1] = "Tiago";
         playerInfo[3][2] = "C";
-        playerInfo[3][3] = "BROWN";
+        playerInfo[3][3] = "Brown";
 
         assertTrue("Deveria dar correto",g3.createInitialBoard(playerInfo,10));
         System.out.println(g3.getProgrammers());
@@ -456,12 +456,12 @@ public class TestUtilizador {
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java ; C ; Kotlin";
-        playerInfo[0][3] = "PURPLE";
+        playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
-        playerInfo[1][3] = "BLUE";
+        playerInfo[1][3] = "Blue";
 
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
 
