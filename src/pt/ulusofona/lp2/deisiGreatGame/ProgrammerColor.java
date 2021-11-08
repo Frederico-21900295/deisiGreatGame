@@ -1,13 +1,24 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 enum ProgrammerColor {
-    Purple (1), Blue (2), Green (3), Brown(4);
+    PURPLE ("Purple"),
+    BLUE ("Blue"),
+    GREEN ("Green"),
+    BROWN ("Brown");
 
-    int colorCode;
 
-    ProgrammerColor(Integer value) {
-        this.colorCode = value;
+
+    String nome;
+
+    ProgrammerColor(String label) {
+        this.nome = label;
     }
+
+    @Override
+    public String toString() {
+        return nome;
+    }
+
 
 
 

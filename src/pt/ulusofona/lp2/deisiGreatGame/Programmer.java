@@ -10,16 +10,20 @@ public class Programmer {
     Integer posicao;
     String estado;
 
-    public Programmer () { }
+    public Programmer() { }
 
-    public Programmer (Integer id , String name, String lprogramacao, ProgrammerColor color) {
+    public Programmer (Integer id , String name, String lprogramacao,ProgrammerColor color) {
         this.jogadorID = id;
         this.nome = name;
         this.linguagens = lprogramacao;
-        this.color = color;
         this.posicao = 1;
+        this.color = color;
+
         this.estado = "Está em jogo";
     }
+
+
+
 
     public int getId() {
         return this.jogadorID;
