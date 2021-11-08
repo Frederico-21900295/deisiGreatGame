@@ -1,8 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-import javax.swing.*;
 import java.util.ArrayList;
-
+import javax.swing.JPanel;
 
 public class GameManager {
     ArrayList<Programmer> players;
@@ -76,13 +75,14 @@ public class GameManager {
          */
         for (int i = 0; i < totalJogadores;i++) {
             aux_cores = 0;
-            for (int z = 0; z < 4; z++)
+            for (int z = 0; z < 4; z++) {
                 if (!playerInfo[i][3].equals(corJogadores[z])) {
                     aux_cores++;
                 }
-                if (aux_cores==4) {
+                if (aux_cores == 4) {
                     return false;
                 }
+            }
         }
 
 
@@ -259,9 +259,7 @@ public class GameManager {
     }
 
 
-    public JFrame getAuthorsPanel() {
-
-
+    public JPanel getAuthorsPanel() {
         return null;
     }
 
