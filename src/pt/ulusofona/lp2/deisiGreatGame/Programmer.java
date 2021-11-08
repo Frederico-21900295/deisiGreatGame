@@ -46,6 +46,7 @@ public class Programmer {
 
         //Retirar os espaços entre palavras da variável linguagens
         aux = aux.replace(" ", "");
+        aux = aux.replace("[]", "[ ]");
 
 
         //Retirar ';' e colocar dentro de uma Lista cada uma das linguagens preferidas

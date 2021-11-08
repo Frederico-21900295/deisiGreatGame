@@ -25,7 +25,7 @@ public class GameManager {
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
 
         //Se o campo for menor que 0 retorna false
-        if (boardSize <= 0) {
+        if (boardSize <= 1) {
             return false;
         }
 
