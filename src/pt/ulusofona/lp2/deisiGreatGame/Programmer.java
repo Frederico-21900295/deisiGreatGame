@@ -18,8 +18,7 @@ public class Programmer {
         this.linguagens = lprogramacao;
         this.posicao = 1;
         this.color = color;
-
-        this.estado = "Está em jogo";
+        this.estado = "Em Jogo";
     }
 
 
