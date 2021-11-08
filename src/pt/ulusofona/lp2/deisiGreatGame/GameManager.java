@@ -36,6 +36,8 @@ public class GameManager {
         int aux_cores;
         int totalJogadores = playerInfo.length;
 
+        int aux=0;
+
 
 
         // Usado para verificar mais tarde se as cores são diferentes destas 4 cores
@@ -53,21 +55,24 @@ public class GameManager {
          maior que 4 retorna false
          */
 
+        System.out.println(totalJogadores);
         for (int i = 0; i < totalJogadores; i++) {
+            aux++;
             for (int y = 0; y < 1; y++) {
                 if (playerInfo[i][y] == null || playerInfo[i][y].isEmpty()) {
-                    if (i >= 2 && i <= 4) {
-                        totalJogadores = i;
+                        aux--;
                         break;
-                    } else {
-                        return false;
                     }
                 }
-            }
+
         }
+        totalJogadores = aux;
 
-
-
+        System.out.println(totalJogadores);
+        if (totalJogadores <= 1 || totalJogadores > 4)
+        {
+            return false;
+        }
 
         /*
          Verificamos jogador a jogador caso a cor difira das 4 outras cores a variável aux_cores fica com o

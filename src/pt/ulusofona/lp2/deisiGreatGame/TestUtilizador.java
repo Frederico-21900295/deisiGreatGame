@@ -453,6 +453,7 @@ public class TestUtilizador {
 
         String[][] playerInfo = new String[4][4];
 
+
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Java ; C ; Kotlin";
@@ -463,7 +464,7 @@ public class TestUtilizador {
         playerInfo[1][2] = "Java";
         playerInfo[1][3] = "Blue";
 
-        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
+        assertFalse("Deve dar incorreto",g1.createInitialBoard(playerInfo,79));
 
         System.out.println(g1.getProgrammers());
 
