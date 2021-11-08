@@ -461,10 +461,10 @@ public class TestUtilizador {
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Common Lisp; Java";
+        playerInfo[1][2] = "Common[]Lisp ; Java";
         playerInfo[1][3] = "Blue";
 
-        assertTrue("Deve dar incorreto",g1.createInitialBoard(playerInfo,79));
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
 
         System.out.println(g1.getProgrammers());
 
