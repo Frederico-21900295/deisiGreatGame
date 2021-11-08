@@ -42,10 +42,12 @@ public class Programmer {
     public String toString() {
         StringBuilder texto = new StringBuilder(this.jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         String aux = this.linguagens;
+        aux = aux.replace(" ", "");
+
         ArrayList<String> aux1 = new ArrayList<>();
 
         //Retirar os espaços entre palavras da variável linguagens
-        aux = aux.replace(" ", "");
+
         aux = aux.replace("[]", "[ ]");
 
 
