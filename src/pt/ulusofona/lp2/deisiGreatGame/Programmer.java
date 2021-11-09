@@ -70,9 +70,6 @@ public class Programmer {
         System.out.println(aux1);
 
 
-
-        //"[Clojure ; F ; D] ; CommonLisp "
-
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         for (String frase : aux1) {
             outputBuilder.append(frase);
