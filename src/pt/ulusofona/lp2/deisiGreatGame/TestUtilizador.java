@@ -461,7 +461,7 @@ public class TestUtilizador {
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Java ; C";
+        playerInfo[1][2] = "[]PHP ; C ; Kotlin";
         playerInfo[1][3] = "Blue";
 
 

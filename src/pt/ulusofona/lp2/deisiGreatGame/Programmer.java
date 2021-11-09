@@ -50,27 +50,11 @@ public class Programmer {
         //Coloco neste array todas as linguagens preferidas do utilizador
         ArrayList<String> aux1 = new ArrayList<>();
 
-        Collections.addAll(aux1, linguagens.split(" ; "));
+        Collections.addAll(aux1, linguagens.split("; "));
 
         System.out.println(aux1);
 
-
-        aux1.sort((o1, o2) -> {
-            if (o1.startsWith("[")) {
-                return Character.compare(o1.charAt(1), o2.charAt(0));
-            }
-            else if (o2.startsWith("[")) {
-                return Character.compare(o1.charAt(0), o2.charAt(1));
-            }
-            else if (o1.isEmpty() || o2.isEmpty()) {
-                return 1;
-            }
-            else {
-                return Character.compare(o1.charAt(0), o2.charAt(0));
-            }
-        });
-
-        //Collections.sort(aux1);
+        Collections.sort(aux1);
         //Common Lisp; [ ]PHP
 
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
