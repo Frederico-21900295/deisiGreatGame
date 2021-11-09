@@ -456,12 +456,12 @@ public class TestUtilizador {
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
-        playerInfo[0][2] = "";
+        playerInfo[0][2] = "[Clojure; Common Lisp; D]";
         playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Common Lisp; [ PHP] ";
+        playerInfo[1][2] = "Common Lisp;[ PHP] ";
         playerInfo[1][3] = "Blue";
 
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));

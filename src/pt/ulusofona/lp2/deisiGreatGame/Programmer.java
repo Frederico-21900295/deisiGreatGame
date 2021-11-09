@@ -58,7 +58,7 @@ public class Programmer {
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         for (String frase : aux1) {
             outputBuilder.append(frase);
-            if (x != aux1.size()) {
+            if (x != aux1.size() - 1) {
                 outputBuilder.append("; ");
             }
             x++;
