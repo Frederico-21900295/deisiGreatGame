@@ -456,12 +456,12 @@ public class TestUtilizador {
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
-        playerInfo[0][2] = "Java ; C ; Kotlin";
+        playerInfo[0][2] = "";
         playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Common[ ]Lisp ; Java";
+        playerInfo[1][2] = "C ; Java ; Kotlin ; [A ; Common Lisp ; Clojure]";
         playerInfo[1][3] = "Blue";
 
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
