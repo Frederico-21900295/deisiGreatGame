@@ -1,6 +1,7 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.util.ArrayList;
+import java.util.Objects;
 import javax.swing.JPanel;
 
 public class GameManager {
@@ -25,7 +26,7 @@ public class GameManager {
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
 
         //Se o campo for menor que 0 retorna false
-        if (boardSize <= 2) {
+        if (boardSize < 4) {
             return false;
         }
 
@@ -55,7 +56,7 @@ public class GameManager {
          maior que 4 retorna false
          */
 
-        System.out.println(totalJogadores);
+
         for (int i = 0; i < totalJogadores; i++) {
             aux++;
             for (int y = 0; y < 1; y++) {
@@ -68,7 +69,6 @@ public class GameManager {
         }
         totalJogadores = aux;
 
-        System.out.println(totalJogadores);
         if (totalJogadores <= 1 || totalJogadores > 4)
         {
             return false;
@@ -103,7 +103,7 @@ public class GameManager {
                     if ((playerInfo[i][1] == null) || (playerInfo[i][1].isEmpty())) {
                         return false;
                     } else {
-                        if (playerInfo[i][0].equals(playerInfo[y][0])
+                        if (Objects.equals(playerInfo[i][0], playerInfo[y][0])
                                 || playerInfo[i][1].equals(playerInfo[y][1]) ||
                                 playerInfo[i][3].equals(playerInfo[y][3])) {
 
@@ -124,10 +124,6 @@ public class GameManager {
 
         switch (totalJogadores) {
             case 2 -> {
-                System.out.println(playerInfo[0][3]);
-                System.out.println(playerInfo[1][3]);
-
-
                 Programmer jogador1;
                 jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2],ProgrammerColor.PURPLE);
                 Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2],ProgrammerColor.BLUE);
@@ -289,6 +285,8 @@ public class GameManager {
         int auxiliar = 0;
         int outroAux = 0;
 
+        int auxFalse=0;
+
         ArrayList<Programmer> jogadores;
         jogadores = getProgrammers();
 
@@ -296,17 +294,24 @@ public class GameManager {
         for (Programmer jogador: jogadores) {
             if (jogador.posicao == GameManager.boardSize) {
                 primeiro = jogador.nome;
+                auxFalse=0;
             }
+            else {
+                auxFalse++;
+            }
+        }
+        if (auxFalse > 0) {
+            return resultados;
         }
 
         //Só entra aqui caso já tenha sido atribuído o primeiro lugar; caso não tenha retorna uma lista vazia
         if ((!primeiro.isEmpty())) {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
-            resultados.add("NR. DE TURNOS ");
+            resultados.add("NR. DE TURNOS");
             resultados.add(String.valueOf(turnos));
             resultados.add("");
-            resultados.add("VENCEDOR ");
+            resultados.add("VENCEDOR");
             resultados.add(primeiro);
             resultados.add("");
             resultados.add("Restantes");
@@ -425,7 +430,6 @@ public class GameManager {
 
             }
         }
-
         return resultados;
     }
 

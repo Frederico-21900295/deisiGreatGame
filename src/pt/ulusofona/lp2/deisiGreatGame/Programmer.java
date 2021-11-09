@@ -2,27 +2,25 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
 import java.util.Collections;
 
+
 public class Programmer {
     Integer jogadorID;
     String nome;
-    String linguagens;
+    String lprogramacao;
     ProgrammerColor color;
     Integer posicao;
     String estado;
 
     public Programmer() { }
 
-    public Programmer (Integer id , String name, String lprogramacao,ProgrammerColor color) {
+    public Programmer(Integer id, String name, String lprogramacao, ProgrammerColor color) {
         this.jogadorID = id;
         this.nome = name;
-        this.linguagens = lprogramacao;
+        this.lprogramacao = lprogramacao;
         this.posicao = 1;
         this.color = color;
         this.estado = "Em Jogo";
     }
-
-
-
 
     public int getId() {
         return this.jogadorID;
@@ -37,46 +35,46 @@ public class Programmer {
     }
 
 
-
     @Override
     public String toString() {
-        StringBuilder texto = new StringBuilder(this.jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
-        String aux = this.linguagens;
+        String linguagens = this.lprogramacao;
+        String output;
+        int x = 0;
+
+        //Coloco neste array todas as linguagens preferidas do utilizador
         ArrayList<String> aux1 = new ArrayList<>();
 
-
-        aux = aux.replace(" ; ", "; ");
-
-        //Retirar ';' e colocar dentro de uma Lista cada uma das linguagens preferidas
-
-        Collections.addAll(aux1, aux.split("; "));
+        Collections.addAll(aux1, linguagens.split(";"));
         Collections.sort(aux1);
 
-
-
-        /*
-        Colocar na variável texto as linguagens de programação preferidas com o output desejado;
-        Caso só tenha escolhido uma linguagem não faz este if
-         */
-
-        if (!aux1.isEmpty()) {
-            for (int x = 0; x < aux1.size(); x++) {
-                if ((aux1.size() - x) > 1) {
-                    texto.append(aux1.get(x)).append("; ");
-                }
-                else {
-                    texto.append(aux1.get(x));
-                }
-
+        StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
+        for (String frase : aux1) {
+            outputBuilder.append(frase);
+            if (x != aux1.size() - 1) {
+                outputBuilder.append("; ");
             }
-            return texto +  " | " + this.estado;
-
+            x++;
         }
 
+        output = outputBuilder.toString();
+        output+= " | " + estado;
 
-        return texto + this.linguagens +  " | " + this.estado;
+        return output;
+
+
     }
-
-
-
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
