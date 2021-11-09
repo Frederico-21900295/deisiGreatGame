@@ -314,7 +314,7 @@ public class GameManager {
             resultados.add("VENCEDOR");
             resultados.add(primeiro);
             resultados.add("");
-            resultados.add("Restantes");
+            resultados.add("RESTANTES");
 
 
             //Caso só haja 2 jogadores só temos de inserir na variável segundo, pois o que está em primeiro foi feito antes
