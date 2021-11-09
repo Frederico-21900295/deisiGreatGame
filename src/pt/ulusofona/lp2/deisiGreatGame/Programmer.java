@@ -62,6 +62,9 @@ public class Programmer {
             else if (o2.startsWith("[")) {
                 return Character.compare(o1.charAt(0), o2.charAt(1));
             }
+            else if (o1.isEmpty() || o2.isEmpty()) {
+                return 1;
+            }
             else {
                 return Character.compare(o1.charAt(0), o2.charAt(0));
             }
