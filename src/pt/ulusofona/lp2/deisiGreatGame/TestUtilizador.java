@@ -337,7 +337,7 @@ public class TestUtilizador {
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
-        playerInfo[0][2] = "Java ; C ";
+        playerInfo[0][2] = "Java ; C";
         playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
@@ -369,17 +369,17 @@ public class TestUtilizador {
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
-        playerInfo[0][2] = "Java ; C ";
+        playerInfo[0][2] = "Java; C";
         playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Java ; Kotlin";
+        playerInfo[1][2] = "Java; Kotlin";
         playerInfo[1][3] = "Blue";
 
         playerInfo[2][0] = "3";
         playerInfo[2][1] = "Rui";
-        playerInfo[2][2] = "Kotlin ; C";
+        playerInfo[2][2] = "Kotlin; C";
         playerInfo[2][3] = "Green";
 
 
@@ -446,7 +446,7 @@ public class TestUtilizador {
         System.out.println(g3.getGameResults());
     }
 
-    @Test(timeout = 1000)
+    @Test(timeout = 100)
     public void test003_Programmer() {
 
         GameManager g1 = new GameManager();
@@ -456,13 +456,15 @@ public class TestUtilizador {
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
-        playerInfo[0][2] = "[Clojure; D; Common Lisp] ; A";
+        playerInfo[0][2] = "[B ; A ; D]";
         playerInfo[0][3] = "Purple";
 
         playerInfo[1][0] = "2";
         playerInfo[1][1] = "Pedro";
-        playerInfo[1][2] = "Java ; C[]";
+        playerInfo[1][2] = "Java ; C";
         playerInfo[1][3] = "Blue";
+
+
 
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
 

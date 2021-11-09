@@ -37,7 +37,8 @@ public class Programmer {
     }
 
 
-
+//Fazer sort da arrayList
+    //E depois so modificar , para ;
 
 
     @Override
@@ -49,12 +50,11 @@ public class Programmer {
         //Coloco neste array todas as linguagens preferidas do utilizador
         ArrayList<String> aux1 = new ArrayList<>();
 
-        Collections.addAll(aux1, linguagens.split("; "));
+        Collections.addAll(aux1, linguagens.split(" ; "));
 
         System.out.println(aux1);
 
 
-        //Common Lisp; [ ]PHP
         aux1.sort((o1, o2) -> {
             if (o1.startsWith("[")) {
                 return Character.compare(o1.charAt(1), o2.charAt(0));
@@ -67,21 +67,26 @@ public class Programmer {
             }
         });
 
-        System.out.println(aux1);
-
+        //Collections.sort(aux1);
+        //Common Lisp; [ ]PHP
 
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         for (String frase : aux1) {
+
             outputBuilder.append(frase);
             if (x != aux1.size() - 1) {
                 outputBuilder.append("; ");
             }
             x++;
         }
+        System.out.println(aux1);
+
         output = outputBuilder.toString();
         output+= " | " + estado;
 
         return output;
+
+
     }
 }
 
