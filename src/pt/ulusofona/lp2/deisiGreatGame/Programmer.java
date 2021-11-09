@@ -1,7 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Comparator;
 
 
 public class Programmer {
@@ -45,6 +47,7 @@ public class Programmer {
     public String toString() {
         String linguagens = this.lprogramacao;
         String output;
+        String texto;
         int x = 0;
 
         //Coloco neste array todas as linguagens preferidas do utilizador
@@ -52,7 +55,26 @@ public class Programmer {
 
         Collections.addAll(aux1, linguagens.split("; "));
 
-        Collections.sort(aux1);
+        System.out.println(aux1);
+
+
+        //Common Lisp; [ ]PHP
+        aux1.sort((o1, o2) -> {
+            if (o1.startsWith("[")) {
+                return Character.compare(o1.charAt(1), o2.charAt(0));
+            }
+            else if (o2.startsWith("[")) {
+                return Character.compare(o1.charAt(0), o2.charAt(1));
+            }
+            else {
+                return Character.compare(o1.charAt(0), o2.charAt(0));
+            }
+        });
+
+        System.out.println(aux1);
+
+
+
         //"[Clojure ; F ; D] ; CommonLisp "
 
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
