@@ -285,6 +285,8 @@ public class GameManager {
         int auxiliar = 0;
         int outroAux = 0;
 
+        int auxFalse=0;
+
         ArrayList<Programmer> jogadores;
         jogadores = getProgrammers();
 
@@ -292,17 +294,24 @@ public class GameManager {
         for (Programmer jogador: jogadores) {
             if (jogador.posicao == GameManager.boardSize) {
                 primeiro = jogador.nome;
+                auxFalse=0;
             }
+            else {
+                auxFalse++;
+            }
+        }
+        if (auxFalse > 0) {
+            return resultados;
         }
 
         //Só entra aqui caso já tenha sido atribuído o primeiro lugar; caso não tenha retorna uma lista vazia
         if ((!primeiro.isEmpty())) {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
-            resultados.add("NR. DE TURNOS ");
+            resultados.add("NR. DE TURNOS");
             resultados.add(String.valueOf(turnos));
             resultados.add("");
-            resultados.add("VENCEDOR ");
+            resultados.add("VENCEDOR");
             resultados.add(primeiro);
             resultados.add("");
             resultados.add("Restantes");
@@ -421,7 +430,6 @@ public class GameManager {
 
             }
         }
-
         return resultados;
     }
 

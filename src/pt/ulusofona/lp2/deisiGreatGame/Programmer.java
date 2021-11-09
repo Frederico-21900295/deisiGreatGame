@@ -11,8 +11,7 @@ public class Programmer {
     Integer posicao;
     String estado;
 
-    public Programmer() {
-    }
+    public Programmer() { }
 
     public Programmer(Integer id, String name, String lprogramacao, ProgrammerColor color) {
         this.jogadorID = id;
@@ -22,7 +21,6 @@ public class Programmer {
         this.color = color;
         this.estado = "Em Jogo";
     }
-
 
     public int getId() {
         return this.jogadorID;
@@ -37,10 +35,6 @@ public class Programmer {
     }
 
 
-//Fazer sort da arrayList
-    //E depois so modificar , para ;
-
-
     @Override
     public String toString() {
         String linguagens = this.lprogramacao;
@@ -51,22 +45,16 @@ public class Programmer {
         ArrayList<String> aux1 = new ArrayList<>();
 
         Collections.addAll(aux1, linguagens.split(";"));
-
-        System.out.println(aux1);
-
         Collections.sort(aux1);
-        //Common Lisp; [ ]PHP
 
         StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         for (String frase : aux1) {
-
             outputBuilder.append(frase);
             if (x != aux1.size() - 1) {
                 outputBuilder.append("; ");
             }
             x++;
         }
-        System.out.println(aux1);
 
         output = outputBuilder.toString();
         output+= " | " + estado;
