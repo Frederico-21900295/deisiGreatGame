@@ -50,7 +50,7 @@ public class Programmer {
         //Coloco neste array todas as linguagens preferidas do utilizador
         ArrayList<String> aux1 = new ArrayList<>();
 
-        Collections.addAll(aux1, linguagens.split(" ; "));
+        Collections.addAll(aux1, linguagens.split("; "));
 
         Collections.sort(aux1);
         //"[Clojure ; F ; D] ; CommonLisp "
