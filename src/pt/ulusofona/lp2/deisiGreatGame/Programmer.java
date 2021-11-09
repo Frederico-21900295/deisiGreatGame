@@ -1,9 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.Comparator;
 
 
 public class Programmer {
@@ -47,7 +44,6 @@ public class Programmer {
     public String toString() {
         String linguagens = this.lprogramacao;
         String output;
-        String texto;
         int x = 0;
 
         //Coloco neste array todas as linguagens preferidas do utilizador
