@@ -30,6 +30,7 @@ public class GameManager {
             return false;
         }
 
+
         //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
         players = new ArrayList<>();
 
@@ -114,6 +115,7 @@ public class GameManager {
 
             }
         }
+        String cor1 =  playerInfo[0][3];
 
         //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
@@ -124,28 +126,27 @@ public class GameManager {
 
         switch (totalJogadores) {
             case 2 -> {
-                Programmer jogador1;
-                jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2],ProgrammerColor.PURPLE);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2],ProgrammerColor.BLUE);
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
                 players.add(jogador1);
                 players.add(jogador2);
                 numeroJogadores = totalJogadores;
             }
 
             case 3 -> {
-                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.PURPLE);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.BLUE);
-                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.GREEN);
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
+                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
                 players.add(jogador1);
                 players.add(jogador2);
                 players.add(jogador3);
                 numeroJogadores = totalJogadores;
             }
             case 4 -> {
-                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], ProgrammerColor.PURPLE);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], ProgrammerColor.BLUE);
-                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], ProgrammerColor.GREEN);
-                Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], ProgrammerColor.BROWN);
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
+                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
+                Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], playerInfo[3][3]);
                 players.add(jogador1);
                 players.add(jogador2);
                 players.add(jogador3);

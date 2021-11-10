@@ -3,7 +3,7 @@ import org.junit.Test;
 
 
 // Verificar Caso alguma destas regras não seja cumprida, então a função deve devolver false e o turno continua a ser do jogador actual. Em caso contrário, a função deve devolver true.
-import java.net.SocketOption;
+//import java.net.SocketOption;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -333,10 +333,7 @@ public class TestUtilizador {
     public void test002_gameResult() {
         GameManager g1 = new GameManager();
 
-        Programmer p1 = new Programmer(1,"Frederico","este , outto",ProgrammerColor.PURPLE);
-        Programmer p2 = new Programmer(3,"Frederico","este , outto",ProgrammerColor.BLUE);
-        Programmer p3 = new Programmer(5,"Frederico","este , outto",ProgrammerColor.GREEN);
-        Programmer p4 = new Programmer(6,"Frederico","este , outto",ProgrammerColor.BROWN);
+
 
         String[][] playerInfo = new String[4][4];
 
@@ -351,12 +348,6 @@ public class TestUtilizador {
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java ; Kotlin";
         playerInfo[1][3] = "Blue";
-
-        System.out.println(p2.getColor());
-        System.out.println(p2.getId());
-        System.out.println(p1.getColor());
-        System.out.println(p3.getColor());
-        System.out.println(p4.getColor());
 
         assertTrue("Deveria dar correto",g1.createInitialBoard(playerInfo,10));
         System.out.println(g1.getProgrammers());

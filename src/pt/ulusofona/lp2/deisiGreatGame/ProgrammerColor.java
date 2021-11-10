@@ -7,7 +7,6 @@ enum ProgrammerColor {
     BROWN ("Brown");
 
 
-
     String nome;
 
     ProgrammerColor(String label) {

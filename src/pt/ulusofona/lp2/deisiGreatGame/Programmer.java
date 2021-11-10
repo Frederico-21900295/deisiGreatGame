@@ -11,16 +11,22 @@ public class Programmer {
     Integer posicao;
     String estado;
 
-    public Programmer() { }
 
-    public Programmer(Integer id, String name, String lprogramacao, ProgrammerColor color) {
+    public Programmer(Integer id, String name, String lprogramacao,String color) {
         this.jogadorID = id;
         this.nome = name;
         this.lprogramacao = lprogramacao;
+        switch (color) {
+            case "Purple" -> this.color = ProgrammerColor.PURPLE;
+            case "Blue" -> this.color = ProgrammerColor.BLUE;
+            case "Brown" -> this.color = ProgrammerColor.BROWN;
+            default -> this.color = ProgrammerColor.GREEN;
+        }
         this.posicao = 1;
-        this.color = color;
         this.estado = "Em Jogo";
     }
+
+
 
     public int getId() {
         return this.jogadorID;
