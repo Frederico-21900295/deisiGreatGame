@@ -20,7 +20,7 @@ public class Programmer {
             case "Purple" -> this.color = ProgrammerColor.PURPLE;
             case "Blue" -> this.color = ProgrammerColor.BLUE;
             case "Brown" -> this.color = ProgrammerColor.BROWN;
-            default -> this.color = ProgrammerColor.GREEN;
+            case "Green" -> this.color = ProgrammerColor.GREEN;
         }
         this.posicao = 1;
         this.estado = "Em Jogo";

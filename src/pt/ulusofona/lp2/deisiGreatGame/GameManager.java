@@ -296,12 +296,13 @@ public class GameManager {
             if (jogador.posicao == GameManager.boardSize) {
                 primeiro = jogador.nome;
                 auxFalse=0;
+                break;
             }
             else {
                 auxFalse++;
             }
         }
-        if (auxFalse > 0) {
+        if (auxFalse != 0) {
             return resultados;
         }
 
