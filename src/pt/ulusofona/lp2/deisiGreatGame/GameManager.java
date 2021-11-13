@@ -1,8 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Objects;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class GameManager {
     ArrayList<Programmer> players;
@@ -115,7 +116,6 @@ public class GameManager {
 
             }
         }
-        String cor1 =  playerInfo[0][3];
 
         //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
@@ -253,7 +253,7 @@ public class GameManager {
             if (position == boardSize) {
                 return this.imagem = "glory.png";
             } else if (position == 1) {
-                return this.imagem = "glory.png";
+                return this.imagem = "partida.png";
 
             }
         }
@@ -262,8 +262,42 @@ public class GameManager {
 
 
     public JPanel getAuthorsPanel() {
-        return null;
-    }
+        JPanel panel=new JPanel();
+        panel.setLayout(new FlowLayout());
+        JLabel label = new JLabel("Deisi Great Game");
+        Font font = new Font("Courier", Font.BOLD,20);
+        label.setFont(font);
+        label.setForeground(Color.white);
+        panel.setBackground(Color.darkGray);
+
+        JTextArea textArea2 = new JTextArea(3, 4);
+        textArea2.setBackground(Color.darkGray);
+        textArea2.setEditable(false);
+
+
+
+        JTextArea textArea = new JTextArea(1, 4);
+        textArea.setBackground(Color.darkGray);
+        textArea.setForeground(Color.white);
+        textArea.setText("Trabalho realizado no âmbito da cadeira");
+        textArea.setEditable(false);
+
+        JTextArea textArea1 = new JTextArea(1, 4);
+        textArea1.setBackground(Color.darkGray);
+        textArea1.setForeground(Color.white);
+        textArea1.setText("Linguagens de Programção II");
+        textArea1.setEditable(false);
+
+
+        panel.add(label);
+        panel.add(textArea2);
+
+        panel.add(textArea);
+        panel.add(textArea1);
+
+        return panel;
+//
+}
 
 
     // Função que vai disponibilizar os resultados do jogo com o output desejado pelo projeto
