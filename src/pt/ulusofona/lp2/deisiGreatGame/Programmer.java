@@ -6,16 +6,16 @@ import java.util.Collections;
 public class Programmer {
     Integer jogadorID;
     String nome;
-    String lprogramacao;
+    String linguagens;
     ProgrammerColor color;
-    Integer posicao;
+    int posicao;
     String estado;
 
 
-    public Programmer(Integer id, String name, String lprogramacao,String color) {
+    public Programmer(Integer id, String name, String linguagens,String color) {
         this.jogadorID = id;
         this.nome = name;
-        this.lprogramacao = lprogramacao;
+        this.linguagens = linguagens;
         switch (color) {
             case "Purple" -> this.color = ProgrammerColor.PURPLE;
             case "Blue" -> this.color = ProgrammerColor.BLUE;
@@ -43,7 +43,7 @@ public class Programmer {
 
     @Override
     public String toString() {
-        String linguagens = this.lprogramacao;
+        String linguagens = this.linguagens;
         String output;
         int x = 0;
 

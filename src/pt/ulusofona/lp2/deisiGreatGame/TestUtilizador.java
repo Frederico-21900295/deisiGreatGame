@@ -2,11 +2,8 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import org.junit.Test;
 
 
-// Verificar Caso alguma destas regras não seja cumprida, então a função deve devolver false e o turno continua a ser do jogador actual. Em caso contrário, a função deve devolver true.
-//import java.net.SocketOption;
+import static org.junit.Assert.*;
 
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
 
 public class TestUtilizador {
 
@@ -58,6 +55,8 @@ public class TestUtilizador {
         playerInfo5jogadores[4][2] = "C";
         playerInfo5jogadores[4][3] = "Brown";
         assertFalse("Deve dar incorreto", g1.createInitialBoard(playerInfo5jogadores, 79));
+
+        
 
 
         // 2 exemplo
@@ -337,7 +336,7 @@ public class TestUtilizador {
 
         String[][] playerInfo = new String[4][4];
 
-        // 2 jogadores dá certo
+        // dois jogadores dá certo
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
@@ -368,7 +367,7 @@ public class TestUtilizador {
 
 
 
-        // 3 jogadores dá certo
+        // três jogadores dá certo
 
         GameManager g2 = new GameManager();
 
@@ -409,7 +408,7 @@ public class TestUtilizador {
 
 
 
-        // 4 jogadores esta correto
+        // quatro jogadores esta correto
 
         GameManager g3 = new GameManager();
 
@@ -459,6 +458,8 @@ public class TestUtilizador {
 
         String[][] playerInfo = new String[4][4];
 
+        String array = "[]";
+
 
         playerInfo[0][0] = "1";
         playerInfo[0][1] = "Frederico";
@@ -475,6 +476,10 @@ public class TestUtilizador {
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,79));
 
         System.out.println(g1.getProgrammers());
+
+        assertNull(g1.getProgrammers(2));
+
+        assertEquals(array,g1.getGameResults().toString());
 
     }
 
