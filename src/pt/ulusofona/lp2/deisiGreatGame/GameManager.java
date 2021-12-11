@@ -179,10 +179,10 @@ public class GameManager {
                 }
 
                 numeroJogadores = 4;
+                }
+
+
             }
-
-
-        }
 
         return true;
     }
@@ -440,7 +440,7 @@ public class GameManager {
                 ferramentas = jogador.getFerramentas();
                 frase.append(jogador.getName()).append(" : ");
                 for (String f: ferramentas) {
-                    frase.append(f).append(";");
+                   frase.append(f).append(";");
                 }
                 frase.append(" | ");
             }
@@ -516,7 +516,7 @@ public class GameManager {
         String frase = null;
         for (Programmer player : jogadores) {
             if (player.getId() == id)
-                frase = player.reagirCasaEfeito(casasComEfeito,player,dado,jogadores);
+            frase = player.reagirCasaEfeito(casasComEfeito,player,dado,jogadores);
             if (frase!=null) {
                 break;
             }
@@ -622,12 +622,12 @@ public class GameManager {
                         }
                     }
 
-                    resultados.add(primeiro);
-                    resultados.add("");
-                    resultados.add("RESTANTES");
-                    resultados.add(segundo + ' ' + calAuxSegundo);
-                }
-                case 3 -> {
+                        resultados.add(primeiro);
+                        resultados.add("");
+                        resultados.add("RESTANTES");
+                        resultados.add(segundo + ' ' + calAuxSegundo);
+                    }
+            case 3 -> {
                     for (Programmer jogador : jogadores) {
                         if (jogador.getPosicao() == listaPosicoes.get(0)) {
                             primeiro = jogador.getName();
@@ -658,7 +658,7 @@ public class GameManager {
                     }
                 }
 
-                case 4 -> {
+            case 4 -> {
                     for (Programmer jogador : jogadores) {
                         if (jogador.getPosicao() == listaPosicoes.get(0)) {
                             primeiro = jogador.getName();
