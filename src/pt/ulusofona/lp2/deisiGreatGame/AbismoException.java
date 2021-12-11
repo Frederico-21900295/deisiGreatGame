@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AbismoException extends Abismo {
@@ -19,11 +20,18 @@ public class AbismoException extends Abismo {
                 return "Usaste a ferramenta " + f + " para o seguinte abismo (Exception) ";
             }
         }
-        int aux = player.getPosicao() - 2;
-        if (aux < 0 ) {
+        ArrayList<Integer> historico;
+
+        historico = player.getHistoricoPosicoes();
+        int i = historico.size() - 1;
+        if (i < 0) {
             player.mudarPosicao(1);
         }
-        player.mudarPosicao(aux);
+        else {
+            int valorPosicao = (historico.get(i));
+            valorPosicao -= 2;
+            player.mudarPosicao(valorPosicao);
+        }
         return "Regressa 2 casas atrás";
     }
 

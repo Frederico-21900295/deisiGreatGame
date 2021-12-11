@@ -517,7 +517,6 @@ public class GameManager {
         dado = nrSpaces;
         int id = getCurrentPlayerID();
         List<Programmer> jogadores  = getProgrammers();
-
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
                 if (!player.getEmJogo() || player.getCicloInfinito()) {
@@ -537,12 +536,10 @@ public class GameManager {
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
                 frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
-            }
-            if (frase!=null) {
                 break;
             }
-        }
 
+        }
         if (!gameIsOver()) {
             turnos++;
             currentPlayer++;
@@ -550,24 +547,32 @@ public class GameManager {
             if (currentPlayer > numeroJogadores) {
                 currentPlayer = 1;
             }
-
-            /*
             id = getCurrentPlayerID();
-
+            int aux = 0;
 
             for (Programmer player : jogadores) {
                 if (player.getId() == id) {
-                    if (!player.getEmJogo() || player.getCicloInfinito()) {
+                    if (!player.getEmJogo()) {
                         currentPlayer++;
                         if (currentPlayer > numeroJogadores) {
                             currentPlayer = 1;
+                            aux++;
                         }
                     }
                     id = getCurrentPlayerID();
                 }
             }
+            if (aux > 0) {
+                for (Programmer player : jogadores) {
+                    if (player.getId() == id) {
+                        if (!player.getEmJogo()) {
+                            currentPlayer++;
+                        }
+                        id = getCurrentPlayerID();
+                    }
+                }
+            }
 
-             */
         }
 
         return frase;

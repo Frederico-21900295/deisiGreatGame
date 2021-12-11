@@ -22,7 +22,7 @@ public class AbismoDuplicatedCode extends Abismo {
             }
         }
         historico = player.getHistoricoPosicoes();
-        int i = historico.size() - 1;
+        int i = historico.size() - 2;
         if (i < 0) {
             player.mudarPosicao(1);
         }

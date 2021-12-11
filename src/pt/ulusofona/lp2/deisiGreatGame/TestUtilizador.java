@@ -1081,7 +1081,7 @@ public class TestUtilizador {
 
 
     @Test(timeout = 100)
-    public void test007_Abismos_BlueScreenofDeath_4Jogadores() {
+    public void test007_Abismos_BlueScreenofDeath_3Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1111,13 +1111,12 @@ public class TestUtilizador {
 
 
 
-
         //Criar o objeto do GameManager
         GameManager g1 = new GameManager();
 
 
         //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
-        String[][] playerInfo = new String[4][4];
+        String[][] playerInfo = new String[3][4];
 
 
         playerInfo[0][0] = "30";
@@ -1135,10 +1134,7 @@ public class TestUtilizador {
         playerInfo[2][2] = "Java";
         playerInfo[2][3] = "Green";
 
-        playerInfo[3][0] = "50";
-        playerInfo[3][1] = "Joana";
-        playerInfo[3][2] = "Java";
-        playerInfo[3][3] = "Brown";
+
 
 
         //Função que irá criar o campo com 20 posições
@@ -1146,13 +1142,42 @@ public class TestUtilizador {
 
 
         //Inicialmente
-        //Rui 1 | Pedro 1 | Frederico 1 | Joana 1
+        //Rui 1 | Pedro 1 | Frederico 1
+
+        System.out.println("10 " + g1.getCurrentPlayerID()); // 10
 
         g1.moveCurrentPlayer(2);
-        //Rui 3 | Pedro 1 | Frederico 1 | Joana 1
+        //Rui 3 | Pedro 1 | Frederico 1
         g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 1 | Frederico 1 | Joana 1
+        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
 
+        System.out.println("20 " + g1.getCurrentPlayerID()); // 20
+
+        g1.moveCurrentPlayer(3);
+        //Rui 3 | Pedro 1 | Frederico 4
+        g1.reactToAbyssOrTool();
+        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
+
+        System.out.println("30 " + g1.getCurrentPlayerID()); // 30
+
+
+        g1.moveCurrentPlayer(3);
+        //Rui 3 | Pedro 1 | Frederico 4
+        g1.reactToAbyssOrTool();
+        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
+
+        System.out.println("10 " + g1.getCurrentPlayerID()); // 30
+
+        g1.moveCurrentPlayer(3);
+        //Rui 3 | Pedro 1 | Frederico 4
+        System.out.println("Null : " + g1.reactToAbyssOrTool());
+        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
+
+        System.out.println("20 " + g1.getCurrentPlayerID()); // 20
+
+        /*
+
+//3,9,17,19
         g1.moveCurrentPlayer(3);
         //Rui 3(Perdeu) | Pedro 4 | Frederico 1 | Joana 1
         g1.reactToAbyssOrTool();
@@ -1206,6 +1231,8 @@ public class TestUtilizador {
         System.out.println(g1.getProgrammers(true));
         System.out.println(g1.gameIsOver());
         System.out.println(g1.getGameResults());
+
+         */
 
     }
 
@@ -1289,6 +1316,7 @@ public class TestUtilizador {
 
 
     }
+
 
 
 

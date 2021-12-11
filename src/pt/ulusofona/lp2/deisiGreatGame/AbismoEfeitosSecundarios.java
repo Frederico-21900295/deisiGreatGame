@@ -22,7 +22,7 @@ public class AbismoEfeitosSecundarios extends Abismo {
             }
         }
         historico = player.getHistoricoPosicoes();
-        int i = historico.size() - 2;
+        int i = historico.size() - 3;
         if (i < 0) {
             player.mudarPosicao(1);
         }

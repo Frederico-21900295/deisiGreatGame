@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AbismoErroSintaxe  extends Abismo {
@@ -19,8 +20,19 @@ public class AbismoErroSintaxe  extends Abismo {
                 return "Usaste a ferramenta " + f + " para o seguinte abismo (Erro de Sintaxe) ";
             }
         }
-        int aux = player.getPosicao() - 1;
-        player.mudarPosicao(aux);
+        ArrayList<Integer> historico;
+
+        historico = player.getHistoricoPosicoes();
+        int i = historico.size() - 1;
+        if (i < 0) {
+            player.mudarPosicao(1);
+        }
+        else {
+            int valorPosicao = (historico.get(i));
+            valorPosicao -= 1;
+            player.mudarPosicao(valorPosicao);
+        }
+
         return "Regressa 1 casa atrás";
     }
 
