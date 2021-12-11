@@ -433,6 +433,7 @@ public class GameManager {
         StringBuilder frase = new StringBuilder();
         ArrayList <String> ferramentas ;
         int x = 0;
+        int quantidade = 0;
         for (Programmer jogador : players) {
             if (jogador.getEmJogo()) {
                 if (jogador.getFerramentas().isEmpty()) {
@@ -447,16 +448,19 @@ public class GameManager {
                         } else {
                             frase.append(f);
                         }
+                        x++;
+
                     }
 
                 }
-                if (x != players.size()-1) {
+                if (quantidade != players.size()-1) {
                     frase.append(" | ");
 
                 }
 
             }
-            x++;
+            x=0;
+            quantidade++;
 
         }
         return frase.toString();

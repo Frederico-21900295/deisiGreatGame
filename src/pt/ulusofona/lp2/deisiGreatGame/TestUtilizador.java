@@ -1154,7 +1154,7 @@ public class TestUtilizador {
 
         System.out.println("20 " + g1.getCurrentPlayerID()); // 20
 
-        g1.moveCurrentPlayer(3);
+        g1.moveCurrentPlayer(2);
         //Rui 3 | Pedro 1 | Frederico 4
         g1.reactToAbyssOrTool();
         //Rui 3(Perdeu) | Pedro 1 | Frederico 1
