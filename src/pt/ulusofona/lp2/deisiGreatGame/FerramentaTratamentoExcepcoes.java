@@ -9,6 +9,9 @@ public class FerramentaTratamentoExcepcoes extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("Tratamento de Excepções")) {
             player.addFerramentas("Tratamento de Excepções");
             return "Nova Ferramenta (Tratamento de Excepções)";

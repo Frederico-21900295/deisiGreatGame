@@ -9,6 +9,9 @@ public class FerramentaTestesUnitarios extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("Testes unitários")) {
             player.addFerramentas("Testes unitários");
             return "Nova Ferramenta (Testes unitários)";

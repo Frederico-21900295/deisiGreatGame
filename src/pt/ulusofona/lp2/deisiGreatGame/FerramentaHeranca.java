@@ -10,6 +10,9 @@ public class FerramentaHeranca extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("Herança")) {
             player.addFerramentas("Herança");
             return "Nova Ferramenta (Herança)";

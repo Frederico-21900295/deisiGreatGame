@@ -11,6 +11,9 @@ public class AbismoCrash extends Abismo {
 
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
+        if (player == null) {
+            return null;
+        }
         player.mudarPosicao(1);
         return "Vais ter de regressar à 1ª posição";
     }

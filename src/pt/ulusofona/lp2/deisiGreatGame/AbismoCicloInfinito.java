@@ -11,6 +11,9 @@ public class AbismoCicloInfinito extends Abismo {
 
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
+        if (player == null) {
+            return null;
+        }
         List <String> ferramentas = player.getFerramentas();
         int id = player.getId();
 

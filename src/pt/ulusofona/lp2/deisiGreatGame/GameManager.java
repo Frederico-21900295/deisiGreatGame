@@ -539,7 +539,9 @@ public class GameManager {
         String frase = null;
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
-                frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
+                if (casasComEfeito!=null) {
+                    frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
+                }
                 break;
             }
 

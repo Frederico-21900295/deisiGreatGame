@@ -8,6 +8,9 @@ public class FerramentaIDE extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("IDE")) {
             player.addFerramentas("IDE");
             return "Nova Ferramenta (IDE)";

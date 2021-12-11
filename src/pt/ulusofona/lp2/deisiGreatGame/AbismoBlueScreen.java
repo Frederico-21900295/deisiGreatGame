@@ -11,6 +11,9 @@ public class AbismoBlueScreen extends Abismo{
 
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
+        if (player == null) {
+            return null;
+        }
         player.perdeu();
         return "Perdeste";
     }

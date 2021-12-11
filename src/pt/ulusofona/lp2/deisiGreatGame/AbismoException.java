@@ -12,6 +12,9 @@ public class AbismoException extends Abismo {
 
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
+        if (player == null) {
+            return null;
+        }
         List <String> ferramentas = player.getFerramentas();
 
         for (String f : ferramentas){

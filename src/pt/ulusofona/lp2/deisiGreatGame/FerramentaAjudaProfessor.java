@@ -8,6 +8,9 @@ public class FerramentaAjudaProfessor extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("Ajuda do professor")) {
             player.addFerramentas("Ajuda do professor");
             return "Nova Ferramenta (Ajuda do professor)";

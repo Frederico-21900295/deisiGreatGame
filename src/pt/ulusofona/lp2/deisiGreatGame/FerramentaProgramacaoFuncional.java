@@ -10,6 +10,9 @@ public class FerramentaProgramacaoFuncional extends Ferramenta{
 
     @Override
     public String getFerramenta(Programmer player) {
+        if (player == null) {
+            return null;
+        }
         if (!player.temFerramenta("Programação Funcional")) {
             player.addFerramentas("Programação Funcional");
             return "Nova Ferramenta (Programação Funcional)";

@@ -12,6 +12,9 @@ public class AbismoSegmentationFault extends Abismo {
 
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
+        if (player == null) {
+            return null;
+        }
         List<Integer> listaId = new ArrayList<>();
         for (Programmer jogador : jogadores) {
             if (jogador.getPosicao() == player.getPosicao()) {
