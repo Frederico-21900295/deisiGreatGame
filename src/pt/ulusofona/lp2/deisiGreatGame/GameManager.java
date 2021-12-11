@@ -236,11 +236,11 @@ public class GameManager {
                 s = "Ferramenta";
                 switch (abyssesAndTools[i][1]) {
                     case "0" -> {
-                        FerramentaHerança ferramenta = new FerramentaHerança(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                        FerramentaHeranca ferramenta = new FerramentaHeranca(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
                         casasComEfeito.add(ferramenta);
                     }
                     case "1" -> {
-                        FerramentaProgramaçãoFuncional ferramenta = new FerramentaProgramaçãoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                        FerramentaProgramacaoFuncional ferramenta = new FerramentaProgramacaoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
                         casasComEfeito.add(ferramenta);
                     }
                     case "2" -> {

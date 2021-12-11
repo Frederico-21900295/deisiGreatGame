@@ -1,9 +1,9 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 
-public class FerramentaHerança extends Ferramenta{
+public class FerramentaHeranca extends Ferramenta{
 
-    FerramentaHerança(String name, String type, String position) {
+    FerramentaHeranca(String name, String type, String position) {
         super(name, type, position);
         this.tipo = "Herança";
     }

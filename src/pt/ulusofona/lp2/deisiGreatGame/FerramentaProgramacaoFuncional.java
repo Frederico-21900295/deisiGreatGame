@@ -1,8 +1,8 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
-public class FerramentaProgramaçãoFuncional extends Ferramenta{
+public class FerramentaProgramacaoFuncional extends Ferramenta{
 
-    FerramentaProgramaçãoFuncional(String name, String type, String position) {
+    FerramentaProgramacaoFuncional(String name, String type, String position) {
         super(name, type, position);
         this.tipo = "Programação Funcional";
 
