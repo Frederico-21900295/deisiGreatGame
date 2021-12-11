@@ -10,6 +10,8 @@ public class AbismoDuplicatedCode extends Abismo {
         this.tipo = "Duplicated Code";
     }
 
+
+
     @Override
     String getAbismo(Programmer player, List<Programmer> jogadores, Integer dado) {
         if (player == null) {
@@ -26,15 +28,12 @@ public class AbismoDuplicatedCode extends Abismo {
         }
         historico = player.getHistoricoPosicoes();
         int i = historico.size() - 2;
-        if (i < 0) {
-            player.mudarPosicao(1);
-        }
-        else {
-            int valorPosicao = (historico.get(i));
-            player.mudarPosicao(valorPosicao);
-        }
 
-        return "Vais ter de regressar umas casas atrás";
+        int valorPosicao = (historico.get(i));
+        player.mudarPosicao(valorPosicao);
+
+
+        return "Vais ter de regressar atrás";
     }
 
     @Override

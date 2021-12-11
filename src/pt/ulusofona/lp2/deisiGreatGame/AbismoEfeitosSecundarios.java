@@ -25,14 +25,12 @@ public class AbismoEfeitosSecundarios extends Abismo {
             }
         }
         historico = player.getHistoricoPosicoes();
-        int i = historico.size() - 3;
-        if (i < 0) {
-            player.mudarPosicao(1);
-        }
-        else {
-            int valorPosicao = (historico.get(i));
-            player.mudarPosicao(valorPosicao);
-        }
+        int i = historico.size() - 4;
+
+
+        int valorPosicao = (historico.get(i));
+        player.mudarPosicao(valorPosicao);
+
 
         return "Regressa duas jogadas atrás";
     }
@@ -43,3 +41,8 @@ public class AbismoEfeitosSecundarios extends Abismo {
         return "dobby.png";
     }
 }
+
+
+
+
+//      antes depois  antes depois antes

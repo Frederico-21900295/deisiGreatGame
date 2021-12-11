@@ -320,7 +320,6 @@ public class GameManager {
     }
 
 
-
     /*Função que vai imprimir o jogador que tem de jogar*/
     public int getCurrentPlayerID() {
         int auxiliar = 1;
@@ -535,11 +534,11 @@ public class GameManager {
 
     public String reactToAbyssOrTool() {
         int id = getCurrentPlayerID();
-        List<Programmer> jogadores  = getProgrammers();
+        List<Programmer> jogadores = getProgrammers();
         String frase = null;
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
-                if (casasComEfeito!=null) {
+                if (casasComEfeito != null) {
                     frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
                 }
                 break;
@@ -579,6 +578,8 @@ public class GameManager {
                 }
             }
 
+        } else{
+            turnos++;
         }
 
         return frase;
@@ -594,7 +595,6 @@ public class GameManager {
         }
         return ferramentas;
     }
-
 
 
     // Função que vai disponibilizar os resultados do jogo com o output desejado pelo projeto

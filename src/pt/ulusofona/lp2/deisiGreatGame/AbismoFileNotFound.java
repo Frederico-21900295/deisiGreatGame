@@ -26,14 +26,13 @@ public class AbismoFileNotFound extends Abismo {
 
         historico = player.getHistoricoPosicoes();
         int i = historico.size() - 1;
-        if (i < 0) {
-            player.mudarPosicao(1);
-        }
-        else {
-            int valorPosicao = (historico.get(i));
-            valorPosicao -= 3;
-            player.mudarPosicao(valorPosicao);
-        }
+
+
+        int valorPosicao = (historico.get(i));
+        valorPosicao -= 3;
+        player.mudarPosicao(valorPosicao);
+
+
         return "Regressa 3 casas atrás";
     }
 

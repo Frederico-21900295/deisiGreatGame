@@ -27,15 +27,12 @@ public class AbismoErroLogica extends Abismo {
 
         historico = player.getHistoricoPosicoes();
         int i = historico.size() - 1;
-        if (i < 0) {
-            player.mudarPosicao(1);
-        }
-        else {
-            int valorPosicao = (historico.get(i));
-            int valordado = dado;
-            int auxPosicao = valorPosicao - (valordado / 2);
-            player.mudarPosicao(auxPosicao);
-        }
+
+        int valorPosicao = (historico.get(i));
+        int valordado = dado;
+        int auxPosicao = valorPosicao - (valordado / 2);
+        player.mudarPosicao(auxPosicao);
+
 
         return "Regressa o valor da metade dos teus dados atrás";
     }
