@@ -106,7 +106,7 @@ public class Programmer {
     }
 
     public void perdeu() {
-        estado = "Fora de jogo";
+        estado = "Derrotado";
 
     }
 

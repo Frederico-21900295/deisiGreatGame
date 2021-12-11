@@ -514,6 +514,9 @@ public class GameManager {
 
         for (Programmer player : jogadores) {
 
+            if (!player.getEmJogo() || player.getCicloInfinito()) {
+                return false;
+            }
             player.moverJogador(nrSpaces,id);
 
         }
@@ -525,8 +528,18 @@ public class GameManager {
         List<Programmer> jogadores  = getProgrammers();
         String frase = null;
         for (Programmer player : jogadores) {
-            if (player.getId() == id)
-                frase = player.reagirCasaEfeito(casasComEfeito,player,dado,jogadores);
+            if (player.getId() == id) {
+                if (!player.getEmJogo() || player.getCicloInfinito()) {
+                    turnos++;
+                    currentPlayer++;
+
+                    if (currentPlayer > numeroJogadores) {
+                        currentPlayer = 1;
+                    }
+                    return null;
+                }
+                frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
+            }
             if (frase!=null) {
                 break;
             }
@@ -540,6 +553,7 @@ public class GameManager {
                 currentPlayer = 1;
             }
 
+            /*
             id = getCurrentPlayerID();
 
 
@@ -554,6 +568,8 @@ public class GameManager {
                     id = getCurrentPlayerID();
                 }
             }
+
+             */
         }
 
         return frase;
