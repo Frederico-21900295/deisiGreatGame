@@ -433,9 +433,11 @@ public class GameManager {
         StringBuilder frase = new StringBuilder();
         ArrayList <String> ferramentas ;
         int x = 0;
+        int quantidade = 0;
         for (Programmer jogador : players) {
+            quantidade++;
             if (jogador.getFerramentas().isEmpty()) {
-                frase.append(jogador.getName()).append(" : No tools | ");
+                frase.append(jogador.getName()).append(" : No tools");
             }
             else {
                 ferramentas = jogador.getFerramentas();
@@ -451,8 +453,11 @@ public class GameManager {
 
                 }
                 x=0;
+            }
+            if (quantidade!=numeroJogadores) {
                 frase.append(" | ");
             }
+
         }
         return frase.toString();
     }
@@ -508,16 +513,18 @@ public class GameManager {
             return false;
         }
 
+
         dado = nrSpaces;
         int id = getCurrentPlayerID();
         List<Programmer> jogadores  = getProgrammers();
 
         for (Programmer player : jogadores) {
-
-            if (!player.getEmJogo() || player.getCicloInfinito()) {
-                return false;
+            if (player.getId() == id) {
+                if (!player.getEmJogo() || player.getCicloInfinito()) {
+                    return false;
+                }
+                player.moverJogador(nrSpaces, id);
             }
-            player.moverJogador(nrSpaces,id);
 
         }
         return true;
