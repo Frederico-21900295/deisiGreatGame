@@ -1145,6 +1145,7 @@ public class TestUtilizador {
         //Rui 1 | Pedro 1 | Frederico 1
 
         System.out.println("10 " + g1.getCurrentPlayerID()); // 10
+        System.out.println(g1.getProgrammersInfo());
 
         g1.moveCurrentPlayer(2);
         //Rui 3 | Pedro 1 | Frederico 1
@@ -1159,6 +1160,8 @@ public class TestUtilizador {
         //Rui 3(Perdeu) | Pedro 1 | Frederico 1
 
         System.out.println("30 " + g1.getCurrentPlayerID()); // 30
+
+        System.out.println(g1.getProgrammersInfo());
 
 
         g1.moveCurrentPlayer(3);

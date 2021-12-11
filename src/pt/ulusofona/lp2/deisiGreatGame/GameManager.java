@@ -433,30 +433,30 @@ public class GameManager {
         StringBuilder frase = new StringBuilder();
         ArrayList <String> ferramentas ;
         int x = 0;
-        int quantidade = 0;
         for (Programmer jogador : players) {
-            quantidade++;
-            if (jogador.getFerramentas().isEmpty()) {
-                frase.append(jogador.getName()).append(" : No tools");
-            }
-            else {
-                ferramentas = jogador.getFerramentas();
-                frase.append(jogador.getName()).append(" : ");
-                for (String f: ferramentas) {
-                    if (x>=1) {
-                        frase.append(";").append(f);
+            if (jogador.getEmJogo()) {
+                if (jogador.getFerramentas().isEmpty()) {
+                    frase.append(jogador.getName()).append(" : No tools");
+                }
+                else {
+                    ferramentas = jogador.getFerramentas();
+                    frase.append(jogador.getName()).append(" : ");
+                    for (String f : ferramentas) {
+                        if (x >= 1) {
+                            frase.append(";").append(f);
+                        } else {
+                            frase.append(f);
+                        }
                     }
-                    else {
-                        frase.append(f);
-                    }
-                    x++;
 
                 }
-                x=0;
+                if (x != players.size()-1) {
+                    frase.append(" | ");
+
+                }
+
             }
-            if (quantidade!=numeroJogadores) {
-                frase.append(" | ");
-            }
+            x++;
 
         }
         return frase.toString();
