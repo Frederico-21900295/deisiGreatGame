@@ -389,7 +389,7 @@ public class GameManager {
         int auxiliarNrJogadores = 0;
         List<Programmer> jogadores = getProgrammers();
         for (Programmer player : jogadores) {
-            if (player.getEmJogo()) {
+            if (!player.getEmJogo()) {
                 auxiliarNrJogadores++;
             }
             if (player.getPosicao() == boardSize) {
@@ -398,7 +398,7 @@ public class GameManager {
             }
 
         }
-        return auxiliarNrJogadores == 1;
+        return auxiliarNrJogadores == numeroJogadores-1;
     }
 
 
@@ -536,15 +536,6 @@ public class GameManager {
         String frase = null;
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
-                if (!player.getEmJogo() || player.getCicloInfinito()) {
-                    turnos++;
-                    currentPlayer++;
-
-                    if (currentPlayer > numeroJogadores) {
-                        currentPlayer = 1;
-                    }
-                    return null;
-                }
                 frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
             }
             if (frase!=null) {

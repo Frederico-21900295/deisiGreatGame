@@ -18,7 +18,7 @@ public class AbismoDuplicatedCode extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Herança")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Duplicated Code) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Duplicated Code) ";
             }
         }
         historico = player.getHistoricoPosicoes();

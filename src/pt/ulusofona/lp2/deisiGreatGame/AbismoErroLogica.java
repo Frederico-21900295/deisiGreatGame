@@ -16,7 +16,7 @@ public class AbismoErroLogica extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Ajuda Do Professor") || f.equals("Testes unitários")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Erro de Lógica) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Erro de Lógica) ";
             }
         }
         int valordado = dado;

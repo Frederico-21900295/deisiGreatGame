@@ -15,7 +15,7 @@ public class AbismoFileNotFound extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Ajuda Do Professor") || f.equals("Tratamento de Excepções")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (File not Found) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (File not Found) ";
             }
         }
         int aux = player.getPosicao() - 3;

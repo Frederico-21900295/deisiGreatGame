@@ -18,7 +18,7 @@ public class AbismoEfeitosSecundarios extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Programação Funcional")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Efeitos Secundários) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Efeitos Secundários) ";
             }
         }
         historico = player.getHistoricoPosicoes();

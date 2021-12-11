@@ -65,13 +65,13 @@ public class TestUtilizador {
         String[][] playerInfo = new String[2][4];
 
 
-        playerInfo[0][0] = "30";
+        playerInfo[0][0] = "60";
         playerInfo[0][1] = "Frederico";
         playerInfo[0][2] = "Kotlin";
         playerInfo[0][3] = "Purple";
 
-        playerInfo[1][0] = "60";
-        playerInfo[1][1] = "Tiago";
+        playerInfo[1][0] = "30";
+        playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Kotlin";
         playerInfo[1][3] = "Green";
 

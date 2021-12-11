@@ -16,7 +16,7 @@ public class AbismoErroSintaxe  extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Ajuda Do Professor") || f.equals("IDE")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Erro de Sintaxe) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Erro de Sintaxe) ";
             }
         }
         int aux = player.getPosicao() - 1;

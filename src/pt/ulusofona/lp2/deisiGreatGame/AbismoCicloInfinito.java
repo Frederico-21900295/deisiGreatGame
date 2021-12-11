@@ -17,7 +17,7 @@ public class AbismoCicloInfinito extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Programação Funcional")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Ciclo Infinito) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Ciclo Infinito) ";
             }
         }
 

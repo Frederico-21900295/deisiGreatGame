@@ -16,7 +16,7 @@ public class AbismoException extends Abismo {
         for (String f : ferramentas){
             if (f.equals("Ajuda Do Professor") || f.equals("Tratamento de Excepções")) {
                 player.retirarFerramenta(f);
-                return "Usaste a ferramenta " + f + "para o seguinte abismo (Exception) ";
+                return "Usaste a ferramenta " + f + " para o seguinte abismo (Exception) ";
             }
         }
         int aux = player.getPosicao() - 2;
