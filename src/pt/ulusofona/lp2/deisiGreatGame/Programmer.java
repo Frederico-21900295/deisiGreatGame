@@ -149,7 +149,7 @@ public class Programmer {
             }
         }
         colocarInformacao(this.posicao);
-        return Objects.requireNonNullElseGet(frase, () -> this.getName() + " chegou à casa " + this.getPosicao());
+        return frase;
     }
 
 
@@ -173,9 +173,11 @@ public class Programmer {
         }
         else {
             for (String f: ferramentas) {
-                outputBuilder.append(f);
-                if (x != ferramentas.size() - 1) {
-                    outputBuilder.append(";");
+                if (x>=1) {
+                    outputBuilder.append(";").append(f);
+                }
+                else {
+                    outputBuilder.append(f);
                 }
                 x++;
             }

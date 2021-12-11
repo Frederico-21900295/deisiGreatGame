@@ -179,10 +179,10 @@ public class GameManager {
                 }
 
                 numeroJogadores = 4;
-                }
-
-
             }
+
+
+        }
 
         return true;
     }
@@ -432,6 +432,7 @@ public class GameManager {
     public String getProgrammersInfo() {
         StringBuilder frase = new StringBuilder();
         ArrayList <String> ferramentas ;
+        int x = 0;
         for (Programmer jogador : players) {
             if (jogador.getFerramentas().isEmpty()) {
                 frase.append(jogador.getName()).append(" : No tools | ");
@@ -440,8 +441,16 @@ public class GameManager {
                 ferramentas = jogador.getFerramentas();
                 frase.append(jogador.getName()).append(" : ");
                 for (String f: ferramentas) {
-                   frase.append(f).append(";");
+                    if (x>=1) {
+                        frase.append(";").append(f);
+                    }
+                    else {
+                        frase.append(f);
+                    }
+                    x++;
+
                 }
+                x=0;
                 frase.append(" | ");
             }
         }
@@ -498,6 +507,7 @@ public class GameManager {
         {
             return false;
         }
+
         dado = nrSpaces;
         int id = getCurrentPlayerID();
         List<Programmer> jogadores  = getProgrammers();
@@ -516,7 +526,7 @@ public class GameManager {
         String frase = null;
         for (Programmer player : jogadores) {
             if (player.getId() == id)
-            frase = player.reagirCasaEfeito(casasComEfeito,player,dado,jogadores);
+                frase = player.reagirCasaEfeito(casasComEfeito,player,dado,jogadores);
             if (frase!=null) {
                 break;
             }
@@ -531,7 +541,6 @@ public class GameManager {
             }
 
             id = getCurrentPlayerID();
-            int aux = 0;
 
 
             for (Programmer player : jogadores) {
@@ -540,20 +549,9 @@ public class GameManager {
                         currentPlayer++;
                         if (currentPlayer > numeroJogadores) {
                             currentPlayer = 1;
-                            aux++;
                         }
                     }
                     id = getCurrentPlayerID();
-                }
-            }
-            if (aux > 0) {
-                for (Programmer player : jogadores) {
-                    if (player.getId() == id) {
-                        if (!player.getEmJogo() || player.getCicloInfinito()) {
-                            currentPlayer++;
-                        }
-                        id = getCurrentPlayerID();
-                    }
                 }
             }
         }
@@ -622,12 +620,12 @@ public class GameManager {
                         }
                     }
 
-                        resultados.add(primeiro);
-                        resultados.add("");
-                        resultados.add("RESTANTES");
-                        resultados.add(segundo + ' ' + calAuxSegundo);
-                    }
-            case 3 -> {
+                    resultados.add(primeiro);
+                    resultados.add("");
+                    resultados.add("RESTANTES");
+                    resultados.add(segundo + ' ' + calAuxSegundo);
+                }
+                case 3 -> {
                     for (Programmer jogador : jogadores) {
                         if (jogador.getPosicao() == listaPosicoes.get(0)) {
                             primeiro = jogador.getName();
@@ -658,7 +656,7 @@ public class GameManager {
                     }
                 }
 
-            case 4 -> {
+                case 4 -> {
                     for (Programmer jogador : jogadores) {
                         if (jogador.getPosicao() == listaPosicoes.get(0)) {
                             primeiro = jogador.getName();

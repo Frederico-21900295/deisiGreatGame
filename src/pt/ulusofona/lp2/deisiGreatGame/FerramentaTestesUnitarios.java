@@ -4,14 +4,14 @@ public class FerramentaTestesUnitarios extends Ferramenta{
 
     FerramentaTestesUnitarios(String name, String type, String position) {
         super(name, type, position);
-        this.tipo = "Testes unitarios";
+        this.tipo = "Testes unitários";
     }
 
     @Override
     public String getFerramenta(Programmer player) {
-        if (!player.temFerramenta("Testes unitarios")) {
-            player.addFerramentas("Testes unitarios");
-            return "Nova Ferramenta (Testes unitarios)";
+        if (!player.temFerramenta("Testes unitários")) {
+            player.addFerramentas("Testes unitários");
+            return "Nova Ferramenta (Testes unitários)";
         }
         return "Já tem esta ferramenta";
 
