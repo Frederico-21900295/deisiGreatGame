@@ -1091,23 +1091,9 @@ public class TestUtilizador {
          */
 
         //Criar o abismo (Erro de sintaxe)
-        String[][] abyssesAndTools = new String[4][3];
+        String[][] abyssesAndTools = new String[0][0];
 
-        abyssesAndTools[0][0] = "0"; //Abismo
-        abyssesAndTools[0][1] = "7"; //Blue Screen of Death (Perdeu)
-        abyssesAndTools[0][2] = "3"; //Posicao
 
-        abyssesAndTools[1][0] = "0"; //Abismo
-        abyssesAndTools[1][1] = "7"; //Blue Screen of Death (Perdeu)
-        abyssesAndTools[1][2] = "9"; //Posicao
-
-        abyssesAndTools[2][0] = "0"; //Abismo
-        abyssesAndTools[2][1] = "7"; //Blue Screen of Death (Perdeu)
-        abyssesAndTools[2][2] = "17"; //Posicao
-
-        abyssesAndTools[3][0] = "0"; //Abismo
-        abyssesAndTools[3][1] = "7"; //Blue Screen of Death (Perdeu)
-        abyssesAndTools[3][2] = "19"; //Posicao
 
 
 

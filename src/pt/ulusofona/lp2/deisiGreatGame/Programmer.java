@@ -142,11 +142,16 @@ public class Programmer {
 
     public String reagirCasaEfeito(ArrayList<CasaEfeito> casaComEfeitos, Programmer player, int dado, List<Programmer> jogadores) {
         String frase = null;
+        if (player == null) {
+            return null;
+        }
         colocarInformacao(this.posicao);
-        for (CasaEfeito p : casaComEfeitos) {
-            if (p.getPosicao() == this.getPosicao()) {
-                frase = p.reacao(player, dado, jogadores);
-                break;
+        if (!casaComEfeitos.isEmpty()) {
+            for (CasaEfeito p : casaComEfeitos) {
+                if (p.getPosicao() == this.getPosicao()) {
+                    frase = p.reacao(player, dado, jogadores);
+                    break;
+                }
             }
         }
         return frase;
