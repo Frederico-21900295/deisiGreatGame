@@ -27,11 +27,15 @@ public class AbismoErroSintaxe  extends Abismo {
 
         historico = player.getHistoricoPosicoes();
         int i = historico.size() - 1;
+        if (i <= 0) {
+            player.mudarPosicao(1);
+        }
 
-
-        int valorPosicao = (historico.get(i));
-        valorPosicao -= 1;
-        player.mudarPosicao(valorPosicao);
+        else {
+            int valorPosicao = (historico.get(i));
+            valorPosicao -= 1;
+            player.mudarPosicao(valorPosicao);
+        }
 
 
         return "Regressa 1 casa atrás";

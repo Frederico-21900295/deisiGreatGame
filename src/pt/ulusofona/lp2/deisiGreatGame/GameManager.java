@@ -632,7 +632,6 @@ public class GameManager {
                 listaPosicoes.add(jogador.getPosicao());
                 listaPosicoes.sort(Collections.reverseOrder());
             }
-            System.out.println(listaPosicoes);
 
             switch (numeroJogadores) {
                 case 2 -> {

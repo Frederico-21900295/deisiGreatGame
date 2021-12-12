@@ -27,10 +27,14 @@ public class AbismoException extends Abismo {
 
         historico = player.getHistoricoPosicoes();
         int i = historico.size() - 1;
-
-        int valorPosicao = (historico.get(i));
-        valorPosicao -= 2;
-        player.mudarPosicao(valorPosicao);
+        if (i <= 0) {
+            player.mudarPosicao(1);
+        }
+        else {
+            int valorPosicao = (historico.get(i));
+            valorPosicao -= 2;
+            player.mudarPosicao(valorPosicao);
+        }
 
         return "Regressa 2 casas atrás";
     }
