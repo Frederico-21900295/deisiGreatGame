@@ -1425,10 +1425,13 @@ public class TestUtilizador {
         playerInfo[2][2] = "Java";
         playerInfo[2][3] = "Green";
 
-        playerInfo[3][0] = "5";
-        playerInfo[3][1] = "Joana";
+
+        playerInfo[3][0] = "10";
+        playerInfo[3][1] = "Neto";
         playerInfo[3][2] = "Java";
         playerInfo[3][3] = "Brown";
+
+
 
 
 
@@ -1436,17 +1439,19 @@ public class TestUtilizador {
         //Função que irá criar o campo com 20 posições
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
 
-
+// Frederico ; Pedro ; Neto ; Rui
         System.out.println(g1.getGameResults());
 
-        g1.moveCurrentPlayer(2);
+        g1.moveCurrentPlayer(1); //Neto
         g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2);
+        g1.moveCurrentPlayer(1); //Rui
         g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2);
+        g1.moveCurrentPlayer(2); //Frederico
         g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(6);
+        g1.moveCurrentPlayer(6); //Pedro
         g1.reactToAbyssOrTool();
+
+
         System.out.println(g1.getGameResults());
 
 

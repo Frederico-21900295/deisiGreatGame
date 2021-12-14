@@ -615,6 +615,7 @@ public class GameManager {
         int calAuxSegundo = 0;
         int calAuxTerceiro = 0;
         int calAuxQuarto = 0;
+        int auxJogadorFora = 0;
 
         boolean first = false;
         boolean second = false;
@@ -627,7 +628,6 @@ public class GameManager {
         jogadores = getProgrammers();
 
 
-
         // O primeiro é o jogador que está na última casa do tabuleiro
         if (gameIsOver()) {
             resultados.add("O GRANDE JOGO DO DEISI");
@@ -637,18 +637,47 @@ public class GameManager {
             resultados.add("");
             resultados.add("VENCEDOR");
             for (Programmer jogador : jogadores) {
+                if (!jogador.getEmJogo()) {
+                    auxJogadorFora++;
+                }
                 listaPosicoes.add(jogador.getPosicao());
                 listaPosicoes.sort(Collections.reverseOrder());
             }
 
+
+            if (auxJogadorFora == numeroJogadores - 1) {
+                listaPosicoes = new ArrayList<>();
+
+                for (Programmer jogador : jogadores) {
+                    if (jogador.getEmJogo()) {
+                        primeiro = jogador.getName();
+                        first = true;
+                    } else {
+                        listaPosicoes.add(jogador.getPosicao());
+                        listaPosicoes.sort(Collections.reverseOrder());
+                    }
+                }
+            }
+
+
             switch (numeroJogadores) {
                 case 2 -> {
-                    for (Programmer jogador : jogadores) {
-                        if (jogador.getPosicao() == listaPosicoes.get(0)) {
-                            primeiro = jogador.getName();
-                        } else {
-                            segundo = jogador.getName();
-                            calAuxSegundo = jogador.getPosicao();
+                    if (first) {
+                        for (Programmer jogador : jogadores) {
+                            if (!jogador.getName().equals(primeiro)) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.getPosicao();
+                            }
+                        }
+                    }
+                    else {
+                        for (Programmer jogador : jogadores) {
+                            if (jogador.getPosicao() == listaPosicoes.get(0)) {
+                                primeiro = jogador.getName();
+                            } else {
+                                segundo = jogador.getName();
+                                calAuxSegundo = jogador.getPosicao();
+                            }
                         }
                     }
 
@@ -657,63 +686,106 @@ public class GameManager {
                     resultados.add("RESTANTES");
                     resultados.add(segundo + ' ' + calAuxSegundo);
                 }
+
+
                 case 3 -> {
-                    for (Programmer jogador : jogadores) {
-                        if (jogador.getPosicao() == listaPosicoes.get(0)) {
-                            primeiro = jogador.getName();
+                    if (first) {
+                        for (Programmer jogador : jogadores) {
+                            if (!jogador.getName().equals(primeiro)) {
+                                if (jogador.getPosicao() == listaPosicoes.get(0) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.getPosicao();
+                                    second = true;
 
-                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
-                            segundo = jogador.getName();
-                            calAuxSegundo = jogador.getPosicao();
-                            second = true;
+                                } else {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.getPosicao();
+                                }
+                            }
                         }
-                        else {
-                            terceiro = jogador.getName();
-                            calAuxTerceiro = jogador.getPosicao();
-                        }
-
-                    }
-                    resultados.add(primeiro);
-                    resultados.add("");
-                    resultados.add("RESTANTES");
-                    if (calAuxSegundo!=calAuxTerceiro) {
-                        resultados.add(segundo + ' ' + calAuxSegundo);
-                        resultados.add(terceiro + ' ' + calAuxTerceiro);
                     }
                     else {
-                        nomeJogadores.add(segundo);
-                        nomeJogadores.add(terceiro);
-                        Collections.sort(nomeJogadores);
-                        resultados.add(nomeJogadores.get(0) +  ' ' + calAuxSegundo);
-                        resultados.add(nomeJogadores.get(1) +  ' ' + calAuxTerceiro);
+                        for (Programmer jogador : jogadores) {
+                            if (jogador.getPosicao() == listaPosicoes.get(0)) {
+                                primeiro = jogador.getName();
+
+                            } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
+                                segundo = jogador.getName();
+                                calAuxSegundo = jogador.getPosicao();
+                                second = true;
+                            }
+                            else {
+                                terceiro = jogador.getName();
+                                calAuxTerceiro = jogador.getPosicao();
+                            }
+
+                        }
                     }
+
+
+                        resultados.add(primeiro);
+                        resultados.add("");
+                        resultados.add("RESTANTES");
+                        if (calAuxSegundo != calAuxTerceiro) {
+                            resultados.add(segundo + ' ' + calAuxSegundo);
+                            resultados.add(terceiro + ' ' + calAuxTerceiro);
+                        } else {
+                            nomeJogadores.add(segundo);
+                            nomeJogadores.add(terceiro);
+                            Collections.sort(nomeJogadores);
+                            resultados.add(nomeJogadores.get(0) + ' ' + calAuxSegundo);
+                            resultados.add(nomeJogadores.get(1) + ' ' + calAuxTerceiro);
+                        }
                 }
 
+
                 case 4 -> {
+                    //Falta verificar se todos os jogadores sairem
                     System.out.println(listaPosicoes);
-                    for (Programmer jogador : jogadores) {
-                        if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
-                            primeiro = jogador.getName();
-                            first = true;
 
-                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
-                            segundo = jogador.getName();
-                            calAuxSegundo = jogador.getPosicao();
-                            second = true;
-                        }
-                        else if(jogador.getPosicao() == listaPosicoes.get(2) && !third) {
-                            terceiro = jogador.getName();
-                            calAuxTerceiro = jogador.getPosicao();
-                            third = true;
-                        }
-                        else {
-                            quarto = jogador.getName();
-                            calAuxQuarto = jogador.getPosicao();
-                        }
+                    if (first) {
+                        for (Programmer jogador : jogadores) {
+                            if (!jogador.getName().equals(primeiro)) {
+                                if (jogador.getPosicao() == listaPosicoes.get(0) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.getPosicao();
+                                    second = true;
 
+                                }
+                                else if (jogador.getPosicao() == listaPosicoes.get(2) && !third) {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.getPosicao();
+                                    third = true;
+                                }
+
+                                else {
+                                    quarto = jogador.getName();
+                                    calAuxQuarto = jogador.getPosicao();
+                                }
+                            }
+                        }
                     }
-                    System.out.println(segundo);
-                    System.out.println(terceiro);
+                    else {
+                        for (Programmer jogador : jogadores) {
+                            if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
+                                primeiro = jogador.getName();
+                                first = true;
+
+                            } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second) {
+                                segundo = jogador.getName();
+                                calAuxSegundo = jogador.getPosicao();
+                                second = true;
+                            } else if (jogador.getPosicao() == listaPosicoes.get(2) && !third) {
+                                terceiro = jogador.getName();
+                                calAuxTerceiro = jogador.getPosicao();
+                                third = true;
+                            } else {
+                                quarto = jogador.getName();
+                                calAuxQuarto = jogador.getPosicao();
+                            }
+
+                        }
+                    }
                     resultados.add(primeiro);
                     resultados.add("");
                     resultados.add("RESTANTES");
@@ -748,6 +820,8 @@ public class GameManager {
                         resultados.add(nomeJogadores.get(2) + ' ' + calAuxQuarto);
                     }
                 }
+
+
             }
         }
 
