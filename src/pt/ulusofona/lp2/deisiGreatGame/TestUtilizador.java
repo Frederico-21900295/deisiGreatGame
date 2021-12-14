@@ -1395,9 +1395,9 @@ public class TestUtilizador {
         String[][] abyssesAndTools = new String[1][3];
 
 
-        abyssesAndTools[0][0] = "1"; //Abismo
-        abyssesAndTools[0][1] = "2"; //Efeitos secundários (O programador recua 2 jogadas atras)
-        abyssesAndTools[0][2] = "1"; //Posicao
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "2"; //Posicao
 
 
 
@@ -1407,7 +1407,7 @@ public class TestUtilizador {
 
 
         //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
-        String[][] playerInfo = new String[3][4];
+        String[][] playerInfo = new String[4][4];
 
 
         playerInfo[0][0] = "30";
@@ -1415,29 +1415,41 @@ public class TestUtilizador {
         playerInfo[0][2] = "Kotlin";
         playerInfo[0][3] = "Purple";
 
-        playerInfo[1][0] = "20";
+        playerInfo[1][0] = "35";
         playerInfo[1][1] = "Pedro";
         playerInfo[1][2] = "Java";
         playerInfo[1][3] = "Blue";
 
-        playerInfo[2][0] = "10";
+        playerInfo[2][0] = "25";
         playerInfo[2][1] = "Rui";
         playerInfo[2][2] = "Java";
         playerInfo[2][3] = "Green";
+
+        playerInfo[3][0] = "5";
+        playerInfo[3][1] = "Joana";
+        playerInfo[3][2] = "Java";
+        playerInfo[3][3] = "Brown";
 
 
 
 
         //Função que irá criar o campo com 20 posições
-        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,6,abyssesAndTools));
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
 
 
         System.out.println(g1.getGameResults());
 
-        g1.moveCurrentPlayer(5);
+        g1.moveCurrentPlayer(2);
         g1.reactToAbyssOrTool();
-
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(6);
+        g1.reactToAbyssOrTool();
         System.out.println(g1.getGameResults());
+
+
 
 
     }

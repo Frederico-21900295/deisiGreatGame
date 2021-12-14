@@ -616,9 +616,17 @@ public class GameManager {
         int calAuxTerceiro = 0;
         int calAuxQuarto = 0;
 
+        boolean first = false;
+        boolean second = false;
+        boolean third = false;
+
+
+
 
         List<Programmer> jogadores;
         jogadores = getProgrammers();
+
+
 
         // O primeiro é o jogador que está na última casa do tabuleiro
         if (gameIsOver()) {
@@ -654,9 +662,10 @@ public class GameManager {
                         if (jogador.getPosicao() == listaPosicoes.get(0)) {
                             primeiro = jogador.getName();
 
-                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && segundo.isEmpty()){
+                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
                             segundo = jogador.getName();
                             calAuxSegundo = jogador.getPosicao();
+                            second = true;
                         }
                         else {
                             terceiro = jogador.getName();
@@ -681,17 +690,21 @@ public class GameManager {
                 }
 
                 case 4 -> {
+                    System.out.println(listaPosicoes);
                     for (Programmer jogador : jogadores) {
-                        if (jogador.getPosicao() == listaPosicoes.get(0)) {
+                        if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
                             primeiro = jogador.getName();
-                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && segundo.isEmpty()){
+                            first = true;
+
+                        } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
                             segundo = jogador.getName();
                             calAuxSegundo = jogador.getPosicao();
+                            second = true;
                         }
-                        else if(jogador.getPosicao() == listaPosicoes.get(2) && terceiro.isEmpty()) {
+                        else if(jogador.getPosicao() == listaPosicoes.get(2) && !third) {
                             terceiro = jogador.getName();
-                            System.out.println("Entrei" + terceiro);
                             calAuxTerceiro = jogador.getPosicao();
+                            third = true;
                         }
                         else {
                             quarto = jogador.getName();
@@ -699,6 +712,8 @@ public class GameManager {
                         }
 
                     }
+                    System.out.println(segundo);
+                    System.out.println(terceiro);
                     resultados.add(primeiro);
                     resultados.add("");
                     resultados.add("RESTANTES");
