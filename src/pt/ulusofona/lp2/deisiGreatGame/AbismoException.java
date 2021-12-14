@@ -41,6 +41,6 @@ public class AbismoException extends Abismo {
 
     @Override
     public String getImage() {
-        return "greengoblin.png";
+        return "venom.png";
     }
 }

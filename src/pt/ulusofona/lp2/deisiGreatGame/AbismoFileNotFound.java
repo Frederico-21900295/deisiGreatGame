@@ -43,6 +43,6 @@ public class AbismoFileNotFound extends Abismo {
 
     @Override
     public String getImage() {
-        return "groot.png";
+        return "Mysterio.png";
     }
 }

@@ -22,6 +22,6 @@ public class FerramentaTratamentoExcepcoes extends Ferramenta{
 
     @Override
     public String getImage() {
-        return "thor.png";
+        return "homem-aranha.png";
     }
 }

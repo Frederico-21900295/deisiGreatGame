@@ -22,7 +22,7 @@ public class FerramentaTestesUnitarios extends Ferramenta{
 
     @Override
     public String getImage() {
-        return "homem-aranha.png";
+        return "Thor.png";
     }
 
 }

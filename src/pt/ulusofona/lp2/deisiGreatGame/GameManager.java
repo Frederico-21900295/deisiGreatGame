@@ -199,7 +199,7 @@ public class GameManager {
             aux++;
             for (int y = 1; y < 3; y++) {
                 //y=1
-                if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?")) {
+                if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
                     return false;
                 }
                 if (andTool[0].equals("0")) {

@@ -23,7 +23,7 @@ public class FerramentaProgramacaoFuncional extends Ferramenta{
 
     @Override
     public String getImage() {
-            return "Hp.png";
+            return "harrypotter.png";
     }
 
 }

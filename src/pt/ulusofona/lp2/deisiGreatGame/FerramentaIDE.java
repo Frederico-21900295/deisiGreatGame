@@ -21,6 +21,6 @@ public class FerramentaIDE extends Ferramenta{
 
     @Override
     public String getImage() {
-        return "ironMan.png";
+        return "Iron.png";
     }
 }

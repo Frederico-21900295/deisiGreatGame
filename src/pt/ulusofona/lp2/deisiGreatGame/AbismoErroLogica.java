@@ -43,6 +43,6 @@ public class AbismoErroLogica extends Abismo {
 
     @Override
     public String getImage() {
-        return "venom.png";
+        return "Loki.png";
     }
 }

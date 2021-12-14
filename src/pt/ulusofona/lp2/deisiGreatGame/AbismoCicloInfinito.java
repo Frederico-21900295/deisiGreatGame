@@ -38,6 +38,6 @@ public class AbismoCicloInfinito extends Abismo {
 
     @Override
     public String getImage() {
-        return "harrypotter.png";
+        return "Malfoy.png";
     }
 }

@@ -1081,7 +1081,7 @@ public class TestUtilizador {
 
 
     @Test(timeout = 100)
-    public void test007_Abismos_BlueScreenofDeath_3Jogadores() {
+    public void test008_AbismoseFerramentas_False1() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1091,8 +1091,12 @@ public class TestUtilizador {
          */
 
         //Criar o abismo (Erro de sintaxe)
-        String[][] abyssesAndTools = new String[0][0];
+        String[][] abyssesAndTools = new String[1][3];
 
+
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = ""; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "3"; //Posicao
 
 
 
@@ -1124,106 +1128,176 @@ public class TestUtilizador {
 
 
         //Função que irá criar o campo com 20 posições
-        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,20,abyssesAndTools));
+        assertFalse("Deve dar incorreto pois não pode haver espaço vazio",g1.createInitialBoard(playerInfo,20,abyssesAndTools));
 
 
-        //Inicialmente
-        //Rui 1 | Pedro 1 | Frederico 1
-
-        System.out.println("10 " + g1.getCurrentPlayerID()); // 10
-        System.out.println(g1.getProgrammersInfo());
-
-        g1.moveCurrentPlayer(2);
-        //Rui 3 | Pedro 1 | Frederico 1
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
-
-        System.out.println("20 " + g1.getCurrentPlayerID()); // 20
-
-        g1.moveCurrentPlayer(2);
-        //Rui 3 | Pedro 1 | Frederico 4
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
-
-        System.out.println("30 " + g1.getCurrentPlayerID()); // 30
-
-        System.out.println(g1.getProgrammersInfo());
-
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3 | Pedro 1 | Frederico 4
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
-
-        System.out.println("10 " + g1.getCurrentPlayerID()); // 30
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3 | Pedro 1 | Frederico 4
-        System.out.println("Null : " + g1.reactToAbyssOrTool());
-        //Rui 3(Perdeu) | Pedro 1 | Frederico 1
-
-        System.out.println("20 " + g1.getCurrentPlayerID()); // 20
-
-        /*
-
-//3,9,17,19
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 1 | Joana 1
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 1 | Joana 1
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 4 | Joana 1
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 4 | Joana 1
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 4 | Joana 4
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 4 | Frederico 4 | Joana 4
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 4 | Joana 4
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 4 | Joana 4
-
-        g1.moveCurrentPlayer(5);
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 9 | Joana 4
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 9(Perdeu) | Joana 4
-
-        g1.moveCurrentPlayer(6);
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 9 | Joana 10
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 7 | Frederico 9(Perdeu) | Joana 10
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 10 | Frederico 9(Perdeu)  | Joana 10
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 10 | Frederico 9(Perdeu) | Joana 10
-
-        g1.moveCurrentPlayer(5);
-        //Rui 3(Perdeu) | Pedro 10 | Frederico 9(Perdeu)  | Joana 15
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 10 | Frederico 9(Perdeu) | Joana 15
-
-        g1.moveCurrentPlayer(3);
-        //Rui 3(Perdeu) | Pedro 13 | Frederico 9(Perdeu)  | Joana 15
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 13 | Frederico 9(Perdeu) | Joana 15
-
-        g1.moveCurrentPlayer(4);
-        //Rui 3(Perdeu) | Pedro 13 | Frederico 9(Perdeu)  | Joana 19
-        g1.reactToAbyssOrTool();
-        //Rui 3(Perdeu) | Pedro 13 | Frederico 9(Perdeu) | Joana 19(Perdeu)
-
-        System.out.println(g1.getProgrammers(true));
-        System.out.println(g1.gameIsOver());
-        System.out.println(g1.getGameResults());
-
-         */
 
     }
+
+
+    @Test(timeout = 100)
+    public void test008_AbismoseFerramentas_False2() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = "2"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = ""; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "30";
+        playerInfo[0][1] = "Frederico";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "20";
+        playerInfo[1][1] = "Pedro";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "10";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //Função que irá criar o campo com 20 posições
+        assertFalse("Deve dar incorreto pois não pode haver espaço vazio",g1.createInitialBoard(playerInfo,20,abyssesAndTools));
+
+
+
+    }
+
+
+    @Test(timeout = 100)
+    public void test008_AbismoseFerramentas_False3() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = ""; //Abismo
+        abyssesAndTools[0][1] = "2"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "1"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "30";
+        playerInfo[0][1] = "Frederico";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "20";
+        playerInfo[1][1] = "Pedro";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "10";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //Função que irá criar o campo com 20 posições
+        assertFalse("Deve dar incorreto pois não pode haver espaço vazio",g1.createInitialBoard(playerInfo,20,abyssesAndTools));
+
+
+
+    }
+
+    @Test(timeout = 100)
+    public void test008_AbismoseFerramentas_False4() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = " "; //Abismo
+        abyssesAndTools[0][1] = "2"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "1"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "30";
+        playerInfo[0][1] = "Frederico";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "20";
+        playerInfo[1][1] = "Pedro";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "10";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //Função que irá criar o campo com 20 posições
+        assertFalse("Deve dar incorreto pois não pode haver espaço vazio",g1.createInitialBoard(playerInfo,20,abyssesAndTools));
+
+
+
+    }
+
 
 
 
@@ -1307,6 +1381,66 @@ public class TestUtilizador {
     }
 
 
+    @Test(timeout = 100)
+    public void test008_GetGameResult() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = "1"; //Abismo
+        abyssesAndTools[0][1] = "2"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "1"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "30";
+        playerInfo[0][1] = "Frederico";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "20";
+        playerInfo[1][1] = "Pedro";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "10";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //Função que irá criar o campo com 20 posições
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,6,abyssesAndTools));
+
+
+        System.out.println(g1.getGameResults());
+
+        g1.moveCurrentPlayer(5);
+        g1.reactToAbyssOrTool();
+
+        System.out.println(g1.getGameResults());
+
+
+    }
 
 
 

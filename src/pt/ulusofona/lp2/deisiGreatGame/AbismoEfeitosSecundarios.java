@@ -41,11 +41,7 @@ public class AbismoEfeitosSecundarios extends Abismo {
 
     @Override
     public String getImage() {
-        return "dobby.png";
+        return "Voldemort.png";
     }
 }
 
-
-
-
-//      antes depois  antes depois antes
