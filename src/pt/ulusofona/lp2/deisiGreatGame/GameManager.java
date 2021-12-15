@@ -492,18 +492,25 @@ public class GameManager {
         int auxiliar = 0;
         ArrayList<Programmer> jogadores = new ArrayList<>();
         for (Programmer j : players) {
-            if (j.getPosicao() == position) {
-                jogadores.add(j);
-                auxiliar++;
+            if (j.getEmJogo()) {
+                if (j.getPosicao() == position) {
+                    jogadores.add(j);
+                    auxiliar++;
+                }
+            }
+            else {
+                if (j.receberPosicao() == position) {
+                    jogadores.add(j);
+                    auxiliar++;
+                }
             }
         }
 
         if (auxiliar > 0) {
             return jogadores;
         }
-        else {
-            return null;
-        }
+        return null;
+
 
 
     }
