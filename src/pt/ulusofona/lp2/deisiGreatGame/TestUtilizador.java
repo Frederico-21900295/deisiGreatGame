@@ -1430,7 +1430,7 @@ public class TestUtilizador {
 
 
         playerInfo[3][0] = "1";
-        playerInfo[3][1] = "Neto";
+        playerInfo[3][1] = "Tiago";
         playerInfo[3][2] = "Java";
         playerInfo[3][3] = "Brown";
 
@@ -1444,17 +1444,23 @@ public class TestUtilizador {
 
 // Frederico ; Pedro ; Neto ; Rui
 
-        g1.moveCurrentPlayer(2); //Neto
-        g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2); //Rui 3
-        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();//Tiago ( Caiu BSOD) turno : 1
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();//Rui ( Caiu BSOD) turno : 2
 
-        g1.moveCurrentPlayer(1); //Frederico B
-        g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(1); //Frederico B
-        g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(1); //Frederico B
-        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B  turno : 3
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool(); //Frederico A turno : 4
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+
+        // Acabou no turno 5 ou ainda passa para o 6?
+
+
+
         System.out.println(g1.getProgrammers(true));
 
 
