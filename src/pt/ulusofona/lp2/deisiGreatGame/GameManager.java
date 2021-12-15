@@ -640,14 +640,18 @@ public class GameManager {
                 if (!jogador.getEmJogo()) {
                     auxJogadorFora++;
                 }
-                listaPosicoes.add(jogador.getPosicao());
+                if (jogador.getEmJogo()) {
+                    listaPosicoes.add(jogador.getPosicao());
+                }
+                else {
+                    listaPosicoes.add(jogador.receberPosicao());
+                }
                 listaPosicoes.sort(Collections.reverseOrder());
             }
 
 
             if (auxJogadorFora == numeroJogadores - 1) {
                 listaPosicoes = new ArrayList<>();
-
                 for (Programmer jogador : jogadores) {
                     if (jogador.getEmJogo()) {
                         primeiro = jogador.getName();
@@ -836,7 +840,7 @@ public class GameManager {
                     resultados.add(primeiro);
                     resultados.add("");
                     resultados.add("RESTANTES");
-                    if (calAuxSegundo != calAuxTerceiro   && calAuxSegundo!=calAuxQuarto   && calAuxTerceiro!= calAuxQuarto) {
+                    if (calAuxSegundo != calAuxTerceiro  && calAuxSegundo!=calAuxQuarto  && calAuxTerceiro!= calAuxQuarto) {
                         resultados.add(segundo + ' ' + calAuxSegundo);
                         resultados.add(terceiro + ' ' + calAuxTerceiro);
                         resultados.add(quarto + ' ' + calAuxQuarto);

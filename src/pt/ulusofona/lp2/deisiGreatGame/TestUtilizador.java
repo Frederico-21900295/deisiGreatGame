@@ -1448,7 +1448,9 @@ public class TestUtilizador {
         g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(2); //Frederico B
         g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2); //Frederico A
+        g1.moveCurrentPlayer(3); //Frederico A
+        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(3); //Neto
         g1.reactToAbyssOrTool();
 
 
@@ -1517,14 +1519,21 @@ public class TestUtilizador {
 // Frederico ; Pedro ; Neto ; Rui
         System.out.println(g1.getGameResults());
 
-        g1.moveCurrentPlayer(2); //Rui 3
+        g1.moveCurrentPlayer(1); //Rui 3
+        g1.reactToAbyssOrTool();
+        g1.moveCurrentPlayer(1); //Frederico B
+        g1.reactToAbyssOrTool();
+        
+        g1.moveCurrentPlayer(4); //Frederico A
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(2); //Rui
         g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(2); //Frederico B
         g1.reactToAbyssOrTool();
-        
-        g1.moveCurrentPlayer(6); //Frederico A
+        g1.moveCurrentPlayer(2); //Frederico A
         g1.reactToAbyssOrTool();
-        
+
          
 
 
