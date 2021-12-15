@@ -1487,6 +1487,132 @@ public class TestUtilizador {
 
     }
 
+
+    @Test(timeout = 100)
+    public void test008_GetGameResult4jogadores1() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "4"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[4][4];
+
+
+        playerInfo[0][0] = "4";
+        playerInfo[0][1] = "Frederico A";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "3";
+        playerInfo[1][1] = "Frederico B";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "2";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+        playerInfo[3][0] = "1";
+        playerInfo[3][1] = "Tiago";
+        playerInfo[3][2] = "Java";
+        playerInfo[3][3] = "Brown";
+
+
+
+
+
+
+        //Função que irá criar o campo com 20 posições
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,9,abyssesAndTools));
+
+// Frederico ; Pedro ; Neto ; Rui
+
+        //turno =1
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Tiago ( Caiu BSOD) turno : 1
+
+        //turno = 2
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Rui ( Caiu BSOD) turno : 2
+
+        //turno = 3
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B  turno : 3
+
+
+        //turno = 4
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool(); //Frederico A turno : 4
+
+
+        //turno = 5
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+        //turno = 6
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+        //turno = 7
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+        //turno = 8
+        g1.moveCurrentPlayer(2);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+        //turno = 9
+        g1.moveCurrentPlayer(1);
+        g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+
+
+
+        //turno = 5 || turno = 6 ??
+
+
+        // Acabou no turno 5 ou ainda passa para o 6?
+
+
+
+        System.out.println(g1.getProgrammers(true));
+
+
+
+
+        System.out.println(g1.getGameResults());
+
+
+
+
+
+    }
+
+
+
+
+
     @Test(timeout = 100)
     public void test008_GetGameResult3jogadores() {
 
@@ -1545,6 +1671,7 @@ public class TestUtilizador {
 
         g1.moveCurrentPlayer(6); //Rui 3
         g1.reactToAbyssOrTool();
+
         g1.moveCurrentPlayer(1); //Frederico B
         g1.reactToAbyssOrTool();
         
@@ -1586,7 +1713,7 @@ public class TestUtilizador {
 
         abyssesAndTools[0][0] = "0"; //Abismo
         abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
-        abyssesAndTools[0][2] = "3"; //Posicao
+        abyssesAndTools[0][2] = "4"; //Posicao
 
 
 
@@ -1630,10 +1757,10 @@ public class TestUtilizador {
         g1.moveCurrentPlayer(1); //Frederico B turno 2
         g1.reactToAbyssOrTool();
 
-        g1.moveCurrentPlayer(2); //Frederico A turno 3
+        g1.moveCurrentPlayer(1); //Frederico A turno 3
         g1.reactToAbyssOrTool();
 
-        g1.moveCurrentPlayer(2); //Frederico B turno 4
+        g1.moveCurrentPlayer(1); //Frederico B turno 4
         g1.reactToAbyssOrTool();
 
         g1.moveCurrentPlayer(2); //Frederico A turno 5
@@ -1642,10 +1769,11 @@ public class TestUtilizador {
         g1.moveCurrentPlayer(2); //Frederico B turno 6
         g1.reactToAbyssOrTool();
 
-        g1.moveCurrentPlayer(1); //Frederico B turno 7
+        g1.moveCurrentPlayer(2); //Frederico B turno 7
         g1.reactToAbyssOrTool();
 
-        //Acabou no 7
+
+        //Acabou no 9
 
         System.out.println(g1.getProgrammers(true));
 
