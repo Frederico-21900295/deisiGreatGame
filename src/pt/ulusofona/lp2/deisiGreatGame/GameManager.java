@@ -647,7 +647,7 @@ public class GameManager {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
             resultados.add("NR. DE TURNOS");
-            resultados.add(String.valueOf(turnos));
+            resultados.add(String.valueOf(turnos + 1));
             resultados.add("");
             resultados.add("VENCEDOR");
 
