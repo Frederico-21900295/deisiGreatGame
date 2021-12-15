@@ -554,8 +554,9 @@ public class GameManager {
             }
 
         }
-        if (!gameIsOver()) {
 
+        if (!gameIsOver()) {
+            turnos++;
             currentPlayer++;
             if (currentPlayer > numeroJogadores) {
                 currentPlayer = 1;
@@ -587,7 +588,6 @@ public class GameManager {
             }
 
         }
-        turnos++;
 
         return frase;
 
