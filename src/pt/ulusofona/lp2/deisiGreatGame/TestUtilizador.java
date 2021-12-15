@@ -1549,7 +1549,7 @@ public class TestUtilizador {
 // Frederico ; Pedro ; Neto ; Rui
 
         //turno =1
-        g1.moveCurrentPlayer(1);
+        g1.moveCurrentPlayer(1); //turno 1
         g1.reactToAbyssOrTool();//Tiago ( Caiu BSOD) turno : 1
 
         //turno = 2
@@ -1583,17 +1583,12 @@ public class TestUtilizador {
         g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
 
         //turno = 9
-        g1.moveCurrentPlayer(1);
+        g1.moveCurrentPlayer(1); //turno 9
         g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
 
 
 
-
-        //turno = 5 || turno = 6 ??
-
-
-        // Acabou no turno 5 ou ainda passa para o 6?
-
+        //Turno 9
 
 
         System.out.println(g1.getProgrammers(true));
@@ -1847,7 +1842,7 @@ public class TestUtilizador {
         g1.reactToAbyssOrTool();
 
         //turno 2
-        g1.moveCurrentPlayer(4); //Frederico B 5
+        g1.moveCurrentPlayer(3); //Frederico B 5
         g1.reactToAbyssOrTool();
 
 
@@ -1857,12 +1852,9 @@ public class TestUtilizador {
 
 
         //turno 4
-        g1.moveCurrentPlayer(2); //Rui 5
+        g1.moveCurrentPlayer(1); //Rui 5
         g1.reactToAbyssOrTool();
 
-        //turno 5
-        g1.moveCurrentPlayer(2); //Frederico B 7
-        g1.reactToAbyssOrTool();
 
 
 

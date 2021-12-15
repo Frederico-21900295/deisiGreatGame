@@ -23,7 +23,7 @@ public class GameManager {
 
     public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
-        turnos = 1;
+        turnos = 0;
         currentPlayer = 1;
     }
 
@@ -545,6 +545,8 @@ public class GameManager {
         int id = getCurrentPlayerID();
         List<Programmer> jogadores = getProgrammers();
         String frase = null;
+        turnos++;
+
         if (gameIsOver()) {
             return null;
         }
@@ -560,7 +562,8 @@ public class GameManager {
         }
 
         if (!gameIsOver()) {
-                currentPlayer++;
+
+            currentPlayer++;
                 if (currentPlayer > numeroJogadores) {
                     currentPlayer = 1;
                 }
@@ -591,7 +594,6 @@ public class GameManager {
                 }
 
             }
-        turnos++;
 
 
         return frase;
@@ -648,6 +650,7 @@ public class GameManager {
             resultados.add(String.valueOf(turnos));
             resultados.add("");
             resultados.add("VENCEDOR");
+
 
             for (Programmer jogador : jogadores) {
                 if (!jogador.getEmJogo()) {
@@ -721,6 +724,7 @@ public class GameManager {
 
                 case 3 -> {
                     if (first) {
+
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
