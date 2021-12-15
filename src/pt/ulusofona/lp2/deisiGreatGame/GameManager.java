@@ -528,7 +528,7 @@ public class GameManager {
         List<Programmer> jogadores  = getProgrammers();
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
-                if (!player.getEmJogo() || player.getCicloInfinito()) {
+                if (player.getCicloInfinito()) {
                     return false;
                 }
                 player.moverJogador(nrSpaces, id);
