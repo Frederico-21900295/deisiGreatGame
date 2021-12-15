@@ -32,12 +32,12 @@ public class GameManager {
     /*Do que estive a ver esta função ja esta com todas as exceções*/
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
 
-        int turnos = 1;
         //Se o campo for menor que 0 retorna false
         if (boardSize < 4) {
             return false;
         }
 
+        int turnos = 0;
 
         //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
         players = new ArrayList<>();
@@ -553,7 +553,6 @@ public class GameManager {
 
         }
         if (!gameIsOver()) {
-            turnos++;
             currentPlayer++;
 
             if (currentPlayer > numeroJogadores) {
@@ -586,9 +585,7 @@ public class GameManager {
             }
 
         }
-        else {
-            turnos++;
-        }
+        turnos++;
 
         return frase;
 
