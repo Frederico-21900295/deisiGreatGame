@@ -175,13 +175,20 @@ public class Programmer {
         ArrayList<String> ferramentas = this.ferramentasJogador;
         String output;
         int x = 0;
+        StringBuilder outputBuilder;
 
         ArrayList<String> aux1 = new ArrayList<>();
 
         Collections.addAll(aux1, linguagens.split(";"));
         Collections.sort(aux1);
 
-        StringBuilder outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
+        if (this.getEmJogo()) {
+            outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
+        }
+        else {
+            outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.auxPosicao + " | ");
+
+        }
 
         if (ferramentas.isEmpty()) {
             outputBuilder.append("No tools | ");

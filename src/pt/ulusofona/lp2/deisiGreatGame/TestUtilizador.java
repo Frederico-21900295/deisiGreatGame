@@ -1444,7 +1444,7 @@ public class TestUtilizador {
 
         g1.moveCurrentPlayer(3); //Neto
         g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2); //Rui 3
+        g1.moveCurrentPlayer(3); //Rui 3
         g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(2); //Frederico B
         g1.reactToAbyssOrTool();
@@ -1479,7 +1479,7 @@ public class TestUtilizador {
 
         abyssesAndTools[0][0] = "0"; //Abismo
         abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
-        abyssesAndTools[0][2] = "3"; //Posicao
+        abyssesAndTools[0][2] = "6"; //Posicao
 
 
 
@@ -1510,7 +1510,7 @@ public class TestUtilizador {
 
 
 
-
+    //casa 6
 
 
         //Função que irá criar o campo com 20 posições
@@ -1519,7 +1519,7 @@ public class TestUtilizador {
         // Frederico ; Pedro ; Neto ; Rui
         System.out.println(g1.getGameResults());
 
-        g1.moveCurrentPlayer(1); //Rui 3
+        g1.moveCurrentPlayer(6); //Rui 3
         g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(1); //Frederico B
         g1.reactToAbyssOrTool();
@@ -1527,14 +1527,12 @@ public class TestUtilizador {
         g1.moveCurrentPlayer(4); //Frederico A
         g1.reactToAbyssOrTool();
 
-        g1.moveCurrentPlayer(2); //Rui
-        g1.reactToAbyssOrTool();
-        g1.moveCurrentPlayer(2); //Frederico B
+        g1.moveCurrentPlayer(3); //Frederico B
         g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(2); //Frederico A
         g1.reactToAbyssOrTool();
 
-         
+         // Rui   5 ; Frederico B  6  ; Frederico A 7
 
 
 
@@ -1602,6 +1600,9 @@ public class TestUtilizador {
 
         g1.moveCurrentPlayer(2); //Frederico A
         g1.reactToAbyssOrTool();
+
+
+        System.out.println(g1.getProgrammers(true));
 
         /*
         g1.moveCurrentPlayer(6); //Frederico B
