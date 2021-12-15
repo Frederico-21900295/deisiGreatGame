@@ -522,7 +522,7 @@ public class GameManager {
             return false;
         }
 
-
+        System.out.println("Nr turno : " + turnos);
         dado = nrSpaces;
         int id = getCurrentPlayerID();
         List<Programmer> jogadores  = getProgrammers();
@@ -538,32 +538,13 @@ public class GameManager {
         return true;
     }
 
-    public String reactToAbyssOrTool() {
-        int id = getCurrentPlayerID();
-        List<Programmer> jogadores = getProgrammers();
-        String frase = null;
-        if (gameIsOver()) {
-            return null;
-        }
-        for (Programmer player : jogadores) {
-            if (player.getId() == id) {
-                if(!player.getEmJogo()) {
-                    return null;
-                }
-                if (casasComEfeito != null) {
-                    frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
-                }
-                break;
-            }
-
-        }
-
+    public void mudarJogador(List<Programmer> jogadores) {
         if (!gameIsOver()) {
             currentPlayer++;
             if (currentPlayer > numeroJogadores) {
                 currentPlayer = 1;
             }
-            id = getCurrentPlayerID();
+            int id = getCurrentPlayerID();
             int aux = 0;
 
             for (Programmer player : jogadores) {
@@ -590,7 +571,36 @@ public class GameManager {
             }
 
         }
-        turnos++;
+    }
+
+
+    public String reactToAbyssOrTool() {
+        int id = getCurrentPlayerID();
+        List<Programmer> jogadores = getProgrammers();
+        String frase = null;
+        if (gameIsOver()) {
+            return null;
+        }
+        for (Programmer player : jogadores) {
+            if (player.getId() == id) {
+                if(!player.getEmJogo()) {
+                    mudarJogador(jogadores);
+                    System.out.println("Aqui");
+                    return null;
+                }
+                if (casasComEfeito != null) {
+                    frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
+                    mudarJogador(jogadores);
+
+                }
+                break;
+            }
+
+        }
+
+        if (!gameIsOver()) {
+            turnos++;
+        }
 
         return frase;
 
@@ -643,6 +653,9 @@ public class GameManager {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
             resultados.add("NR. DE TURNOS");
+            resultados.add(String.valueOf(turnos));
+            resultados.add("");
+            resultados.add("VENCEDOR");
 
             for (Programmer jogador : jogadores) {
                 if (!jogador.getEmJogo()) {
@@ -675,9 +688,7 @@ public class GameManager {
             switch (numeroJogadores) {
                 case 2 -> {
                     if (first) {
-                        resultados.add(String.valueOf(turnos));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
+
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 segundo = jogador.getName();
@@ -686,9 +697,7 @@ public class GameManager {
                         }
                     }
                     else {
-                        resultados.add(String.valueOf(turnos+1));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
+
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
 
@@ -720,9 +729,6 @@ public class GameManager {
 
                 case 3 -> {
                     if (first) {
-                        resultados.add(String.valueOf(turnos));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
@@ -738,9 +744,7 @@ public class GameManager {
                         }
                     }
                     else {
-                        resultados.add(String.valueOf(turnos+1));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
+
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
 
@@ -795,9 +799,7 @@ public class GameManager {
                     System.out.println(first);
 
                     if (first) {
-                        resultados.add(String.valueOf(turnos));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
+
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
@@ -821,9 +823,7 @@ public class GameManager {
                     }
 
                     else {
-                        resultados.add(String.valueOf(turnos+1));
-                        resultados.add("");
-                        resultados.add("VENCEDOR");
+
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
                                 if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {

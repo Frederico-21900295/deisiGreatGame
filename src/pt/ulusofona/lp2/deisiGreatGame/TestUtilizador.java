@@ -1698,6 +1698,192 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
+    public void test008_GetGameResult3jogadores1() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "4"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "4";
+        playerInfo[0][1] = "Frederico A";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "3";
+        playerInfo[1][1] = "Frederico B";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "2";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //casa 4
+
+
+        //Função que irá criar o campo com 20 posições
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
+
+        // Frederico ; Pedro ; Neto ; Rui
+        System.out.println(g1.getGameResults());
+
+        //turno 1
+        g1.moveCurrentPlayer(3); //Rui 4
+        g1.reactToAbyssOrTool();
+
+        //turno 2
+        g1.moveCurrentPlayer(1); //Frederico B 2
+        g1.reactToAbyssOrTool();
+
+
+        //turno 3
+        g1.moveCurrentPlayer(4); //Frederico A 5
+        g1.reactToAbyssOrTool();
+
+
+        //turno 4
+        g1.moveCurrentPlayer(2); //Frederico B
+        g1.reactToAbyssOrTool();
+
+
+
+
+        // Rui   5 ; Frederico B  6  ; Frederico A 7
+
+
+
+        System.out.println(g1.getGameResults());
+
+
+
+
+
+    }
+
+    @Test(timeout = 100)
+    public void test008_GetGameResult3jogadores2() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | A|  | |  |  |  | A|  |  |  |  | |  |  | A |  | A|  |
+          1                      9                      17       20
+         */
+
+        //Criar o abismo (Erro de sintaxe)
+        String[][] abyssesAndTools = new String[1][3];
+
+
+        abyssesAndTools[0][0] = "0"; //Abismo
+        abyssesAndTools[0][1] = "7"; //Efeitos secundários (O programador recua 2 jogadas atras)
+        abyssesAndTools[0][2] = "4"; //Posicao
+
+
+
+
+        //Criar o objeto do GameManager
+        GameManager g1 = new GameManager();
+
+
+        //Criar 4 jogadores (Deve pôr por ordem pelo ID mais baixo) Falta
+        String[][] playerInfo = new String[3][4];
+
+
+        playerInfo[0][0] = "4";
+        playerInfo[0][1] = "Frederico A";
+        playerInfo[0][2] = "Kotlin";
+        playerInfo[0][3] = "Purple";
+
+        playerInfo[1][0] = "3";
+        playerInfo[1][1] = "Frederico B";
+        playerInfo[1][2] = "Java";
+        playerInfo[1][3] = "Blue";
+
+        playerInfo[2][0] = "2";
+        playerInfo[2][1] = "Rui";
+        playerInfo[2][2] = "Java";
+        playerInfo[2][3] = "Green";
+
+
+
+
+        //casa 4
+
+
+        //Função que irá criar o campo com 20 posições
+        assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
+
+        // Frederico ; Pedro ; Neto ; Rui
+        System.out.println(g1.getGameResults());
+
+        //turno 1
+        g1.moveCurrentPlayer(2); //Rui 2
+        g1.reactToAbyssOrTool();
+
+        //turno 2
+        g1.moveCurrentPlayer(4); //Frederico B 5
+        g1.reactToAbyssOrTool();
+
+
+        //turno 3
+        g1.moveCurrentPlayer(4); //Frederico A 5
+        g1.reactToAbyssOrTool();
+
+
+        //turno 4
+        g1.moveCurrentPlayer(1); //Rui 4
+        g1.reactToAbyssOrTool();
+
+        //turno 5
+        g1.moveCurrentPlayer(2); //Frederico B 4
+        g1.reactToAbyssOrTool();
+
+
+
+
+
+
+        // Rui   5 ; Frederico B  6  ; Frederico A 7
+
+
+
+        System.out.println(g1.getGameResults());
+
+
+
+
+
+    }
+
+
+
+    @Test(timeout = 100)
     public void test008_GetGameResult2jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
