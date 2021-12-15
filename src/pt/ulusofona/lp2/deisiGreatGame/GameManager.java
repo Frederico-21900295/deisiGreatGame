@@ -12,7 +12,7 @@ public class GameManager {
     static int dado;
     List <Programmer> players;
     ArrayList<CasaEfeito> casasComEfeito;
-    int turnos;
+    static int turnos;
     static int boardSize;
     static int currentPlayer;
     String imagem;
@@ -21,11 +21,12 @@ public class GameManager {
 
     public GameManager() { }
 
-    public GameManager(int tamanho, int turno) {
+    public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
-        this.turnos = turno;
+        turnos = 1;
         currentPlayer = 1;
     }
+
 
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
@@ -37,7 +38,6 @@ public class GameManager {
             return false;
         }
 
-        int turnos = 0;
 
         //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
         players = new ArrayList<>();
@@ -98,7 +98,8 @@ public class GameManager {
         }
 
         //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
-        new GameManager(boardSize, turnos);
+        new GameManager(boardSize);
+
 
 
 
@@ -189,7 +190,6 @@ public class GameManager {
 
     //Função para inicializar as ferramentas
     public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
-
         casasComEfeito = new ArrayList<>();
         String s;
         int aux = 0;
@@ -555,6 +555,7 @@ public class GameManager {
 
         }
         if (!gameIsOver()) {
+
             currentPlayer++;
             if (currentPlayer > numeroJogadores) {
                 currentPlayer = 1;

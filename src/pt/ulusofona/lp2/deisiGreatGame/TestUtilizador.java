@@ -1443,7 +1443,6 @@ public class TestUtilizador {
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
 
 // Frederico ; Pedro ; Neto ; Rui
-        System.out.println(g1.getGameResults());
 
         g1.moveCurrentPlayer(2); //Neto
         g1.reactToAbyssOrTool();
