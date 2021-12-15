@@ -1516,7 +1516,7 @@ public class TestUtilizador {
         //Função que irá criar o campo com 20 posições
         assertTrue("Deve dar correto",g1.createInitialBoard(playerInfo,7,abyssesAndTools));
 
-// Frederico ; Pedro ; Neto ; Rui
+        // Frederico ; Pedro ; Neto ; Rui
         System.out.println(g1.getGameResults());
 
         g1.moveCurrentPlayer(1); //Rui 3
