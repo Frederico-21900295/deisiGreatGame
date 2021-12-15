@@ -1444,17 +1444,30 @@ public class TestUtilizador {
 
 // Frederico ; Pedro ; Neto ; Rui
 
+        //turno =1
         g1.moveCurrentPlayer(2);
         g1.reactToAbyssOrTool();//Tiago ( Caiu BSOD) turno : 1
+
+        //turno = 2
         g1.moveCurrentPlayer(2);
         g1.reactToAbyssOrTool();//Rui ( Caiu BSOD) turno : 2
 
+        //turno = 3
         g1.moveCurrentPlayer(1);
         g1.reactToAbyssOrTool();//Frederico B  turno : 3
+
+
+        //turno = 4
         g1.moveCurrentPlayer(1);
         g1.reactToAbyssOrTool(); //Frederico A turno : 4
+
+
+        //turno = 5
         g1.moveCurrentPlayer(1);
         g1.reactToAbyssOrTool();//Frederico B ( Caiu BSOD) turno : 5
+
+
+        //turno = 5 || turno = 6 ??
 
 
         // Acabou no turno 5 ou ainda passa para o 6?
@@ -1611,9 +1624,28 @@ public class TestUtilizador {
         System.out.println(g1.getGameResults());
 
 
-        g1.moveCurrentPlayer(2); //Frederico A
+        g1.moveCurrentPlayer(1); //Frederico A turno 1
         g1.reactToAbyssOrTool();
 
+        g1.moveCurrentPlayer(1); //Frederico B turno 2
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(2); //Frederico A turno 3
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(2); //Frederico B turno 4
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(2); //Frederico A turno 5
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(2); //Frederico B turno 6
+        g1.reactToAbyssOrTool();
+
+        g1.moveCurrentPlayer(1); //Frederico B turno 7
+        g1.reactToAbyssOrTool();
+
+        //Acabou no 7
 
         System.out.println(g1.getProgrammers(true));
 
