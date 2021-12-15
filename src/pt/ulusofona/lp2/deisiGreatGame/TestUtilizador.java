@@ -1450,6 +1450,8 @@ public class TestUtilizador {
         g1.moveCurrentPlayer(2); //Rui 3
         g1.reactToAbyssOrTool();
 
+        g1.moveCurrentPlayer(1); //Frederico B
+        g1.reactToAbyssOrTool();
         g1.moveCurrentPlayer(2); //Frederico B
         g1.reactToAbyssOrTool();
         System.out.println(g1.getProgrammers(true));

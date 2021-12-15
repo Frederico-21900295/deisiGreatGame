@@ -198,7 +198,6 @@ public class GameManager {
         for (String[] andTool : abyssesAndTools) {
             aux++;
             for (int y = 1; y < 3; y++) {
-                //y=1
                 if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
                     return false;
                 }
@@ -543,6 +542,9 @@ public class GameManager {
         int id = getCurrentPlayerID();
         List<Programmer> jogadores = getProgrammers();
         String frase = null;
+        if (gameIsOver()) {
+            return null;
+        }
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
                 if (casasComEfeito != null) {
@@ -554,7 +556,6 @@ public class GameManager {
         }
         if (!gameIsOver()) {
             currentPlayer++;
-
             if (currentPlayer > numeroJogadores) {
                 currentPlayer = 1;
             }
