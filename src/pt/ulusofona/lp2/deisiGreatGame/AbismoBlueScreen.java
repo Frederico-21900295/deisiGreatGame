@@ -14,6 +14,7 @@ public class AbismoBlueScreen extends Abismo{
         if (player == null) {
             return null;
         }
+        player.guardaPosicao(player.getPosicao());
         player.perdeu();
         return "Perdeste";
     }

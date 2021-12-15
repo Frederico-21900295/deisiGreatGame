@@ -653,7 +653,7 @@ public class GameManager {
                         primeiro = jogador.getName();
                         first = true;
                     } else {
-                        listaPosicoes.add(jogador.getPosicao());
+                        listaPosicoes.add(jogador.receberPosicao());
                         listaPosicoes.sort(Collections.reverseOrder());
                     }
                 }
@@ -666,17 +666,28 @@ public class GameManager {
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                     segundo = jogador.getName();
-                                    calAuxSegundo = jogador.getPosicao();
+                                    calAuxSegundo = jogador.receberPosicao();
                             }
                         }
                     }
                     else {
                         for (Programmer jogador : jogadores) {
-                            if (jogador.getPosicao() == listaPosicoes.get(0)) {
-                                primeiro = jogador.getName();
-                            } else {
-                                segundo = jogador.getName();
-                                calAuxSegundo = jogador.getPosicao();
+                            if (jogador.getEmJogo()) {
+
+                                if (jogador.getPosicao() == listaPosicoes.get(0)) {
+                                    primeiro = jogador.getName();
+                                } else {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.getPosicao();
+                                }
+                            }
+                            else {
+                                if (jogador.receberPosicao() == listaPosicoes.get(0)) {
+                                    primeiro = jogador.getName();
+                                } else {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.receberPosicao();
+                                }
                             }
                         }
                     }
@@ -692,96 +703,132 @@ public class GameManager {
                     if (first) {
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
-                                if (jogador.getPosicao() == listaPosicoes.get(0) && !second) {
+                                if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.receberPosicao();
+                                    second = true;
+
+                                } else {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.receberPosicao();
+                                }
+                            }
+                        }
+                    }
+                    else {
+                        for (Programmer jogador : jogadores) {
+                            if (jogador.getEmJogo()) {
+
+                                if (jogador.getPosicao() == listaPosicoes.get(0)) {
+                                    primeiro = jogador.getName();
+
+                                } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second) {
                                     segundo = jogador.getName();
                                     calAuxSegundo = jogador.getPosicao();
                                     second = true;
-
                                 } else {
                                     terceiro = jogador.getName();
                                     calAuxTerceiro = jogador.getPosicao();
                                 }
                             }
-                        }
-                    }
-                    else {
-                        for (Programmer jogador : jogadores) {
-                            if (jogador.getPosicao() == listaPosicoes.get(0)) {
-                                primeiro = jogador.getName();
-
-                            } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second){
-                                segundo = jogador.getName();
-                                calAuxSegundo = jogador.getPosicao();
-                                second = true;
-                            }
                             else {
-                                terceiro = jogador.getName();
-                                calAuxTerceiro = jogador.getPosicao();
+                                if (jogador.receberPosicao() == listaPosicoes.get(0)) {
+                                    primeiro = jogador.getName();
+
+                                } else if (jogador.receberPosicao() == listaPosicoes.get(1) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.receberPosicao();
+                                    second = true;
+                                } else {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.receberPosicao();
+                                }
                             }
 
                         }
                     }
 
 
-                        resultados.add(primeiro);
-                        resultados.add("");
-                        resultados.add("RESTANTES");
-                        if (calAuxSegundo != calAuxTerceiro) {
-                            resultados.add(segundo + ' ' + calAuxSegundo);
-                            resultados.add(terceiro + ' ' + calAuxTerceiro);
-                        } else {
-                            nomeJogadores.add(segundo);
-                            nomeJogadores.add(terceiro);
-                            Collections.sort(nomeJogadores);
-                            resultados.add(nomeJogadores.get(0) + ' ' + calAuxSegundo);
-                            resultados.add(nomeJogadores.get(1) + ' ' + calAuxTerceiro);
-                        }
+                    resultados.add(primeiro);
+                    resultados.add("");
+                    resultados.add("RESTANTES");
+                    if (calAuxSegundo != calAuxTerceiro) {
+                        resultados.add(segundo + ' ' + calAuxSegundo);
+                        resultados.add(terceiro + ' ' + calAuxTerceiro);
+                    } else {
+                        nomeJogadores.add(segundo);
+                        nomeJogadores.add(terceiro);
+                        Collections.sort(nomeJogadores);
+                        resultados.add(nomeJogadores.get(0) + ' ' + calAuxSegundo);
+                        resultados.add(nomeJogadores.get(1) + ' ' + calAuxTerceiro);
+                    }
                 }
 
 
                 case 4 -> {
-                    //Falta verificar se todos os jogadores sairem
                     System.out.println(listaPosicoes);
+                    System.out.println(first);
 
                     if (first) {
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
-                                if (jogador.getPosicao() == listaPosicoes.get(0) && !second) {
+                                if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
                                     segundo = jogador.getName();
-                                    calAuxSegundo = jogador.getPosicao();
+                                    calAuxSegundo = jogador.receberPosicao();
                                     second = true;
 
                                 }
-                                else if (jogador.getPosicao() == listaPosicoes.get(2) && !third) {
+                                else if (jogador.receberPosicao() == listaPosicoes.get(2) && !third) {
                                     terceiro = jogador.getName();
-                                    calAuxTerceiro = jogador.getPosicao();
+                                    calAuxTerceiro = jogador.receberPosicao();
                                     third = true;
                                 }
 
                                 else {
                                     quarto = jogador.getName();
-                                    calAuxQuarto = jogador.getPosicao();
+                                    calAuxQuarto = jogador.receberPosicao();
                                 }
                             }
                         }
                     }
+
                     else {
                         for (Programmer jogador : jogadores) {
-                            if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
-                                primeiro = jogador.getName();
-                                first = true;
+                            if (jogador.getEmJogo()) {
+                                if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
+                                    primeiro = jogador.getName();
+                                    first = true;
 
-                            } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second) {
-                                segundo = jogador.getName();
-                                calAuxSegundo = jogador.getPosicao();
-                                second = true;
-                            } else if (jogador.getPosicao() == listaPosicoes.get(2) && !third) {
-                                terceiro = jogador.getName();
-                                calAuxTerceiro = jogador.getPosicao();
-                                third = true;
-                            } else {
-                                quarto = jogador.getName();
-                                calAuxQuarto = jogador.getPosicao();
+                                } else if (jogador.getPosicao() == listaPosicoes.get(1) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.getPosicao();
+                                    second = true;
+                                } else if (jogador.getPosicao() == listaPosicoes.get(2) && !third) {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.getPosicao();
+                                    third = true;
+                                } else {
+                                    quarto = jogador.getName();
+                                    calAuxQuarto = jogador.getPosicao();
+                                }
+                            }
+                            else {
+                                if (jogador.receberPosicao() == listaPosicoes.get(0) && !first) {
+                                    primeiro = jogador.getName();
+                                    first = true;
+
+                                } else if (jogador.receberPosicao() == listaPosicoes.get(1) && !second) {
+                                    segundo = jogador.getName();
+                                    calAuxSegundo = jogador.receberPosicao();
+                                    second = true;
+                                } else if (jogador.receberPosicao() == listaPosicoes.get(2) && !third) {
+                                    terceiro = jogador.getName();
+                                    calAuxTerceiro = jogador.receberPosicao();
+                                    third = true;
+                                } else {
+                                    quarto = jogador.getName();
+                                    calAuxQuarto = jogador.receberPosicao();
+                                }
                             }
 
                         }

@@ -11,6 +11,7 @@ public class Programmer {
     private final String linguagens;
     ProgrammerColor color;
     private int posicao;
+    private int auxPosicao;
     private String estado;
     private ArrayList<String> ferramentasJogador;
 
@@ -106,10 +107,15 @@ public class Programmer {
     }
 
     public void perdeu() {
-        estado = "Derrotado";
+        this.estado = "Derrotado";
+        this.posicao = 0;
 
     }
 
+    public int receberPosicao()
+    {
+        return this.auxPosicao;
+    }
     public ArrayList<String> addFerramentas(String s) {
         ArrayList<String> ferramenta = getFerramentas();
         for (String f : ferramenta) {
@@ -138,6 +144,10 @@ public class Programmer {
                 mudarPosicao(aux);
             }
         }
+    }
+
+    public void guardaPosicao(int x) {
+        this.auxPosicao = x;
     }
 
     public String reagirCasaEfeito(ArrayList<CasaEfeito> casaComEfeitos, Programmer player, int dado, List<Programmer> jogadores) {
