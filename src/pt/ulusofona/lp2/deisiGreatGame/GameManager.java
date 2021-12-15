@@ -643,9 +643,6 @@ public class GameManager {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
             resultados.add("NR. DE TURNOS");
-            resultados.add(String.valueOf(turnos));
-            resultados.add("");
-            resultados.add("VENCEDOR");
 
             for (Programmer jogador : jogadores) {
                 if (!jogador.getEmJogo()) {
@@ -678,7 +675,9 @@ public class GameManager {
             switch (numeroJogadores) {
                 case 2 -> {
                     if (first) {
-
+                        resultados.add(String.valueOf(turnos));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                     segundo = jogador.getName();
@@ -687,7 +686,9 @@ public class GameManager {
                         }
                     }
                     else {
-
+                        resultados.add(String.valueOf(turnos+1));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
 
@@ -719,7 +720,9 @@ public class GameManager {
 
                 case 3 -> {
                     if (first) {
-
+                        resultados.add(String.valueOf(turnos));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
@@ -735,7 +738,9 @@ public class GameManager {
                         }
                     }
                     else {
-
+                        resultados.add(String.valueOf(turnos+1));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
 
@@ -790,7 +795,9 @@ public class GameManager {
                     System.out.println(first);
 
                     if (first) {
-
+                        resultados.add(String.valueOf(turnos));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (!jogador.getName().equals(primeiro)) {
                                 if (jogador.receberPosicao() == listaPosicoes.get(0) && !second) {
@@ -814,7 +821,9 @@ public class GameManager {
                     }
 
                     else {
-
+                        resultados.add(String.valueOf(turnos+1));
+                        resultados.add("");
+                        resultados.add("VENCEDOR");
                         for (Programmer jogador : jogadores) {
                             if (jogador.getEmJogo()) {
                                 if (jogador.getPosicao() == listaPosicoes.get(0) && !first) {
