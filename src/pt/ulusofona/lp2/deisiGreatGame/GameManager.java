@@ -538,40 +538,7 @@ public class GameManager {
         return true;
     }
 
-    public void mudarJogador(List<Programmer> jogadores) {
-        if (!gameIsOver()) {
-            currentPlayer++;
-            if (currentPlayer > numeroJogadores) {
-                currentPlayer = 1;
-            }
-            int id = getCurrentPlayerID();
-            int aux = 0;
 
-            for (Programmer player : jogadores) {
-                if (player.getId() == id) {
-                    if (!player.getEmJogo()) {
-                        currentPlayer++;
-                        if (currentPlayer > numeroJogadores) {
-                            currentPlayer = 1;
-                            aux++;
-                        }
-                    }
-                    id = getCurrentPlayerID();
-                }
-            }
-            if (aux > 0) {
-                for (Programmer player : jogadores) {
-                    if (player.getId() == id) {
-                        if (!player.getEmJogo()) {
-                            currentPlayer++;
-                        }
-                        id = getCurrentPlayerID();
-                    }
-                }
-            }
-
-        }
-    }
 
 
     public String reactToAbyssOrTool() {
@@ -583,14 +550,8 @@ public class GameManager {
         }
         for (Programmer player : jogadores) {
             if (player.getId() == id) {
-                if(!player.getEmJogo()) {
-                    mudarJogador(jogadores);
-                    System.out.println("Aqui");
-                    return null;
-                }
                 if (casasComEfeito != null) {
                     frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
-                    mudarJogador(jogadores);
 
                 }
                 break;
@@ -599,8 +560,39 @@ public class GameManager {
         }
 
         if (!gameIsOver()) {
-            turnos++;
-        }
+                currentPlayer++;
+                if (currentPlayer > numeroJogadores) {
+                    currentPlayer = 1;
+                }
+                id = getCurrentPlayerID();
+                int aux = 0;
+
+                for (Programmer player : jogadores) {
+                    if (player.getId() == id) {
+                        if (!player.getEmJogo()) {
+                            currentPlayer++;
+                            if (currentPlayer > numeroJogadores) {
+                                currentPlayer = 1;
+                                aux++;
+                            }
+                        }
+                        id = getCurrentPlayerID();
+                    }
+                }
+                if (aux > 0) {
+                    for (Programmer player : jogadores) {
+                        if (player.getId() == id) {
+                            if (!player.getEmJogo()) {
+                                currentPlayer++;
+                            }
+                            id = getCurrentPlayerID();
+                        }
+                    }
+                }
+
+            }
+        turnos++;
+
 
         return frase;
 

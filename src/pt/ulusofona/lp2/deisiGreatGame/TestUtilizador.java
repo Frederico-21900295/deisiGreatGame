@@ -1857,11 +1857,11 @@ public class TestUtilizador {
 
 
         //turno 4
-        g1.moveCurrentPlayer(1); //Rui 4
+        g1.moveCurrentPlayer(2); //Rui 5
         g1.reactToAbyssOrTool();
 
         //turno 5
-        g1.moveCurrentPlayer(2); //Frederico B 4
+        g1.moveCurrentPlayer(2); //Frederico B 7
         g1.reactToAbyssOrTool();
 
 
