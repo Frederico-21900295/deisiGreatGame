@@ -32,7 +32,7 @@ public class GameManager {
     /*Do que estive a ver esta função ja esta com todas as exceções*/
     public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
 
-        int turnos = 0;
+        int turnos = 1;
         //Se o campo for menor que 0 retorna false
         if (boardSize < 4) {
             return false;
@@ -585,7 +585,8 @@ public class GameManager {
                 }
             }
 
-        } else{
+        }
+        else {
             turnos++;
         }
 
@@ -640,7 +641,7 @@ public class GameManager {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
             resultados.add("NR. DE TURNOS");
-            resultados.add(String.valueOf(turnos + 1));
+            resultados.add(String.valueOf(turnos));
             resultados.add("");
             resultados.add("VENCEDOR");
             for (Programmer jogador : jogadores) {

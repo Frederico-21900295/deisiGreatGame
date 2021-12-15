@@ -685,6 +685,9 @@ public class TestUtilizador {
 
         System.out.println(g1.getProgrammers());
 
+
+        //3 6 9 11 14 17 19
+
         //Fica à espera que apareça outro jogador na mesma casa
 
         g1.moveCurrentPlayer(2); //10
