@@ -6,7 +6,6 @@ abstract class CasaEfeito {
     private final String nome;
     String tipo;
     private final Integer posicao;
-    int ferramenta;
 
 
     //Atribuir valores ás ferramentas com o nome pedido pelo enunciado
@@ -14,21 +13,6 @@ abstract class CasaEfeito {
         this.nome = name;
         this.posicao = Integer.parseInt(position);
         this.tipo = type;
-        if (this.nome.equals("Abismo")) {
-            switch (this.tipo) {
-                case "0" -> this.tipo = "Erro de sintaxe";
-                case "1" -> this.tipo = "Erro de lógica";
-                case "2" -> this.tipo = "Exception";
-                case "3" -> this.tipo = "File Not Found Exception";
-                case "4" -> this.tipo = "Crash (aka Rebentanço)";
-                case "5" -> this.tipo = "Duplicated Code";
-                case "6" -> this.tipo = "Efeitos secundários";
-                case "7" -> this.tipo = "Blue Screen of Death";
-                case "8" -> this.tipo = "Ciclo infinito";
-                case "9" -> this.tipo = "Segmentation Fault";
-            }
-        }
-        this.ferramenta = 0;
     }
 
 

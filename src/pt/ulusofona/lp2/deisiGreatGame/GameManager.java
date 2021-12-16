@@ -427,6 +427,43 @@ public class GameManager {
         return null;
     }
 
+    public String getProgrammersInfo() {
+        StringBuilder frase = new StringBuilder();
+        ArrayList <String> ferramentas ;
+        int x = 0;
+        int quantidade = 0;
+        for (Programmer jogador : players) {
+            if (jogador.getEmJogo()) {
+                if (jogador.getFerramentas().isEmpty()) {
+                    frase.append(jogador.getName()).append(" : No tools");
+                }
+                else {
+                    ferramentas = jogador.getFerramentas();
+                    frase.append(jogador.getName()).append(" : ");
+                    for (String f : ferramentas) {
+                        if (x >= 1) {
+                            frase.append(";").append(f);
+                        } else {
+                            frase.append(f);
+                        }
+                        x++;
+
+                    }
+
+                }
+                if (quantidade != players.size()-1) {
+                    frase.append(" | ");
+
+                }
+
+            }
+            x=0;
+            quantidade++;
+
+        }
+        return frase.toString();
+    }
+
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> jogadores = players;
@@ -527,40 +564,50 @@ public class GameManager {
         if (!gameIsOver()) {
 
             currentPlayer++;
-                if (currentPlayer > numeroJogadores) {
-                    currentPlayer = 1;
-                }
-                id = getCurrentPlayerID();
-                int aux = 0;
+            if (currentPlayer > numeroJogadores) {
+                currentPlayer = 1;
+            }
+            id = getCurrentPlayerID();
+            int aux = 0;
 
+            for (Programmer player : jogadores) {
+                if (player.getId() == id) {
+                    if (!player.getEmJogo()) {
+                        currentPlayer++;
+                        if (currentPlayer > numeroJogadores) {
+                            currentPlayer = 1;
+                            aux++;
+                        }
+                    }
+                    id = getCurrentPlayerID();
+                }
+            }
+            if (aux > 0) {
                 for (Programmer player : jogadores) {
                     if (player.getId() == id) {
                         if (!player.getEmJogo()) {
                             currentPlayer++;
-                            if (currentPlayer > numeroJogadores) {
-                                currentPlayer = 1;
-                                aux++;
-                            }
                         }
                         id = getCurrentPlayerID();
                     }
                 }
-                if (aux > 0) {
-                    for (Programmer player : jogadores) {
-                        if (player.getId() == id) {
-                            if (!player.getEmJogo()) {
-                                currentPlayer++;
-                            }
-                            id = getCurrentPlayerID();
-                        }
-                    }
-                }
-
             }
+
+        }
 
 
         return frase;
 
+    }
+
+
+    public ArrayList<String> historico() {
+        ArrayList<String> ferramentas = new ArrayList<>();
+
+        for (Programmer jogador : players) {
+            ferramentas.add(String.valueOf(jogador.getHistoricoPosicoes()));
+        }
+        return ferramentas;
     }
 
 
