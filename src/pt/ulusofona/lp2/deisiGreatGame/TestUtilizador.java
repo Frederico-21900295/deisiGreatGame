@@ -338,7 +338,6 @@ public class TestUtilizador {
         System.out.println(g1.gameIsOver());
         System.out.println(g1.getProgrammers());
 
-        System.out.println(g1.historico());
 
 
     }
@@ -514,7 +513,6 @@ public class TestUtilizador {
         System.out.println(g1.gameIsOver());
         System.out.println(g1.getProgrammers());
 
-        System.out.println(g1.historico());
         System.out.println(g1.getGameResults());
         /*
 
@@ -743,7 +741,6 @@ public class TestUtilizador {
         System.out.println(g1.gameIsOver());
         System.out.println(g1.getProgrammers());
 
-        System.out.println(g1.historico());
     }
 
     @Test(timeout = 100)
@@ -1664,9 +1661,10 @@ public class TestUtilizador {
         // Frederico ; Pedro ; Neto ; Rui
         System.out.println(g1.getGameResults());
 
-        g1.moveCurrentPlayer(6); //Rui 3
+        g1.moveCurrentPlayer(6); //Rui 7
         g1.reactToAbyssOrTool();
 
+        /*
         g1.moveCurrentPlayer(1); //Frederico B
         g1.reactToAbyssOrTool();
         
@@ -1679,6 +1677,8 @@ public class TestUtilizador {
 
         g1.moveCurrentPlayer(2); //Frederico A
         g1.reactToAbyssOrTool();
+
+         */
 
          // Rui   5 ; Frederico B  6  ; Frederico A 7
 
@@ -1838,11 +1838,11 @@ public class TestUtilizador {
         System.out.println(g1.getGameResults());
 
         //turno 1
-        g1.moveCurrentPlayer(2); //Rui 2
+        g1.moveCurrentPlayer(2); //Rui 3
         g1.reactToAbyssOrTool();
 
         //turno 2
-        g1.moveCurrentPlayer(3); //Frederico B 5
+        g1.moveCurrentPlayer(3); //Frederico B 4
         g1.reactToAbyssOrTool();
 
 
@@ -1852,7 +1852,7 @@ public class TestUtilizador {
 
 
         //turno 4
-        g1.moveCurrentPlayer(1); //Rui 5
+        g1.moveCurrentPlayer(1); //Rui 4
         g1.reactToAbyssOrTool();
 
 

@@ -23,7 +23,7 @@ public class GameManager {
 
     public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
-        turnos = 0;
+        turnos = 1;
         currentPlayer = 1;
     }
 
@@ -427,43 +427,6 @@ public class GameManager {
         return null;
     }
 
-    public String getProgrammersInfo() {
-        StringBuilder frase = new StringBuilder();
-        ArrayList <String> ferramentas ;
-        int x = 0;
-        int quantidade = 0;
-        for (Programmer jogador : players) {
-            if (jogador.getEmJogo()) {
-                if (jogador.getFerramentas().isEmpty()) {
-                    frase.append(jogador.getName()).append(" : No tools");
-                }
-                else {
-                    ferramentas = jogador.getFerramentas();
-                    frase.append(jogador.getName()).append(" : ");
-                    for (String f : ferramentas) {
-                        if (x >= 1) {
-                            frase.append(";").append(f);
-                        } else {
-                            frase.append(f);
-                        }
-                        x++;
-
-                    }
-
-                }
-                if (quantidade != players.size()-1) {
-                    frase.append(" | ");
-
-                }
-
-            }
-            x=0;
-            quantidade++;
-
-        }
-        return frase.toString();
-    }
-
 
     public List<Programmer> getProgrammers(boolean includeDefeated) {
         List<Programmer> jogadores = players;
@@ -601,16 +564,6 @@ public class GameManager {
     }
 
 
-    public ArrayList<String> historico() {
-        ArrayList<String> ferramentas = new ArrayList<>();
-
-        for (Programmer jogador : players) {
-            ferramentas.add(String.valueOf(jogador.getHistoricoPosicoes()));
-        }
-        return ferramentas;
-    }
-
-
     // Função que vai disponibilizar os resultados do jogo com o output desejado pelo projeto
     public List<String> getGameResults() {
         List<String> resultados = new ArrayList<>();
@@ -647,7 +600,7 @@ public class GameManager {
             resultados.add("O GRANDE JOGO DO DEISI");
             resultados.add("");
             resultados.add("NR. DE TURNOS");
-            resultados.add(String.valueOf(turnos + 1));
+            resultados.add(String.valueOf(turnos));
             resultados.add("");
             resultados.add("VENCEDOR");
 

@@ -2,7 +2,6 @@ package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Programmer {
@@ -11,7 +10,7 @@ public class Programmer {
     private final String linguagens;
     ProgrammerColor color;
     private int posicao;
-    private int auxPosicao;
+    private int auxPosicaoCasoDerrota;
     private String estado;
     private ArrayList<String> ferramentasJogador;
 
@@ -82,7 +81,7 @@ public class Programmer {
         }
     }
 
-    //Função para modificar a posicão do jogador
+    //Função para modificar a posição do jogador
     public void mudarPosicao(int x) {
         this.posicao = x;
     }
@@ -114,8 +113,10 @@ public class Programmer {
 
     public int receberPosicao()
     {
-        return this.auxPosicao;
+        return this.auxPosicaoCasoDerrota;
     }
+
+
     public ArrayList<String> addFerramentas(String s) {
         ArrayList<String> ferramenta = getFerramentas();
         for (String f : ferramenta) {
@@ -147,7 +148,7 @@ public class Programmer {
     }
 
     public void guardaPosicao(int x) {
-        this.auxPosicao = x;
+        this.auxPosicaoCasoDerrota = x;
     }
 
     public String reagirCasaEfeito(ArrayList<CasaEfeito> casaComEfeitos, Programmer player, int dado, List<Programmer> jogadores) {
@@ -186,7 +187,7 @@ public class Programmer {
             outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.posicao + " | ");
         }
         else {
-            outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.auxPosicao + " | ");
+            outputBuilder = new StringBuilder(jogadorID + " | " + this.nome + " | " + this.auxPosicaoCasoDerrota + " | ");
 
         }
 
