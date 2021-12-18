@@ -332,22 +332,11 @@ public class GameManager {
         return 0;
     }
 
-    public String getHistorico(){
-        int auxiliar = 1;
-        for (Programmer player : players) {
-            if (auxiliar == currentPlayer) {
-                return String.valueOf(player.getHistoricoPosicoes());
-            }
-            auxiliar++;
-        }
-        return null;
-    }
-
 
     public JPanel getAuthorsPanel() {
         JPanel panel=new JPanel();
         panel.setLayout(new FlowLayout());
-        JLabel label = new JLabel("Deisi Great Game");
+        JLabel label = new JLabel("  Deisi Great Game");
         Font font = new Font("Courier", Font.BOLD,20);
         label.setFont(font);
         label.setForeground(Color.white);
@@ -368,7 +357,7 @@ public class GameManager {
         JTextArea textArea1 = new JTextArea(1, 4);
         textArea1.setBackground(Color.darkGray);
         textArea1.setForeground(Color.white);
-        textArea1.setText("Linguagens de Programação II");
+        textArea1.setText("Linguagens de Programação II\n\n\n Frederico Azevedo - 21900295 \n Tiago Silva - 20076288");
         textArea1.setEditable(false);
 
 
@@ -554,13 +543,11 @@ public class GameManager {
             if (player.getId() == id) {
                 if (casasComEfeito != null) {
                     frase = player.reagirCasaEfeito(casasComEfeito, player, dado, jogadores);
-
                 }
                 break;
             }
 
         }
-
         if (!gameIsOver()) {
 
             currentPlayer++;
@@ -598,16 +585,6 @@ public class GameManager {
 
         return frase;
 
-    }
-
-
-    public ArrayList<String> historico() {
-        ArrayList<String> ferramentas = new ArrayList<>();
-
-        for (Programmer jogador : players) {
-            ferramentas.add(String.valueOf(jogador.getHistoricoPosicoes()));
-        }
-        return ferramentas;
     }
 
 

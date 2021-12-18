@@ -43,6 +43,6 @@ public class AbismoSegmentationFault extends Abismo {
 
     @Override
     public String getImage() {
-        return "core-dumped.png";
+        return "segm.png";
     }
 }

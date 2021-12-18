@@ -1057,7 +1057,6 @@ public class TestUtilizador {
         g1.reactToAbyssOrTool();
         //Rui 12 | Pedro 14 | Frederico 7
 
-        System.out.println(g1.getHistorico());
 
         g1.moveCurrentPlayer(2);
         //Rui 19 | Pedro 14 | Frederico 9
@@ -1444,6 +1443,7 @@ public class TestUtilizador {
         //turno =1
         g1.moveCurrentPlayer(2);
         g1.reactToAbyssOrTool();//Tiago ( Caiu BSOD) turno : 1
+
 
         //turno = 2
         g1.moveCurrentPlayer(2);

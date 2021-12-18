@@ -23,6 +23,4 @@ abstract class Abismo extends CasaEfeito {
 
     }
 
-
-    abstract String getImage();
 }

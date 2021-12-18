@@ -25,7 +25,6 @@ abstract class Ferramenta extends CasaEfeito {
 
 
 
-    abstract String getImage();
 
 
 }

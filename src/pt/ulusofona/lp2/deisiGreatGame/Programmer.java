@@ -107,8 +107,6 @@ public class Programmer {
 
     public void perdeu() {
         this.estado = "Derrotado";
-        this.posicao = 0;
-
     }
 
     public int receberPosicao()
