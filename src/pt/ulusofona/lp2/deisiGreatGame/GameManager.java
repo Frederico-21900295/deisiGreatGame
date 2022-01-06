@@ -1,25 +1,30 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Objects;
 import javax.swing.*;
 import java.util.List;
+import java.util.stream.Stream;
 
 
 public class GameManager {
     static int dado;
     List <Programmer> players;
-    ArrayList<CasaEfeito> casasComEfeito;
+    List<CasaEfeito> casasComEfeito;
     static int turnos;
     static int boardSize;
     static int currentPlayer;
     String imagem;
     private int numeroJogadores;
+    private List<Integer> posicoes; // Posicao
+    private List<String> abismosPisados;
 
 
-    public GameManager() { }
+
+    public GameManager() {abismosPisados= new ArrayList<>(); }
 
     public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
@@ -28,14 +33,158 @@ public class GameManager {
     }
 
 
+/*
+
+    public String percorrerAbismos(String str, List<String> abismosPisados) {
+        String frase;
+
+        for (CasaEfeito p: casasComEfeito) {
+            frase = p.getNumeroPisadas();
+        }
+    }
+
+
+
+    public List<String> addAbismos() {
+        String frase;
+
+        for (CasaEfeito p: casasComEfeito) {
+            if (p.getNumeroPisadas()!=null) {
+                frase = p.getNumeroPisadas();
+                abismosPisados.add(frase);
+            }
+        }
+
+            return (List<String>) abismosPisados.stream().filter(str -> str.split(" ")[0].contains());
+        }
+percorrerAbismos(str, abismosPisados)
+        for (CasaEfeito p: casasComEfeito) {
+            if (p.getNumeroPisadas()!=null) {
+                frase = p.getNumeroPisadas();
+                abismo = frase.split(" ")[0];
+                aux = frase.charAt(frase.length()-1);
+                System.out.println(abismo);
+                if (!(abismosPisados.contains(frase))) {
+                    System.out.println(abismosPisados.contains(abismo));
+                    if (abismosPisados.stream().filter(str -> str.split(" ")[0].equals(p.getNumeroPisadas()))){
+
+                    }
+                    if (!(abismosPisados.contains(abismo))){
+                        abismosPisados.add(frase);
+                    }
+                }
+            }
+        }
+
+
+
+        return this.abismosPisados;
+    }
+    */
+
+    public List<Integer> getPosicoes() {
+        return this.posicoes;
+    }
+
+    public List<CasaEfeito> getCasasComEfeito() {
+        return casasComEfeito;
+    }
+
+    public void colocarInformacao(int posicao ) {
+        this.posicoes.add(posicao);
+    }
+
+    public void adicionarPremio(String[][] abyssesAndTools, int i){
+        String s;
+        if (abyssesAndTools[i][0].equals("1")) {
+            s = "Ferramenta";
+            switch (abyssesAndTools[i][1]) {
+                case "0" -> {
+                    FerramentaHeranca ferramenta = new FerramentaHeranca(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "1" -> {
+                    FerramentaProgramacaoFuncional ferramenta = new FerramentaProgramacaoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "2" -> {
+                    FerramentaTestesUnitarios ferramenta = new FerramentaTestesUnitarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "3" -> {
+                    FerramentaTratamentoExcepcoes ferramenta = new FerramentaTratamentoExcepcoes(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "4" -> {
+                    FerramentaIDE ferramenta = new FerramentaIDE(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "5" -> {
+                    FerramentaAjudaProfessor ferramenta = new FerramentaAjudaProfessor(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+
+            }
+
+        }
+        else {
+            s = "Abismo";
+            switch (abyssesAndTools[i][1]) {
+                case "0" -> {
+                    AbismoErroSintaxe a = new AbismoErroSintaxe(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(a);
+                }
+                case "1" -> {
+                    AbismoErroLogica abismo = new AbismoErroLogica(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "2" -> {
+                    AbismoException abismo = new AbismoException(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "3" -> {
+                    AbismoFileNotFound abismo = new AbismoFileNotFound(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "4" -> {
+                    AbismoCrash abismo = new AbismoCrash(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "5" -> {
+                    AbismoDuplicatedCode abismo = new AbismoDuplicatedCode(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "6" -> {
+                    AbismoEfeitosSecundarios abismo = new AbismoEfeitosSecundarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "7" -> {
+                    AbismoBlueScreen abismo = new AbismoBlueScreen(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "8" -> {
+                    AbismoCicloInfinito abismo = new AbismoCicloInfinito(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "9" -> {
+                    AbismoSegmentationFault abismo = new AbismoSegmentationFault(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+
+
+
+            }
+        }
+    }
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
     /*Do que estive a ver esta função ja esta com todas as exceções*/
-    public boolean createInitialBoard(String[][] playerInfo, int boardSize) {
+    public void createInitialBoard(String[][] playerInfo, int boardSize) throws InvalidInitialBoardException
+    {
 
         //Se o campo for menor que 0 retorna false
         if (boardSize < 4) {
-            return false;
+            throw new InvalidInitialBoardException("Tamanho do campo demasiado pequeno");
         }
 
 
@@ -51,7 +200,7 @@ public class GameManager {
          */
         if (totalJogadores <= 1 || totalJogadores > 4)
         {
-            return false;
+            throw new InvalidInitialBoardException("Os numeros de jogadores não entre 2 a 4");
         }
 
 
@@ -73,7 +222,7 @@ public class GameManager {
                     aux_cores++;
                 }
                 if (aux_cores == 4) {
-                    return false;
+                    throw new InvalidInitialBoardException("Uma das cores escolhidas não pertence à gama oferecida");
                 }
             }
         }
@@ -85,11 +234,11 @@ public class GameManager {
             for (int y = 0; y < totalJogadores; y++) {
                 if (i != y) {
                     if ((playerInfo[i][1] == null) || (playerInfo[i][1].isEmpty())) {
-                        return false;
+                        throw new InvalidInitialBoardException("O nome do jogador está vazio ou com o valor null");
                     } else {
                         if ((Objects.equals(playerInfo[i][0], playerInfo[y][0]))|| (playerInfo[i][1].equals(playerInfo[y][1])) ||
                                 (playerInfo[i][3].equals(playerInfo[y][3]))) {
-                            return false;
+                            throw new InvalidInitialBoardException("Existem jogadores com a mesmo nome ou cor");
                         }
                     }
                 }
@@ -132,7 +281,7 @@ public class GameManager {
                 Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
                 jogador1.colocarInformacao(1);
                 jogador2.colocarInformacao(1);
-                jogador3.colocarInformacao( 1);
+                jogador3.colocarInformacao(1);
                 for (Integer id : listaId) {
                     if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
                         players.add(jogador1);
@@ -159,7 +308,7 @@ public class GameManager {
                 Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
                 Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
                 Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], playerInfo[3][3]);
-                jogador1.colocarInformacao( 1);
+                jogador1.colocarInformacao(1);
                 jogador2.colocarInformacao(1);
                 jogador3.colocarInformacao(1);
                 jogador4.colocarInformacao(1);
@@ -184,14 +333,13 @@ public class GameManager {
 
 
         }
-
-        return true;
     }
 
     //Função para inicializar as ferramentas
-    public boolean createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) {
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)
+            throws InvalidInitialBoardException
+    {
         casasComEfeito = new ArrayList<>();
-        String s;
         int aux = 0;
         int converterInt;
 
@@ -199,123 +347,46 @@ public class GameManager {
             aux++;
             for (int y = 1; y < 3; y++) {
                 if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
-                    return false;
+                    throw new InvalidInitialBoardException("Verificar o que fazer");
                 }
                 if (andTool[0].equals("0")) {
                     converterInt = Integer.parseInt(andTool[y]);
                     if (((converterInt > 9 || converterInt < 0 ) && y == 1)) {
-                        return false;
+                        throw new InvalidInitialBoardException("ID dos abismos incorreto");
                     } else if(y==2){
                         converterInt = Integer.parseInt(andTool[y]);
                         if (converterInt < 1 || converterInt >= worldSize ) {
-                            return false;
+                            throw new InvalidInitialBoardException("Posiçao do abismo não pertence ao campo estipulado");
                         }
 
                     }
                 } else if (andTool[0].equals("1")) {
                     converterInt = Integer.parseInt(andTool[y]);
                     if ((converterInt > 5 || converterInt < 0) && y == 1) {
-                        return false;
+                        throw new InvalidInitialBoardException("ID dos ferramentas incorreto");
                     } else if(y==2) {
                         converterInt = Integer.parseInt(andTool[y]);
                         if (converterInt < 1 || converterInt >= worldSize) {
-                            return false;
+                            throw new InvalidInitialBoardException("Posiçao do ferramentas não pertence ao campo estipulado");
                         }
 
                     }
                 } else {
-                    return false;
+                    throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                 }
             }
         }
 
 
         for (int i= 0; i < aux; i++){
-            if (abyssesAndTools[i][0].equals("1")) {
-                s = "Ferramenta";
-                switch (abyssesAndTools[i][1]) {
-                    case "0" -> {
-                        FerramentaHeranca ferramenta = new FerramentaHeranca(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-                    case "1" -> {
-                        FerramentaProgramacaoFuncional ferramenta = new FerramentaProgramacaoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-                    case "2" -> {
-                        FerramentaTestesUnitarios ferramenta = new FerramentaTestesUnitarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-                    case "3" -> {
-                        FerramentaTratamentoExcepcoes ferramenta = new FerramentaTratamentoExcepcoes(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-                    case "4" -> {
-                        FerramentaIDE ferramenta = new FerramentaIDE(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-                    case "5" -> {
-                        FerramentaAjudaProfessor ferramenta = new FerramentaAjudaProfessor(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(ferramenta);
-                    }
-
-                }
-
-            }
-            else {
-                s = "Abismo";
-                switch (abyssesAndTools[i][1]) {
-                    case "0" -> {
-                        AbismoErroSintaxe a = new AbismoErroSintaxe(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(a);
-                    }
-                    case "1" -> {
-                        AbismoErroLogica abismo = new AbismoErroLogica(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "2" -> {
-                        AbismoException abismo = new AbismoException(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "3" -> {
-                        AbismoFileNotFound abismo = new AbismoFileNotFound(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "4" -> {
-                        AbismoCrash abismo = new AbismoCrash(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "5" -> {
-                        AbismoDuplicatedCode abismo = new AbismoDuplicatedCode(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "6" -> {
-                        AbismoEfeitosSecundarios abismo = new AbismoEfeitosSecundarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "7" -> {
-                        AbismoBlueScreen abismo = new AbismoBlueScreen(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "8" -> {
-                        AbismoCicloInfinito abismo = new AbismoCicloInfinito(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-                    case "9" -> {
-                        AbismoSegmentationFault abismo = new AbismoSegmentationFault(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                        casasComEfeito.add(abismo);
-                    }
-
-
-
-                }
-            }
-
+            adicionarPremio(abyssesAndTools,i);
         }
 
 
         //Criação do mapa com a informação de cada jogador
-        return createInitialBoard(playerInfo, worldSize);
+        createInitialBoard(playerInfo, worldSize);
+        posicoes = new ArrayList<>();
+
     }
 
 
@@ -521,6 +592,7 @@ public class GameManager {
                     return false;
                 }
                 player.moverJogador(nrSpaces, id);
+                colocarInformacao(player.getPosicao());
             }
 
         }
@@ -878,6 +950,18 @@ public class GameManager {
 
         return resultados;
 
+    }
+
+
+
+
+    public boolean saveGame(File file) {
+        return true;
+    }
+
+
+    public boolean loadGame(File file) {
+        return true;
     }
 
 
