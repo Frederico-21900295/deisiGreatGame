@@ -944,10 +944,7 @@ public class GameManager implements Serializable{
 
     public boolean loadGame(File file) {
         try {
-            String nome = String.valueOf(file);
-
             int aux=0;
-
             String[] jogadoresId = new String[4];
             String[] nomeJogadores = new String[4];
             String[] lprogramacao = new String[4];
@@ -970,7 +967,6 @@ public class GameManager implements Serializable{
 
             String linha;
             int numero;
-            file = new File(nome);
 
             Scanner myReader = new Scanner(file);
 
@@ -1151,33 +1147,8 @@ public class GameManager implements Serializable{
 
 
 
-public boolean saveGame(File file) {
+    public boolean saveGame(File file) {
         try {
-
-            String nome = String.valueOf(file);
-            file = new File(nome+".txt");
-
-            /*
-            System.out.println(nome);
-            if (nome.isEmpty()) {
-                return false;
-            }
-            else {
-                file = new File(nome+".txt");
-
-                if (file.createNewFile() ) {
-                    System.out.println("File created: " + file.getName());
-                }
-                else {
-                    return false;
-                }
-
-
-            }
-
-             */
-
-
             String newLine = "\n";
             StringBuilder nomeJogadores = new StringBuilder();
             StringBuilder lprogramacao = new StringBuilder();
@@ -1203,27 +1174,28 @@ public boolean saveGame(File file) {
                 ferramentas.append(j.getFerramentas()).append(" :");
                 historico.append(j.getHistoricoPosicoes()).append(" :");
             }
+
             for (CasaEfeito p : casasComEfeito ) {
                 nomePremio.append(p.getNome()).append(" :");
                 tipoPremio.append(p.getTipo()).append(" :");
                 posicaoPremio.append(p.getPosicao()).append(" :");
             }
 
-
-            FileWriter fw = new FileWriter(file);
+            PrintWriter fw = new PrintWriter(file);
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(id + newLine + nomeJogadores + newLine + lprogramacao + newLine + cor + newLine + estado +
                     newLine + posicao + newLine + ferramentas + newLine + historico + newLine + currentPlayer + newLine
                     + numeroJogadores + newLine + dado + newLine + boardSize + newLine + casasComEfeito.size() + newLine
                     + turnos + newLine + nomePremio + newLine + tipoPremio + newLine + posicaoPremio );
             writer.close();
+            fw.close();
 
             return true;
 
-        } catch (IOException e) {
-            System.out.println("An error occurred.");
+        } catch(IOException e) {
             return false;
         }
+
 
     }
 
