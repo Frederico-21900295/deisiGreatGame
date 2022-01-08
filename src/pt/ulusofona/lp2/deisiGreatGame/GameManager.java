@@ -945,9 +945,7 @@ public class GameManager implements Serializable{
     public boolean loadGame(File file) {
         try {
             String nome = String.valueOf(file);
-            if (nome.isEmpty() || nome.equals("nullnull")) {
-               throw new FileNotFoundException();
-            }
+
             int aux=0;
 
             String[] jogadoresId = new String[4];
@@ -1155,6 +1153,9 @@ public boolean saveGame(File file) {
         try {
 
             String nome = String.valueOf(file);
+            file = new File(nome+".txt");
+
+            /*
             System.out.println(nome);
             if (nome.isEmpty()) {
                 return false;
@@ -1171,6 +1172,8 @@ public boolean saveGame(File file) {
 
 
             }
+
+             */
 
 
             String newLine = "\n";
