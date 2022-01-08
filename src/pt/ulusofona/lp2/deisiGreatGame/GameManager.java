@@ -971,65 +971,68 @@ public class GameManager implements Serializable{
 
             while (myReader.hasNextLine()) {
                 linha = myReader.nextLine();
+                System.out.println(aux + " :" + linha);
 
-                if (aux >= 8 && aux<= 13) {
-                    numero = Integer.parseInt(linha.replace("[","").replace("]","").replace(" ",""));
-                    switch (aux) {
-                        case 8 -> jogadorCorrente = numero;
+                if (linha != null) {
+                    if (aux >= 8 && aux <= 13) {
+                        numero = Integer.parseInt(linha.replace("[", "").replace("]", "").replace(" ", ""));
+                        switch (aux) {
+                            case 8 -> jogadorCorrente = numero;
 
-                        case 9 -> numeroPlayers = numero;
+                            case 9 -> numeroPlayers = numero;
 
-                        case 10 -> dadoCorrente = numero;
+                            case 10 -> dadoCorrente = numero;
 
-                        case 11 -> tamanhoCampo = numero;
+                            case 11 -> tamanhoCampo = numero;
 
-                        case 12 -> tamanhoPremio = numero;
+                            case 12 -> tamanhoPremio = numero;
 
-                        case 13 -> valorTurnos = numero;
-                    }
-
-                }
-                else {
-                    switch (aux) {
-                        case 0 -> jogadoresId = linha.split(" :");
-
-                        case 1 -> nomeJogadores = linha.split(" :");
-
-                        case 2 -> lprogramacao = linha.split(" :");
-
-                        case 3 -> cor = linha.split(" :");
-
-                        case 4 -> {
-                            linha = linha.replace("true","Em Jogo").replace("false","Derrotado");
-                            estadoPlayers = linha.split(" :");
+                            case 13 -> valorTurnos = numero;
                         }
 
-                        case 5 -> posicaoPlayer = linha.split(" :");
+                    } else {
+                        switch (aux) {
+                            case 0 -> jogadoresId = linha.split(" :");
 
-                        case 6 -> {
+                            case 1 -> nomeJogadores = linha.split(" :");
 
-                            linha = linha.replace("[]","No tools");
-                            ferramentasPlayer = linha.split(" :");
+                            case 2 -> lprogramacao = linha.split(" :");
+
+                            case 3 -> cor = linha.split(" :");
+
+                            case 4 -> {
+                                linha = linha.replace("true", "Em Jogo").replace("false", "Derrotado");
+                                estadoPlayers = linha.split(" :");
+                            }
+
+                            case 5 -> posicaoPlayer = linha.split(" :");
+
+                            case 6 -> {
+                                linha = linha.replace("[]", "No tools");
+                                ferramentasPlayer = linha.split(" :");
+                            }
+
+                            case 7 -> historicoPlayers = linha.split(" :");
+
+                            case 14 -> nomePremio = linha.split(" :");
+
+                            case 15 -> tipoPremio = linha.split(" :");
+
+                            case 16 -> posicaoPremio = linha.split(" :");
+
                         }
-
-                        case 7 -> historicoPlayers = linha.split(" :");
-
-                        case 14 -> nomePremio = linha.split(" :");
-
-                        case 15 -> tipoPremio = linha.split(" :");
-
-                        case 16 -> posicaoPremio = linha.split(" :");
-
                     }
                 }
                 aux++;
-            }
-            if (aux!=17) {
-                return false;
+
             }
             myReader.close();
+
+            if (aux!=17) {
+                System.out.println("Aqui");
+                return false;
+            }
             String[][] playerInfo  = new String[numeroPlayers][4];
-            String[][] abyssesAndTools = new String[tamanhoPremio][3];
             casasComEfeito = new ArrayList<>();
             posicoes = new ArrayList<>();
             currentPlayer = jogadorCorrente;
@@ -1037,6 +1040,32 @@ public class GameManager implements Serializable{
             turnos = valorTurnos;
             numeroJogadores = numeroPlayers;
             boardSize = tamanhoCampo;
+            if (tamanhoPremio != 0) {
+                System.out.println("Entrei");
+                String[][] abyssesAndTools = new String[tamanhoPremio][3];
+                for (int i = 0; i < tamanhoPremio; i++) {
+                    for (int y=0; y < 3; y++) {
+
+                        switch (y) {
+                            case 0 -> abyssesAndTools[i][y] = mudarParaNumero(nomePremio[i]);
+
+                            case 1 -> {
+                                System.out.println(tipoPremio[i]);
+                                abyssesAndTools[i][y] = mudarParaNumero(tipoPremio[i]);
+                                System.out.println(mudarParaNumero(tipoPremio[i]));
+                            }
+
+                            case 2 -> abyssesAndTools[i][y] = posicaoPremio[i];
+
+                        }
+                    }
+                }
+                for (int i= 0; i < tamanhoPremio; i++){
+                    adicionarPremio(abyssesAndTools,i);
+                }
+            }
+
+
 
             for (int i = 0; i < numeroPlayers; i++) {
                 for (int y=0; y < 4; y++) {
@@ -1053,32 +1082,11 @@ public class GameManager implements Serializable{
                 }
             }
 
-            for (int i = 0; i < tamanhoPremio; i++) {
-                for (int y=0; y < 3; y++) {
 
-                    switch (y) {
-                        case 0 -> abyssesAndTools[i][y] = mudarParaNumero(nomePremio[i]);
-
-                        case 1 -> {
-                            System.out.println(tipoPremio[i]);
-                            abyssesAndTools[i][y] = mudarParaNumero(tipoPremio[i]);
-                            System.out.println(mudarParaNumero(tipoPremio[i]));
-                        }
-
-                        case 2 -> abyssesAndTools[i][y] = posicaoPremio[i];
-
-                    }
-                }
-            }
 
             addJogadores(numeroJogadores,playerInfo);
 
 
-
-            for (int i= 0; i < tamanhoPremio; i++){
-
-                adicionarPremio(abyssesAndTools,i);
-            }
 
             int valor=0;
 
@@ -1089,13 +1097,6 @@ public class GameManager implements Serializable{
                 jogador.setHistoricoPosicoes(historicoPlayers[valor]);
                 valor++;
             }
-
-            /*
-            for (Programmer jogador : players) {
-                System.out.println(jogador);
-            }
-
-             */
 
             return true;
 
@@ -1187,7 +1188,7 @@ public class GameManager implements Serializable{
             writer.write(id + newLine + nomeJogadores + newLine + lprogramacao + newLine + cor + newLine + estado +
                     newLine + posicao + newLine + ferramentas + newLine + historico + newLine + currentPlayer + newLine
                     + numeroJogadores + newLine + dado + newLine + boardSize + newLine + casasComEfeito.size() + newLine
-                    + turnos + newLine + nomePremio + newLine + tipoPremio + newLine + posicaoPremio );
+                    + turnos + newLine + nomePremio + newLine + tipoPremio + newLine + posicaoPremio + newLine);
             writer.close();
             fw.close();
 
