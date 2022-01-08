@@ -129,6 +129,7 @@ public class GameManager implements Serializable{
     //Função para inicializar as ferramentas
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException
     {
+
         casasComEfeito = new ArrayList<>();
         int aux = 0;
         int converterInt;
@@ -138,23 +139,28 @@ public class GameManager implements Serializable{
                 aux++;
                 for (int y = 1; y < 3; y++) {
                     if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
+
                         throw new InvalidInitialBoardException("Verificar o que fazer");
                     }
                     converterInt = Integer.parseInt(andTool[y]);
                     if (andTool[0].equals("0")) {
                         if (((converterInt > 9 || converterInt < 0) && y == 1)) {
+
                             throw new InvalidInitialBoardException("ABISMO");
                         } else if (y == 2) {
                             if (converterInt < 1 || converterInt >= worldSize) {
+
                                 throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
                             }
 
                         }
                     } else if (andTool[0].equals("1")) {
                         if ((converterInt > 5 || converterInt < 0) && y == 1) {
+
                             throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
                         } else if (y == 2) {
                             if (converterInt < 1 || converterInt >= worldSize) {
+
                                 throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
                             }
 
@@ -173,6 +179,7 @@ public class GameManager implements Serializable{
 
 
         posicoes = new ArrayList<>();
+
 
         //Criação do mapa com a informação de cada jogador
         createInitialBoard(playerInfo, worldSize);
@@ -937,8 +944,10 @@ public class GameManager implements Serializable{
 
     public boolean loadGame(File file) {
         try {
-            System.out.println("Entrei");
             String nome = String.valueOf(file);
+            if (nome.isEmpty() || nome.equals("nullnull")) {
+               throw new FileNotFoundException();
+            }
             int aux=0;
 
             String[] jogadoresId = new String[4];
@@ -1093,7 +1102,6 @@ public class GameManager implements Serializable{
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
-            e.printStackTrace();
             return false;
         }
         return true;
@@ -1144,48 +1152,59 @@ public class GameManager implements Serializable{
 
 
 public boolean saveGame(File file) {
-        String nome = String.valueOf(file);
-        String newLine = "\n";
-        StringBuilder nomeJogadores = new StringBuilder();
-        StringBuilder lprogramacao = new StringBuilder();
-        StringBuilder id = new StringBuilder();
-        StringBuilder cor = new StringBuilder();
-        StringBuilder posicao = new StringBuilder();
-        StringBuilder estado = new StringBuilder();
-        StringBuilder ferramentas = new StringBuilder();
-        StringBuilder historico = new StringBuilder();
-        StringBuilder nomePremio = new StringBuilder();
-        StringBuilder tipoPremio = new StringBuilder();
-        StringBuilder posicaoPremio = new StringBuilder();
-
-
-
-        for (Programmer j: players){
-            nomeJogadores.append(j.getName()).append(" :");
-            lprogramacao.append(j.getLinguagens()).append(" :");
-            id.append(j.getId()).append(" :");
-            cor.append(j.getColor()).append(" :");
-            posicao.append(j.getPosicao()).append(" :");
-            estado.append(j.getEmJogo()).append(" :");
-            ferramentas.append(j.getFerramentas()).append(" :");
-            historico.append(j.getHistoricoPosicoes()).append(" :");
-        }
-        for (CasaEfeito p : casasComEfeito ) {
-            nomePremio.append(p.getNome()).append(" :");
-            tipoPremio.append(p.getTipo()).append(" :");
-            posicaoPremio.append(p.getPosicao()).append(" :");
-        }
-
-
-
         try {
-            file = new File("/Users/fredericoazevedo/IdeaProjects/deisiGreatGame/src/saveGames",nome+".txt");
-            if (file.createNewFile()) {
-                System.out.println("File created: " + file.getName());
-            }
-            else {
+            String nome = String.valueOf(file);
+            System.out.println(nome);
+            if (nome.isEmpty()) {
                 throw new IOException();
             }
+            else {
+                file = new File("/Users/fredericoazevedo/IdeaProjects/deisiGreatGame/src/saveGames",nome+".txt");
+
+                if (file.createNewFile() ) {
+                    System.out.println("File created: " + file.getName());
+                }
+                else {
+                    throw new IOException();
+
+                }
+
+
+            }
+
+
+            String newLine = "\n";
+            StringBuilder nomeJogadores = new StringBuilder();
+            StringBuilder lprogramacao = new StringBuilder();
+            StringBuilder id = new StringBuilder();
+            StringBuilder cor = new StringBuilder();
+            StringBuilder posicao = new StringBuilder();
+            StringBuilder estado = new StringBuilder();
+            StringBuilder ferramentas = new StringBuilder();
+            StringBuilder historico = new StringBuilder();
+            StringBuilder nomePremio = new StringBuilder();
+            StringBuilder tipoPremio = new StringBuilder();
+            StringBuilder posicaoPremio = new StringBuilder();
+
+
+
+            for (Programmer j: players){
+                nomeJogadores.append(j.getName()).append(" :");
+                lprogramacao.append(j.getLinguagens()).append(" :");
+                id.append(j.getId()).append(" :");
+                cor.append(j.getColor()).append(" :");
+                posicao.append(j.getPosicao()).append(" :");
+                estado.append(j.getEmJogo()).append(" :");
+                ferramentas.append(j.getFerramentas()).append(" :");
+                historico.append(j.getHistoricoPosicoes()).append(" :");
+            }
+            for (CasaEfeito p : casasComEfeito ) {
+                nomePremio.append(p.getNome()).append(" :");
+                tipoPremio.append(p.getTipo()).append(" :");
+                posicaoPremio.append(p.getPosicao()).append(" :");
+            }
+
+
             FileWriter fw = new FileWriter(file);
             BufferedWriter writer = new BufferedWriter(fw);
             writer.write(id + newLine + nomeJogadores + newLine + lprogramacao + newLine + cor + newLine + estado +
