@@ -1099,12 +1099,12 @@ public class GameManager implements Serializable{
                 System.out.println(jogador);
             }
 
+            return true;
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             return false;
         }
-        return true;
     }
 
     private String mudarParaNumero(String s) {
@@ -1153,10 +1153,11 @@ public class GameManager implements Serializable{
 
 public boolean saveGame(File file) {
         try {
+
             String nome = String.valueOf(file);
             System.out.println(nome);
             if (nome.isEmpty()) {
-                throw new IOException();
+                return false;
             }
             else {
                 file = new File(nome+".txt");
@@ -1165,8 +1166,7 @@ public boolean saveGame(File file) {
                     System.out.println("File created: " + file.getName());
                 }
                 else {
-                    throw new IOException();
-
+                    return false;
                 }
 
 
@@ -1213,12 +1213,13 @@ public boolean saveGame(File file) {
                     + turnos + newLine + nomePremio + newLine + tipoPremio + newLine + posicaoPremio );
             writer.close();
 
+            return true;
+
         } catch (IOException e) {
             System.out.println("An error occurred.");
             return false;
         }
 
-        return true;
     }
 
 
