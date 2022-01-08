@@ -70,9 +70,16 @@ public class Programmer {
     }
 
     public ArrayList<String> getFerramentas () {
+
         return this.ferramentasJogador;
     }
 
+    public ArrayList<String> getTodasFerramentas () {
+        if (this.ferramentasJogador.contains("No tools")) {
+            retirarFerramenta("No tools");
+        }
+        return this.ferramentasJogador;
+    }
 
     public boolean temFerramenta (String tipo) {
         return ferramentasJogador.contains(tipo);

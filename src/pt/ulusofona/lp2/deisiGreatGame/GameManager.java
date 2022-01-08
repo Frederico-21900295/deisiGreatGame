@@ -964,7 +964,6 @@ public class GameManager implements Serializable{
             int tamanhoPremio = 0;
             String[] nomePremio = new String[80];
 
-
             String linha;
             int numero;
 
@@ -1007,7 +1006,11 @@ public class GameManager implements Serializable{
 
                         case 5 -> posicaoPlayer = linha.split(" :");
 
-                        case 6 -> ferramentasPlayer = linha.split(" :");
+                        case 6 -> {
+
+                            linha = linha.replace("[]","No tools");
+                            ferramentasPlayer = linha.split(" :");
+                        }
 
                         case 7 -> historicoPlayers = linha.split(" :");
 
@@ -1030,7 +1033,9 @@ public class GameManager implements Serializable{
             casasComEfeito = new ArrayList<>();
 
 
-
+            for (String s: ferramentasPlayer){
+                System.out.println(s);
+            }
             currentPlayer = jogadorCorrente;
             dado = dadoCorrente;
             turnos = valorTurnos;
@@ -1171,7 +1176,7 @@ public class GameManager implements Serializable{
                 cor.append(j.getColor()).append(" :");
                 posicao.append(j.getPosicao()).append(" :");
                 estado.append(j.getEmJogo()).append(" :");
-                ferramentas.append(j.getFerramentas()).append(" :");
+                ferramentas.append(j.getTodasFerramentas()).append(" :");
                 historico.append(j.getHistoricoPosicoes()).append(" :");
             }
 
