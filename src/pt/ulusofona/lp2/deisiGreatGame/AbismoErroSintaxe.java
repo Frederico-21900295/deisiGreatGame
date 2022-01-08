@@ -36,6 +36,7 @@ public class AbismoErroSintaxe  extends Abismo {
             valorPosicao -= 1;
             player.mudarPosicao(valorPosicao);
         }
+        this.numeroPisadas += 1;
 
 
         return "Regressa 1 casa atrás";

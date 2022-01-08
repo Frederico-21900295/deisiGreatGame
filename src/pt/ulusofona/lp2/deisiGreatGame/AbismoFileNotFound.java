@@ -36,6 +36,7 @@ public class AbismoFileNotFound extends Abismo {
             valorPosicao -= 3;
             player.mudarPosicao(valorPosicao);
         }
+        this.numeroPisadas += 1;
 
 
         return "Regressa 3 casas atrás";

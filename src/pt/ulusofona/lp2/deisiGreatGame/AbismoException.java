@@ -35,6 +35,7 @@ public class AbismoException extends Abismo {
             valorPosicao -= 2;
             player.mudarPosicao(valorPosicao);
         }
+        this.numeroPisadas += 1;
 
         return "Regressa 2 casas atrás";
     }

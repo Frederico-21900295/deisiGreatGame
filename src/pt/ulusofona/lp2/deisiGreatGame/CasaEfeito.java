@@ -16,6 +16,9 @@ abstract class CasaEfeito {
     }
 
 
+    protected abstract String getNumeroPisadas();
+
+
     public boolean getCasaEfeito(int position) {
         return true;
     }

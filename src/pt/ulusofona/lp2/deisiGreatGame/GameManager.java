@@ -1,16 +1,13 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 
 import java.awt.*;
-import java.io.File;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Objects;
-import javax.swing.*;
+import java.io.*;
+import java.util.*;
 import java.util.List;
-import java.util.stream.Stream;
+import javax.swing.*;
 
 
-public class GameManager {
+public class GameManager implements Serializable{
     static int dado;
     List <Programmer> players;
     List<CasaEfeito> casasComEfeito;
@@ -20,11 +17,10 @@ public class GameManager {
     String imagem;
     private int numeroJogadores;
     private List<Integer> posicoes; // Posicao
-    private List<String> abismosPisados;
 
 
 
-    public GameManager() {abismosPisados= new ArrayList<>(); }
+    public GameManager() { }
 
     public GameManager(int tamanho) {
         GameManager.boardSize = tamanho;
@@ -32,150 +28,15 @@ public class GameManager {
         currentPlayer = 1;
     }
 
-
-/*
-
-    public String percorrerAbismos(String str, List<String> abismosPisados) {
-        String frase;
-
-        for (CasaEfeito p: casasComEfeito) {
-            frase = p.getNumeroPisadas();
-        }
-    }
-
-
-
-    public List<String> addAbismos() {
-        String frase;
-
-        for (CasaEfeito p: casasComEfeito) {
-            if (p.getNumeroPisadas()!=null) {
-                frase = p.getNumeroPisadas();
-                abismosPisados.add(frase);
-            }
-        }
-
-            return (List<String>) abismosPisados.stream().filter(str -> str.split(" ")[0].contains());
-        }
-percorrerAbismos(str, abismosPisados)
-        for (CasaEfeito p: casasComEfeito) {
-            if (p.getNumeroPisadas()!=null) {
-                frase = p.getNumeroPisadas();
-                abismo = frase.split(" ")[0];
-                aux = frase.charAt(frase.length()-1);
-                System.out.println(abismo);
-                if (!(abismosPisados.contains(frase))) {
-                    System.out.println(abismosPisados.contains(abismo));
-                    if (abismosPisados.stream().filter(str -> str.split(" ")[0].equals(p.getNumeroPisadas()))){
-
-                    }
-                    if (!(abismosPisados.contains(abismo))){
-                        abismosPisados.add(frase);
-                    }
-                }
-            }
-        }
-
-
-
-        return this.abismosPisados;
-    }
-    */
-
     public List<Integer> getPosicoes() {
         return this.posicoes;
     }
 
-    public List<CasaEfeito> getCasasComEfeito() {
-        return casasComEfeito;
-    }
 
     public void colocarInformacao(int posicao ) {
         this.posicoes.add(posicao);
     }
 
-    public void adicionarPremio(String[][] abyssesAndTools, int i){
-        String s;
-        if (abyssesAndTools[i][0].equals("1")) {
-            s = "Ferramenta";
-            switch (abyssesAndTools[i][1]) {
-                case "0" -> {
-                    FerramentaHeranca ferramenta = new FerramentaHeranca(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-                case "1" -> {
-                    FerramentaProgramacaoFuncional ferramenta = new FerramentaProgramacaoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-                case "2" -> {
-                    FerramentaTestesUnitarios ferramenta = new FerramentaTestesUnitarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-                case "3" -> {
-                    FerramentaTratamentoExcepcoes ferramenta = new FerramentaTratamentoExcepcoes(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-                case "4" -> {
-                    FerramentaIDE ferramenta = new FerramentaIDE(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-                case "5" -> {
-                    FerramentaAjudaProfessor ferramenta = new FerramentaAjudaProfessor(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(ferramenta);
-                }
-
-            }
-
-        }
-        else {
-            s = "Abismo";
-            switch (abyssesAndTools[i][1]) {
-                case "0" -> {
-                    AbismoErroSintaxe a = new AbismoErroSintaxe(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(a);
-                }
-                case "1" -> {
-                    AbismoErroLogica abismo = new AbismoErroLogica(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "2" -> {
-                    AbismoException abismo = new AbismoException(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "3" -> {
-                    AbismoFileNotFound abismo = new AbismoFileNotFound(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "4" -> {
-                    AbismoCrash abismo = new AbismoCrash(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "5" -> {
-                    AbismoDuplicatedCode abismo = new AbismoDuplicatedCode(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "6" -> {
-                    AbismoEfeitosSecundarios abismo = new AbismoEfeitosSecundarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "7" -> {
-                    AbismoBlueScreen abismo = new AbismoBlueScreen(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "8" -> {
-                    AbismoCicloInfinito abismo = new AbismoCicloInfinito(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-                case "9" -> {
-                    AbismoSegmentationFault abismo = new AbismoSegmentationFault(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
-                    casasComEfeito.add(abismo);
-                }
-
-
-
-            }
-        }
-    }
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
     /*Do que estive a ver esta função ja esta com todas as exceções*/
@@ -189,7 +50,6 @@ percorrerAbismos(str, abismosPisados)
 
 
         //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
-        players = new ArrayList<>();
 
 
         int aux_cores;
@@ -200,7 +60,7 @@ percorrerAbismos(str, abismosPisados)
          */
         if (totalJogadores <= 1 || totalJogadores > 4)
         {
-            throw new InvalidInitialBoardException("Os numeros de jogadores não entre 2 a 4");
+            throw new InvalidInitialBoardException("Os numeros de jogadores não está entre 2 a 4");
         }
 
 
@@ -215,6 +75,9 @@ percorrerAbismos(str, abismosPisados)
          Verificamos jogador a jogador caso a cor difira das 4 outras cores a variável aux_cores fica com o
          valor 4 e retorna false. Caso esteja a variável aux_cores volta a ficar igual a 0 e volta a fazer a verificação
          */
+
+
+
         for (String[] strings : playerInfo) {
             aux_cores = 0;
             for (int z = 0; z < 4; z++) {
@@ -249,130 +112,49 @@ percorrerAbismos(str, abismosPisados)
         //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
 
+        addJogadores(totalJogadores,playerInfo);
 
 
 
-        List<Integer> listaId = new ArrayList<>();
-
-        switch (totalJogadores) {
-            case 2 -> {
-                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
-                jogador1.colocarInformacao(1);
-                jogador2.colocarInformacao(1);
-
-                if (Integer.parseInt(playerInfo[0][0]) < Integer.parseInt(playerInfo[1][0])) {
-                    players.add(jogador1);
-                    players.add(jogador2);
-                } else {
-                    players.add(jogador2);
-                    players.add(jogador1);
-                }
-                numeroJogadores = 2;
-            }
-
-            case 3 -> {
-                listaId.add(Integer.parseInt(playerInfo[0][0]));
-                listaId.add(Integer.parseInt(playerInfo[1][0]));
-                listaId.add(Integer.parseInt(playerInfo[2][0]));
-                Collections.sort(listaId);
-                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
-                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
-                jogador1.colocarInformacao(1);
-                jogador2.colocarInformacao(1);
-                jogador3.colocarInformacao(1);
-                for (Integer id : listaId) {
-                    if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
-                        players.add(jogador1);
-                    }
-                    else if (id.equals(Integer.parseInt(playerInfo[1][0]))) {
-                        players.add(jogador2);
-                    }
-                    else {
-                        players.add(jogador3);
-                    }
-                }
-
-                numeroJogadores = 3;
-            }
-
-            case 4 -> {
-                listaId.add(Integer.parseInt(playerInfo[0][0]));
-                listaId.add(Integer.parseInt(playerInfo[1][0]));
-                listaId.add(Integer.parseInt(playerInfo[2][0]));
-                listaId.add(Integer.parseInt(playerInfo[3][0]));
-                Collections.sort(listaId);
-
-                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
-                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
-                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
-                Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], playerInfo[3][3]);
-                jogador1.colocarInformacao(1);
-                jogador2.colocarInformacao(1);
-                jogador3.colocarInformacao(1);
-                jogador4.colocarInformacao(1);
-
-                for (Integer id : listaId) {
-                    if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
-                        players.add(jogador1);
-                    }
-                    else if (id.equals(Integer.parseInt(playerInfo[1][0]))) {
-                        players.add(jogador2);
-                    }
-                    else if (id.equals(Integer.parseInt(playerInfo[2][0]))) {
-                        players.add(jogador3);
-                    }
-                    else {
-                        players.add(jogador4);
-                    }
-                }
-
-                numeroJogadores = 4;
-            }
-
-
-        }
     }
 
+
     //Função para inicializar as ferramentas
-    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools)
-            throws InvalidInitialBoardException
+    public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException
     {
         casasComEfeito = new ArrayList<>();
         int aux = 0;
         int converterInt;
 
+
+        //Verificar se existe algum erro andTool
         for (String[] andTool : abyssesAndTools) {
             aux++;
             for (int y = 1; y < 3; y++) {
-                if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
-                    throw new InvalidInitialBoardException("Verificar o que fazer");
-                }
-                if (andTool[0].equals("0")) {
+                System.out.println(andTool[y]);
+                if (andTool[y].chars().allMatch( Character::isDigit )) {
                     converterInt = Integer.parseInt(andTool[y]);
-                    if (((converterInt > 9 || converterInt < 0 ) && y == 1)) {
-                        throw new InvalidInitialBoardException("ID dos abismos incorreto");
-                    } else if(y==2){
-                        converterInt = Integer.parseInt(andTool[y]);
-                        if (converterInt < 1 || converterInt >= worldSize ) {
-                            throw new InvalidInitialBoardException("Posiçao do abismo não pertence ao campo estipulado");
-                        }
+                    if (andTool[0].equals("0")) {
+                        if (((converterInt > 9 || converterInt < 0) && y == 1)) {
+                            throw new InvalidInitialBoardException("ABISMO");
+                        } else if (y == 2) {
+                            if (converterInt < 1 || converterInt >= worldSize) {
+                                throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
+                            }
 
-                    }
-                } else if (andTool[0].equals("1")) {
-                    converterInt = Integer.parseInt(andTool[y]);
-                    if ((converterInt > 5 || converterInt < 0) && y == 1) {
-                        throw new InvalidInitialBoardException("ID dos ferramentas incorreto");
-                    } else if(y==2) {
-                        converterInt = Integer.parseInt(andTool[y]);
-                        if (converterInt < 1 || converterInt >= worldSize) {
-                            throw new InvalidInitialBoardException("Posiçao do ferramentas não pertence ao campo estipulado");
                         }
+                    } else if (andTool[0].equals("1")) {
+                        if ((converterInt > 5 || converterInt < 0) && y == 1) {
+                            throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
+                        } else if (y == 2) {
+                            if (converterInt < 1 || converterInt >= worldSize) {
+                                throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
+                            }
 
+                        }
+                    } else {
+                        throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                     }
-                } else {
-                    throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                 }
             }
         }
@@ -447,13 +229,16 @@ percorrerAbismos(str, abismosPisados)
         int auxiliarNrJogadores = 0;
         List<Programmer> jogadores = getProgrammers();
         for (Programmer player : jogadores) {
+
             if (!player.getEmJogo()) {
                 auxiliarNrJogadores++;
             }
+
             if (player.getPosicao() == boardSize) {
                 return true;
-
             }
+
+
 
         }
         return auxiliarNrJogadores == numeroJogadores-1;
@@ -955,14 +740,455 @@ percorrerAbismos(str, abismosPisados)
 
 
 
-    public boolean saveGame(File file) {
-        return true;
+
+
+    private void addJogadores(int totalJogadores, String[][] playerInfo) {
+        List<Integer> listaId = new ArrayList<>();
+        players = new ArrayList<>();
+
+        switch (totalJogadores) {
+            case 2 -> {
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
+                jogador1.colocarInformacao(1);
+                jogador2.colocarInformacao(1);
+
+
+
+                if (Integer.parseInt(playerInfo[0][0]) < Integer.parseInt(playerInfo[1][0])) {
+                    players.add(jogador1);
+                    players.add(jogador2);
+                } else {
+                    players.add(jogador2);
+                    players.add(jogador1);
+                }
+
+                numeroJogadores = 2;
+            }
+
+            case 3 -> {
+                listaId.add(Integer.parseInt(playerInfo[0][0]));
+                listaId.add(Integer.parseInt(playerInfo[1][0]));
+                listaId.add(Integer.parseInt(playerInfo[2][0]));
+                Collections.sort(listaId);
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
+                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
+                jogador1.colocarInformacao(1);
+                jogador2.colocarInformacao(1);
+                jogador3.colocarInformacao(1);
+
+
+
+                for (Integer id : listaId) {
+                    if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
+                        players.add(jogador1);
+                    }
+                    else if (id.equals(Integer.parseInt(playerInfo[1][0]))) {
+                        players.add(jogador2);
+                    }
+                    else {
+                        players.add(jogador3);
+                    }
+                }
+
+
+
+                numeroJogadores = 3;
+            }
+
+            case 4 -> {
+                listaId.add(Integer.parseInt(playerInfo[0][0]));
+                listaId.add(Integer.parseInt(playerInfo[1][0]));
+                listaId.add(Integer.parseInt(playerInfo[2][0]));
+                listaId.add(Integer.parseInt(playerInfo[3][0]));
+                Collections.sort(listaId);
+
+                Programmer jogador1 = new Programmer(Integer.parseInt(playerInfo[0][0]), playerInfo[0][1], playerInfo[0][2], playerInfo[0][3]);
+                Programmer jogador2 = new Programmer(Integer.parseInt(playerInfo[1][0]), playerInfo[1][1], playerInfo[1][2], playerInfo[1][3]);
+                Programmer jogador3 = new Programmer(Integer.parseInt(playerInfo[2][0]), playerInfo[2][1], playerInfo[2][2], playerInfo[2][3]);
+                Programmer jogador4 = new Programmer(Integer.parseInt(playerInfo[3][0]), playerInfo[3][1], playerInfo[3][2], playerInfo[3][3]);
+                jogador1.colocarInformacao(1);
+                jogador2.colocarInformacao(1);
+                jogador3.colocarInformacao(1);
+                jogador4.colocarInformacao(1);
+
+
+
+
+                for (Integer id : listaId) {
+                    if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
+                        players.add(jogador1);
+                    }
+                    else if (id.equals(Integer.parseInt(playerInfo[1][0]))) {
+                        players.add(jogador2);
+                    }
+                    else if (id.equals(Integer.parseInt(playerInfo[2][0]))) {
+                        players.add(jogador3);
+                    }
+                    else {
+                        players.add(jogador4);
+                    }
+                }
+
+
+
+                numeroJogadores = 4;
+            }
+
+
+        }
+
+    }
+
+
+
+    public void adicionarPremio(String[][] abyssesAndTools, int i){
+        String s;
+        if (abyssesAndTools[i][0].equals("1")) {
+            s = "Ferramenta";
+            switch (abyssesAndTools[i][1]) {
+                case "0" -> {
+                    FerramentaHeranca ferramenta = new FerramentaHeranca(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "1" -> {
+                    FerramentaProgramacaoFuncional ferramenta = new FerramentaProgramacaoFuncional(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "2" -> {
+                    FerramentaTestesUnitarios ferramenta = new FerramentaTestesUnitarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "3" -> {
+                    FerramentaTratamentoExcepcoes ferramenta = new FerramentaTratamentoExcepcoes(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "4" -> {
+                    FerramentaIDE ferramenta = new FerramentaIDE(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+                case "5" -> {
+                    FerramentaAjudaProfessor ferramenta = new FerramentaAjudaProfessor(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(ferramenta);
+                }
+
+            }
+
+        }
+        else {
+            s = "Abismo";
+            switch (abyssesAndTools[i][1]) {
+                case "0" -> {
+                    AbismoErroSintaxe a = new AbismoErroSintaxe(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(a);
+                }
+                case "1" -> {
+                    AbismoErroLogica abismo = new AbismoErroLogica(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "2" -> {
+                    AbismoException abismo = new AbismoException(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "3" -> {
+                    AbismoFileNotFound abismo = new AbismoFileNotFound(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "4" -> {
+                    AbismoCrash abismo = new AbismoCrash(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "5" -> {
+                    AbismoDuplicatedCode abismo = new AbismoDuplicatedCode(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "6" -> {
+                    AbismoEfeitosSecundarios abismo = new AbismoEfeitosSecundarios(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "7" -> {
+                    AbismoBlueScreen abismo = new AbismoBlueScreen(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "8" -> {
+                    AbismoCicloInfinito abismo = new AbismoCicloInfinito(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+                case "9" -> {
+                    AbismoSegmentationFault abismo = new AbismoSegmentationFault(s, abyssesAndTools[i][1], abyssesAndTools[i][2]);
+                    casasComEfeito.add(abismo);
+                }
+
+
+
+            }
+        }
     }
 
 
     public boolean loadGame(File file) {
+        try {
+            System.out.println("Entrei");
+            String nome = String.valueOf(file);
+            int aux=0;
+
+            String[] jogadoresId = new String[4];
+            String[] nomeJogadores = new String[4];
+            String[] lprogramacao = new String[4];
+            String[] cor = new String[4];
+            String[] posicaoPlayer = new String[4];
+            String[] estadoPlayers = new String[4];
+            String[] ferramentasPlayer = new String[4];
+            String[] historicoPlayers = new String[4];
+            String[] tipoPremio = new String[80];
+            String[] posicaoPremio = new String[80];
+
+            int jogadorCorrente = 0;
+            int dadoCorrente = 0;
+            int tamanhoCampo = 0;
+            int numeroPlayers = 0;
+            int valorTurnos = 0;
+            int tamanhoPremio = 0;
+            String[] nomePremio = new String[80];
+
+
+            String linha;
+            int numero;
+            file = new File(nome);
+
+            Scanner myReader = new Scanner(file);
+
+            while (myReader.hasNextLine()) {
+                linha = myReader.nextLine();
+
+                if (aux >= 8 && aux<= 13) {
+                    numero = Integer.parseInt(linha.replace("[","").replace("]","").replace(" ",""));
+                    switch (aux) {
+                        case 8 -> jogadorCorrente = numero;
+
+                        case 9 -> numeroPlayers = numero;
+
+                        case 10 -> dadoCorrente = numero;
+
+                        case 11 -> tamanhoCampo = numero;
+
+                        case 12 -> tamanhoPremio = numero;
+
+                        case 13 -> valorTurnos = numero;
+                    }
+
+                }
+                else {
+                    switch (aux) {
+                        case 0 -> jogadoresId = linha.split(" :");
+
+                        case 1 -> nomeJogadores = linha.split(" :");
+
+                        case 2 -> lprogramacao = linha.split(" :");
+
+                        case 3 -> cor = linha.split(" :");
+
+                        case 4 -> {
+                            linha = linha.replace("true","Em Jogo").replace("false","Derrotado");
+                            estadoPlayers = linha.split(" :");
+                        }
+
+                        case 5 -> posicaoPlayer = linha.split(" :");
+
+                        case 6 -> ferramentasPlayer = linha.split(" :");
+
+                        case 7 -> historicoPlayers = linha.split(" :");
+
+                        case 14 -> nomePremio = linha.split(" :");
+
+                        case 15 -> tipoPremio = linha.split(" :");
+
+                        case 16 -> posicaoPremio = linha.split(" :");
+
+                    }
+                }
+                aux++;
+            }
+            if (aux!=17) {
+                return false;
+            }
+            myReader.close();
+            String[][] playerInfo  = new String[numeroPlayers][4];
+            String[][] abyssesAndTools = new String[tamanhoPremio][3];
+            casasComEfeito = new ArrayList<>();
+
+
+
+            currentPlayer = jogadorCorrente;
+            dado = dadoCorrente;
+            turnos = valorTurnos;
+            numeroJogadores = numeroPlayers;
+            boardSize = tamanhoCampo;
+
+            for (int i = 0; i < numeroPlayers; i++) {
+                for (int y=0; y < 4; y++) {
+                    switch (y) {
+                        case 0 -> playerInfo[i][y] = jogadoresId[i];
+
+                        case 1 -> playerInfo[i][y] = nomeJogadores[i];
+
+                        case 2 -> playerInfo[i][y] = lprogramacao[i].replace(";",",");
+
+                        case 3-> playerInfo[i][y] = cor[i];
+
+                    }
+                }
+            }
+
+            for (int i = 0; i < tamanhoPremio; i++) {
+                for (int y=0; y < 3; y++) {
+
+                    switch (y) {
+                        case 0 -> abyssesAndTools[i][y] = mudarParaNumero(nomePremio[i]);
+
+                        case 1 -> {
+                            System.out.println(tipoPremio[i]);
+                            abyssesAndTools[i][y] = mudarParaNumero(tipoPremio[i]);
+                            System.out.println(mudarParaNumero(tipoPremio[i]));
+                        }
+
+                        case 2 -> abyssesAndTools[i][y] = posicaoPremio[i];
+
+                    }
+                }
+            }
+
+            addJogadores(numeroJogadores,playerInfo);
+
+
+
+            for (int i= 0; i < tamanhoPremio; i++){
+
+                adicionarPremio(abyssesAndTools,i);
+            }
+
+            int valor=0;
+
+            for (Programmer jogador : players) {
+                jogador.modificarEstado(estadoPlayers[valor]);
+                jogador.mudarPosicao(Integer.parseInt(posicaoPlayer[valor]));
+                jogador.setferramentasJogador(ferramentasPlayer[valor]);
+                jogador.setHistoricoPosicoes(historicoPlayers[valor]);
+                valor++;
+            }
+
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+            return false;
+        }
         return true;
     }
+
+    private String mudarParaNumero(String s) {
+
+        switch (s) {
+            case "Herança","Erro de sintaxe","Abismo" -> {
+                return "0";
+            }
+            case "Erro de lógica","Programação Funcional","Ferramenta" -> {
+                return "1";
+            }
+            case "Testes unitários","Exception" -> {
+                return "2";
+            }
+            case "Tratamento de Excepções","File Not Found Exception" -> {
+                return "3";
+            }
+            case "IDE","Crash" -> {
+                return "4";
+            }
+            case "Ajuda do professor","Duplicated Code" -> {
+                return "5";
+            }
+            case "Efeitos secundários" -> {
+                return "6";
+            }
+            case "Blue Screen of Death" -> {
+                return "7";
+            }
+            case "Ciclo infinito" -> {
+                return "8";
+            }
+            case "Segmentation Fault" -> {
+                return "9";
+            }
+            default -> {
+                return null;
+            }
+
+
+        }
+    }
+
+
+
+
+public boolean saveGame(File file) {
+        String nome = String.valueOf(file);
+        String newLine = "\n";
+        StringBuilder nomeJogadores = new StringBuilder();
+        StringBuilder lprogramacao = new StringBuilder();
+        StringBuilder id = new StringBuilder();
+        StringBuilder cor = new StringBuilder();
+        StringBuilder posicao = new StringBuilder();
+        StringBuilder estado = new StringBuilder();
+        StringBuilder ferramentas = new StringBuilder();
+        StringBuilder historico = new StringBuilder();
+        StringBuilder nomePremio = new StringBuilder();
+        StringBuilder tipoPremio = new StringBuilder();
+        StringBuilder posicaoPremio = new StringBuilder();
+
+
+
+        for (Programmer j: players){
+            nomeJogadores.append(j.getName()).append(" :");
+            lprogramacao.append(j.getLinguagens()).append(" :");
+            id.append(j.getId()).append(" :");
+            cor.append(j.getColor()).append(" :");
+            posicao.append(j.getPosicao()).append(" :");
+            estado.append(j.getEmJogo()).append(" :");
+            ferramentas.append(j.getFerramentas()).append(" :");
+            historico.append(j.getHistoricoPosicoes()).append(" :");
+        }
+        for (CasaEfeito p : casasComEfeito ) {
+            nomePremio.append(p.getNome()).append(" :");
+            tipoPremio.append(p.getTipo()).append(" :");
+            posicaoPremio.append(p.getPosicao()).append(" :");
+        }
+
+
+
+        try {
+            file = new File("/Users/fredericoazevedo/IdeaProjects/deisiGreatGame/src/saveGames",nome+".txt");
+            if (file.createNewFile()) {
+                System.out.println("File created: " + file.getName());
+            }
+            else {
+                throw new IOException();
+            }
+            FileWriter fw = new FileWriter(file);
+            BufferedWriter writer = new BufferedWriter(fw);
+            writer.write(id + newLine + nomeJogadores + newLine + lprogramacao + newLine + cor + newLine + estado +
+                    newLine + posicao + newLine + ferramentas + newLine + historico + newLine + currentPlayer + newLine
+                    + numeroJogadores + newLine + dado + newLine + boardSize + newLine + casasComEfeito.size() + newLine
+                    + turnos + newLine + nomePremio + newLine + tipoPremio + newLine + posicaoPremio );
+            writer.close();
+
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            return false;
+        }
+
+        return true;
+    }
+
 
 
 }

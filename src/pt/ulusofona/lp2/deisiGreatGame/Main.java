@@ -5,17 +5,15 @@ public class Main {
 
 
     public static void main(String[] args) {
+        String texto = "frederico";
+        int x = 100;
+        int y = 2050;
 
-/*
+        int resultado = (x -y)/2;
 
-        for (Programmer j : players) {
-            System.out.println(j );
-            if (j.pos == position) {
-                jogadores.add(j);
-            }
-        }
+        texto = texto.replace("e","puta");
 
- */
+        System.out.println(texto);
 
     }
 }

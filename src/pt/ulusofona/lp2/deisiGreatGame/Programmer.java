@@ -1,5 +1,6 @@
 package pt.ulusofona.lp2.deisiGreatGame;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -16,9 +17,12 @@ public class Programmer {
 
     private final ArrayList<Integer> historicoPosicoes; // Posicao
 
+
     //Variáveis para guardar caso o jogador caia num ciclo Infinito
     private boolean abismoCicloInfinito;
     private int posicaoCicloInfinito;
+
+
 
 
 
@@ -49,11 +53,17 @@ public class Programmer {
         return this.nome;
     }
 
+    public String getLinguagens() {return this.linguagens;}
+
     public ProgrammerColor getColor() {
         return this.color;
     }
 
     public int getPosicao() { return this.posicao;}
+
+    public void modificarEstado(String state) {
+        this.estado = state;
+    }
 
     public boolean getEmJogo() {
         return this.estado.equals("Em Jogo");
@@ -96,6 +106,16 @@ public class Programmer {
         this.historicoPosicoes.add(posicao);
     }
 
+    public void setHistoricoPosicoes( String historico ) {
+        historico = historico.replace("[","").replace("]","").replace(" ","");
+        String[] numeros = historico.split(",");
+        for(String valores: numeros) {
+            historicoPosicoes.add(Integer.valueOf(valores));
+        }
+    }
+
+
+
     public boolean getCicloInfinito() {
         return this.abismoCicloInfinito;
     }
@@ -126,6 +146,13 @@ public class Programmer {
         return ferramenta;
     }
 
+    public void setferramentasJogador(String s) {
+
+        s = s.replace("[","").replace("]","");
+        String[] ferramentas = s.split(",");
+        ferramentasJogador.addAll(Arrays.asList(ferramentas));
+    }
+
 
     //Função que irá mover o jogador
     public void moverJogador(int nrSpaces, int id) {
@@ -149,7 +176,7 @@ public class Programmer {
         this.auxPosicaoCasoDerrota = x;
     }
 
-    public String reagirCasaEfeito(ArrayList<CasaEfeito> casaComEfeitos, Programmer player, int dado, List<Programmer> jogadores) {
+    public String reagirCasaEfeito(List<CasaEfeito> casaComEfeitos, Programmer player, int dado, List<Programmer> jogadores) {
         String frase = null;
         if (player == null) {
             return null;
@@ -166,6 +193,9 @@ public class Programmer {
         }
         return frase;
     }
+
+
+
 
 
     @Override

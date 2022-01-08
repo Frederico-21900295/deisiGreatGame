@@ -33,6 +33,8 @@ public class AbismoCicloInfinito extends Abismo {
                 }
             }
         }
+        this.numeroPisadas += 1;
+
         return "Ficaste preso num ciclo infinito, espera que outro jogador tenha o mesmo azar";
     }
 

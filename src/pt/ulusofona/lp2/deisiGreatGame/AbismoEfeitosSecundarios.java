@@ -33,6 +33,7 @@ public class AbismoEfeitosSecundarios extends Abismo {
             int valorPosicao = (historico.get(i));
             player.mudarPosicao(valorPosicao);
         }
+        this.numeroPisadas += 1;
 
 
         return "Regressa duas jogadas atrás";

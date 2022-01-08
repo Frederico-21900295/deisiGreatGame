@@ -7,6 +7,7 @@ public class AbismoCrash extends Abismo {
     AbismoCrash(String name, String type, String position) {
         super(name, type, position);
         this.tipo = "Crash";
+
     }
 
     @Override
@@ -15,6 +16,7 @@ public class AbismoCrash extends Abismo {
             return null;
         }
         player.mudarPosicao(1);
+        this.numeroPisadas += 1;
         return "Vais ter de regressar à 1ª posição";
     }
 

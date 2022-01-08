@@ -37,6 +37,7 @@ public class AbismoErroLogica extends Abismo {
             player.mudarPosicao(auxPosicao);
         }
 
+        this.numeroPisadas += 1;
 
         return "Regressa o valor da metade dos teus dados atrás";
     }

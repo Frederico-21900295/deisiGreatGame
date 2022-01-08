@@ -36,6 +36,7 @@ public class AbismoDuplicatedCode extends Abismo {
             player.mudarPosicao(valorPosicao);
         }
 
+        this.numeroPisadas += 1;
 
         return "Vais ter de regressar atrás";
     }

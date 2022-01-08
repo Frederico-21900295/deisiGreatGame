@@ -13,6 +13,11 @@ abstract class Ferramenta extends CasaEfeito {
     abstract String getFerramenta(Programmer player);
 
 
+    public String getNumeroPisadas(){
+        return "";
+    }
+
+
 
     @Override
     public String reacao(Programmer player, int dado, List<Programmer> jogadores) {

@@ -36,6 +36,8 @@ public class AbismoSegmentationFault extends Abismo {
                     }
                 }
             }
+            this.numeroPisadas += listaId.size();
+
             return "Como estão pelo menos 2 jogadores nesta casa vao retroceder 3 casas";
 
         }

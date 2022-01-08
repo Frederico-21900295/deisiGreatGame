@@ -16,6 +16,7 @@ public class AbismoBlueScreen extends Abismo{
         }
         player.guardaPosicao(player.getPosicao());
         player.perdeu();
+        this.numeroPisadas += 1;
         return "Perdeste";
     }
 
