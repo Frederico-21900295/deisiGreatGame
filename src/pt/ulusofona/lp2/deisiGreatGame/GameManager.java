@@ -1093,14 +1093,16 @@ public class GameManager implements Serializable{
                 valor++;
             }
 
+            /*
             for (Programmer jogador : players) {
                 System.out.println(jogador);
             }
 
+             */
+
             return true;
 
         } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
             return false;
         }
     }
