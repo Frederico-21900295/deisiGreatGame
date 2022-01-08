@@ -112,6 +112,8 @@ public class GameManager implements Serializable{
         //Estamos a criar o objeto Game Manager e inserir a tamanho do tabuleiro
         new GameManager(boardSize);
 
+        posicoes = new ArrayList<>();
+
         addJogadores(totalJogadores,playerInfo);
 
 
@@ -131,30 +133,30 @@ public class GameManager implements Serializable{
         for (String[] andTool : abyssesAndTools) {
             aux++;
             for (int y = 1; y < 3; y++) {
-                System.out.println(andTool[y]);
-                if (andTool[y].chars().allMatch( Character::isDigit )) {
-                    converterInt = Integer.parseInt(andTool[y]);
-                    if (andTool[0].equals("0")) {
-                        if (((converterInt > 9 || converterInt < 0) && y == 1)) {
-                            throw new InvalidInitialBoardException("ABISMO");
-                        } else if (y == 2) {
-                            if (converterInt < 1 || converterInt >= worldSize) {
-                                throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
-                            }
-
+                if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
+                    throw new InvalidInitialBoardException("Verificar o que fazer");
+                }
+                converterInt = Integer.parseInt(andTool[y]);
+                if (andTool[0].equals("0")) {
+                    if (((converterInt > 9 || converterInt < 0 ) && y == 1)) {
+                        throw new InvalidInitialBoardException("ABISMO");
+                    } else if(y==2){
+                        if (converterInt < 1 || converterInt >= worldSize ) {
+                            throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
                         }
-                    } else if (andTool[0].equals("1")) {
-                        if ((converterInt > 5 || converterInt < 0) && y == 1) {
-                            throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
-                        } else if (y == 2) {
-                            if (converterInt < 1 || converterInt >= worldSize) {
-                                throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
-                            }
 
-                        }
-                    } else {
-                        throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                     }
+                } else if (andTool[0].equals("1")) {
+                    if ((converterInt > 5 || converterInt < 0) && y == 1) {
+                        throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
+                    } else if (y==2){
+                        if (converterInt < 1 || converterInt >= worldSize) {
+                            throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
+                        }
+
+                    }
+                } else {
+                    throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                 }
             }
         }
@@ -1077,6 +1079,11 @@ public class GameManager implements Serializable{
                 jogador.setHistoricoPosicoes(historicoPlayers[valor]);
                 valor++;
             }
+
+            for (Programmer jogador : players) {
+                System.out.println(jogador);
+            }
+
 
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");

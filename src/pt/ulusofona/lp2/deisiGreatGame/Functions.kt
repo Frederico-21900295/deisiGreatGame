@@ -6,6 +6,7 @@ import kotlin.collections.contains
 enum class CommandType{ GET, POST}
 
 fun router() : (CommandType) -> ((GameManager, List<String>) -> String?)? {
+
     return {CommandType -> opcao(CommandType)}
 }
 
@@ -38,11 +39,18 @@ fun funcaoGet(manager: GameManager, args: List<String>): String? {
 }
 
 fun getPlayer(manager: GameManager, args: List<String>): String {
-    val informacao = manager.players.filter{ it.name.split(" ".toRegex()).toTypedArray()[0] == args[1] }
-    if (informacao.isEmpty()){
+    if (manager.players==null) {
         return "Inexistent player"
     }
-    return informacao.toString()
+    else {
+        val informacao = manager.players.filter { it.name.split(" ".toRegex()).toTypedArray()[0]
+            .replace("[","").replace("]","") == args[1] }
+        if (informacao.isEmpty()){
+            return "Inexistent player"
+        }
+        return informacao.toString()
+    }
+
 }
 
 fun dividirLinguagens(linguagens: String): Array<String> {
@@ -50,26 +58,36 @@ fun dividirLinguagens(linguagens: String): Array<String> {
 }
 
 fun getPlayerByLanguage(manager: GameManager, args: List<String>): String {
-    val jogadoresLinguagens = manager.players.filter {  dividirLinguagens(it.linguagens).contains(args[1]) }
-        .joinToString(",") {
-            it.name
-        }
-    if (jogadoresLinguagens.isEmpty()) {
-        return ""
+    if (manager.players==null) {
+        return "Inexistent player"
     }
+    else {
+        val jogadoresLinguagens = manager.players.filter { dividirLinguagens(it.linguagens).contains(args[1]) }
+            .joinToString(",") {
+                it.name
+            }
+        if (jogadoresLinguagens.isEmpty()) {
+            return ""
+        }
 
-    return jogadoresLinguagens
+        return jogadoresLinguagens
+    }
 }
 
 fun getPolyglots (manager: GameManager): String {
-    val jogadoresNumeroLinguagens = manager.players.filter { it.linguagens.split(";").count() > 1 }
-        .sortedBy { it.linguagens.split(";").count() }.joinToString("\n") {
-            it.name.plus(":").plus(
-                it.linguagens.split(";").count()
-            )
-        }
+    return if (manager.players==null) {
+        "Inexistent language"
+    }
+    else {
+        val jogadoresNumeroLinguagens = manager.players.filter { it.linguagens.split(";").count() > 1 }
+            .sortedBy { it.linguagens.split(";").count() }.joinToString("\n") {
+                it.name.plus(":").plus(
+                    it.linguagens.split(";").count()
+                )
+            }
 
-    return jogadoresNumeroLinguagens
+        jogadoresNumeroLinguagens
+    }
 }
 
 
@@ -82,34 +100,44 @@ fun postMove(manager: GameManager,args: List<String>): String {
 }
 
 fun postAbyss(manager: GameManager,args: List<String>): String {
-
-    val novaAbyss = manager.casasComEfeito.filter { it.posicao == args[2].toInt() }.map { it.posicao }
-
-    if (novaAbyss.isEmpty()) {
-        val abyssesAndTools = Array(1) {
-            arrayOfNulls<String>(
-                3
-            )
-        }
-        abyssesAndTools[0][0] = "0"
-        abyssesAndTools[0][1] = args[1]
-        abyssesAndTools[0][2] = args[2]
-
-
-        manager.adicionarPremio(abyssesAndTools,0)
-        return "OK"
+    if (manager.casasComEfeito == null){
+        return ""
     }
+    else {
+        val novaAbyss = manager.casasComEfeito.filter { it.posicao == args[2].toInt() }.map { it.posicao }
 
-    return "Position is occupied"
+        if (novaAbyss.isEmpty()) {
+            val abyssesAndTools = Array(1) {
+                arrayOfNulls<String>(
+                    3
+                )
+            }
+            abyssesAndTools[0][0] = "0"
+            abyssesAndTools[0][1] = args[1]
+            abyssesAndTools[0][2] = args[2]
+
+
+            manager.adicionarPremio(abyssesAndTools, 0)
+            return "OK"
+        }
+
+        return "Position is occupied"
+    }
 
 }
 
 fun getMostUsedPositions(manager: GameManager, args: List<String>): String {
-    val numeroTotalPorPosicao = manager.posicoes
+    return if (manager.posicoes==null) {
+        ""
+    }
+    else {
+        val numeroTotalPorPosicao = manager.posicoes
 
-    return numeroTotalPorPosicao.sortedBy { numeroOcurrencias(numeroTotalPorPosicao, it) }
-        .reversed().distinct().take(args[1].toInt()).joinToString { "$it:${numeroOcurrencias(numeroTotalPorPosicao, it)}" }
-        .replace(", ", "\n")
+        return numeroTotalPorPosicao.sortedBy { numeroOcurrencias(numeroTotalPorPosicao, it) }
+            .reversed().distinct().take(args[1].toInt())
+            .joinToString { "$it:${numeroOcurrencias(numeroTotalPorPosicao, it)}" }
+            .replace(", ", "\n")
+    }
 }
 
 fun numeroOcurrencias(posicoes: List<Int>, este: Int): String {
@@ -121,10 +149,14 @@ fun numeroOcurrencias(posicoes: List<Int>, este: Int): String {
 
 fun getMostUsedAbysses(manager: GameManager, args: List<String>): String {
 
-    return manager.casasComEfeito.sortedBy { it.numeroPisadas }.reversed()
-        .distinctBy { it.tipo }.take(args[1].toInt()).joinToString { it.tipo.plus(":${it.numeroPisadas}") }
-        .replace(", ", "\n")
-
+    return if (manager.casasComEfeito == null) {
+        ""
+    }
+    else {
+        manager.casasComEfeito.sortedBy { it.numeroPisadas }.reversed()
+            .distinctBy { it.tipo }.take(args[1].toInt()).joinToString { it.tipo.plus(":${it.numeroPisadas}") }
+            .replace(", ", "\n")
+    }
 }
 
 
@@ -135,7 +167,8 @@ fun numeroPisadas(it: String) : Int {
     return numero[numero.size-1].toInt()
 }
 
-//    val total:Int = posicoes.count {posicoes.contains(este)}
+
+
 
 fun main() {
     val playerInfo = Array(3) {
