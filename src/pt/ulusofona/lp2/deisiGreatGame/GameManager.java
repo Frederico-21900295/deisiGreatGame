@@ -1031,11 +1031,7 @@ public class GameManager implements Serializable{
             String[][] playerInfo  = new String[numeroPlayers][4];
             String[][] abyssesAndTools = new String[tamanhoPremio][3];
             casasComEfeito = new ArrayList<>();
-
-
-            for (String s: ferramentasPlayer){
-                System.out.println(s);
-            }
+            posicoes = new ArrayList<>();
             currentPlayer = jogadorCorrente;
             dado = dadoCorrente;
             turnos = valorTurnos;
