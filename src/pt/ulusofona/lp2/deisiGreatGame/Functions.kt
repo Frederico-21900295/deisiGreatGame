@@ -43,12 +43,11 @@ fun getPlayer(manager: GameManager, args: List<String>): String {
         return "Inexistent player"
     }
     else {
-        val informacao = manager.players.filter { it.name.split(" ".toRegex()).toTypedArray()[0]
-            .replace("[","").replace("]","") == args[1] }
+        val informacao = manager.players.filter { it.name.split(" ".toRegex()).toTypedArray()[0]== args[1] }
         if (informacao.isEmpty()){
             return "Inexistent player"
         }
-        return informacao.toString()
+        return informacao.toString().replace("[","").replace("]","")
     }
 
 }

@@ -48,6 +48,11 @@ public class GameManager implements Serializable{
             throw new InvalidInitialBoardException("Tamanho do campo demasiado pequeno");
         }
 
+        if (playerInfo == null){
+            throw new InvalidInitialBoardException("Array playerInfo = null");
+
+        }
+
 
         //Necessário pois caso o jogo seja reiniciado é preciso criar uma Lista nova com os dados iniciais
 
@@ -127,49 +132,50 @@ public class GameManager implements Serializable{
         casasComEfeito = new ArrayList<>();
         int aux = 0;
         int converterInt;
-
-
-        //Verificar se existe algum erro andTool
-        for (String[] andTool : abyssesAndTools) {
-            aux++;
-            for (int y = 1; y < 3; y++) {
-                if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
-                    throw new InvalidInitialBoardException("Verificar o que fazer");
-                }
-                converterInt = Integer.parseInt(andTool[y]);
-                if (andTool[0].equals("0")) {
-                    if (((converterInt > 9 || converterInt < 0 ) && y == 1)) {
-                        throw new InvalidInitialBoardException("ABISMO");
-                    } else if(y==2){
-                        if (converterInt < 1 || converterInt >= worldSize ) {
-                            throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
-                        }
-
+        if (abyssesAndTools != null) {
+            //Verificar se existe algum erro andTool
+            for (String[] andTool : abyssesAndTools) {
+                aux++;
+                for (int y = 1; y < 3; y++) {
+                    if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
+                        throw new InvalidInitialBoardException("Verificar o que fazer");
                     }
-                } else if (andTool[0].equals("1")) {
-                    if ((converterInt > 5 || converterInt < 0) && y == 1) {
-                        throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
-                    } else if (y==2){
-                        if (converterInt < 1 || converterInt >= worldSize) {
-                            throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
-                        }
+                    converterInt = Integer.parseInt(andTool[y]);
+                    if (andTool[0].equals("0")) {
+                        if (((converterInt > 9 || converterInt < 0) && y == 1)) {
+                            throw new InvalidInitialBoardException("ABISMO");
+                        } else if (y == 2) {
+                            if (converterInt < 1 || converterInt >= worldSize) {
+                                throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
+                            }
 
+                        }
+                    } else if (andTool[0].equals("1")) {
+                        if ((converterInt > 5 || converterInt < 0) && y == 1) {
+                            throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
+                        } else if (y == 2) {
+                            if (converterInt < 1 || converterInt >= worldSize) {
+                                throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
+                            }
+
+                        }
+                    } else {
+                        throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                     }
-                } else {
-                    throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                 }
+            }
+            for (int i= 0; i < aux; i++){
+                adicionarPremio(abyssesAndTools,i);
             }
         }
 
 
-        for (int i= 0; i < aux; i++){
-            adicionarPremio(abyssesAndTools,i);
-        }
 
+
+        posicoes = new ArrayList<>();
 
         //Criação do mapa com a informação de cada jogador
         createInitialBoard(playerInfo, worldSize);
-        posicoes = new ArrayList<>();
 
     }
 
