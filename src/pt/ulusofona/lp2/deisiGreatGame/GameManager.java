@@ -1159,7 +1159,7 @@ public boolean saveGame(File file) {
                 throw new IOException();
             }
             else {
-                file = new File("/Users/fredericoazevedo/IdeaProjects/deisiGreatGame/src/saveGames",nome+".txt");
+                file = new File(nome+".txt");
 
                 if (file.createNewFile() ) {
                     System.out.println("File created: " + file.getName());
