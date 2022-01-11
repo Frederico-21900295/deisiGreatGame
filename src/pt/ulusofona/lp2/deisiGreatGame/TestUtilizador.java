@@ -10,7 +10,7 @@ import static org.junit.Assert.*;
 
 public class TestUtilizador {
     @Test(timeout = 1000)
-    public void test001_FerramentasAbismos_IniciarJogo_2Jogadores() {
+    public void test001_ferramentasAbismos_IniciarJogo_2Jogadores() {
         try {
 
             //Criar o abismo (Erro de sintaxe)
@@ -54,7 +54,7 @@ public class TestUtilizador {
         }
 
     @Test(timeout = 100)
-    public void test002_Abismos_ErroSintaxe_2Jogadores() {
+    public void test002_abismos_ErroSintaxe_2Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -228,7 +228,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test003_Abismos_ErroLogica_3Jogadores() {
+    public void test003_abismos_ErroLogica_3Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -403,7 +403,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 1000)
-    public void test004_Abismos_Exception_4Jogadores() {
+    public void test004_abismos_Exception_4Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -585,7 +585,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test005_Abismos_CicloInfinito_3Jogadores() {
+    public void test005_abismos_CicloInfinito_3Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -729,7 +729,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test006_Abismos_Crash_4Jogadores() {
+    public void test006_abismos_Crash_4Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -901,7 +901,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 1000)
-    public void test007_Abismos_Efeitossecundarios_3Jogadores() {
+    public void test007_abismos_Efeitossecundarios_3Jogadores() {
         //Campo c/ 20 posições e 2 jogadores
 
         /*
@@ -1078,7 +1078,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test008_AbismoseFerramentas_False1() {
+    public void test008_abismoseFerramentas_False1() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1141,7 +1141,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test009_AbismoseFerramentas_False2() {
+    public void test009_abismoseFerramentas_False2() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1205,7 +1205,7 @@ public class TestUtilizador {
 
 
     @Test(timeout = 100)
-    public void test010_AbismoseFerramentas_False3() {
+    public void test010_abismoseFerramentas_False3() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1267,7 +1267,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test011_AbismoseFerramentas_False4() {
+    public void test011_abismoseFerramentas_False4() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1329,7 +1329,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 1000)
-    public void test012_Abismos_BlueScreenofDeath_2Jogadores() {
+    public void test012_abismos_BlueScreenofDeath_2Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1416,7 +1416,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test013_GetGameResult4jogadores() {
+    public void test013_getGameResult4jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1519,7 +1519,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test014_GetGameResult3jogadores() {
+    public void test014_getGameResult3jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1614,7 +1614,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test015_GetGameResult3jogadores1() {
+    public void test015_getGameResult3jogadores1() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1711,7 +1711,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test016_GetGameResult3jogadores2() {
+    public void test016_getGameResult3jogadores2() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1810,10 +1810,8 @@ public class TestUtilizador {
 
     }
 
-
-
     @Test(timeout = 100)
-    public void test017_GetGameResult2jogadores() {
+    public void test017_getGameResult2jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -1920,7 +1918,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test18_FerramentasAbismos_IniciarJogo_2Jogadores() {
+    public void test18_ferramentasAbismos_IniciarJogo_2Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -2010,7 +2008,7 @@ public class TestUtilizador {
     }
 
     @Test(timeout = 100)
-    public void test19_FerramentasAbismos_IniciarJogo_2Jogadores() {
+    public void test19_ferramentasAbismos_IniciarJogo_2Jogadores() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -2083,7 +2081,7 @@ public class TestUtilizador {
 
 
     @Test(timeout = 100)
-    public void test20_JogoNormal() {
+    public void test20_jogoNormal() {
 
         //Campo c/ 20 posições e 2 jogadores
 
@@ -2328,6 +2326,396 @@ public class TestUtilizador {
 
 
     }
+
+    @Test(timeout = 100)
+    public void test21_cores() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+            //Criar 2 jogadores (Deve pôr por ordem pelo ID mais baixo)
+            String[][] playerInfo = new String[2][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "Frederico";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+            playerInfo[1][0] = "20";
+            playerInfo[1][1] = "Pedro";
+            playerInfo[1][2] = "Java";
+            playerInfo[1][3] = "Pink";
+
+
+            g1.createInitialBoard(playerInfo,20);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+    @Test(timeout = 100)
+    public void test22_nrJogadores() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+            //Criar 2 jogadores (Deve pôr por ordem pelo ID mais baixo)
+            String[][] playerInfo = new String[1][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "Frederico";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+
+
+
+            g1.createInitialBoard(playerInfo,20);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+    @Test(timeout = 100)
+    public void test23_playerNull() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+            //Criar 2 jogadores (Deve pôr por ordem pelo ID mais baixo)
+            String[][] playerInfo = null;
+
+
+
+
+
+
+
+            g1.createInitialBoard(playerInfo,20);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+
+    @Test(timeout = 100)
+    public void test24_tamanhoCampo() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+
+            String[][] playerInfo = new String[2][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "Frederico";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+            playerInfo[1][0] = "20";
+            playerInfo[1][1] = "Pedro";
+            playerInfo[1][2] = "Java";
+            playerInfo[1][3] = "Blue";
+
+
+
+
+            g1.createInitialBoard(playerInfo,2);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+    @Test(timeout = 100)
+    public void test25_mesmaCor() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+
+            String[][] playerInfo = new String[2][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "Frederico";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+            playerInfo[1][0] = "20";
+            playerInfo[1][1] = "Pedro";
+            playerInfo[1][2] = "Java";
+            playerInfo[1][3] = "Purple";
+
+
+
+
+            g1.createInitialBoard(playerInfo,20);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+
+    @Test(timeout = 100)
+    public void test26_mesmoNome() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+        try {
+            //Abismo = 0
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+
+            String[][] playerInfo = new String[2][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+            playerInfo[1][0] = "20";
+            playerInfo[1][1] = "Rui";
+            playerInfo[1][2] = "Java";
+            playerInfo[1][3] = "Blue";
+
+
+
+
+            g1.createInitialBoard(playerInfo,20);
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+    }
+
+
+
+
+
+
+    @Test(timeout = 1000)
+    public void test27_JogoNormal_Heranca_DuplicatedCode() {
+
+        //Campo c/ 20 posições e 2 jogadores
+
+        /*
+        |  |  | F|  | F|  |  |  | A|  | F|  |  | A|  |  | A|  | A|  |
+          1                                              17       20
+         */
+
+
+
+
+        try {
+//Abismo = 0
+            String[][] abyssesAndTools = new String[7][3];
+
+
+
+            abyssesAndTools[0][0] = "1"; //Ferramenta
+            abyssesAndTools[0][1] = "0"; //Herança
+            abyssesAndTools[0][2] = "3"; //Posicao
+
+            abyssesAndTools[1][0] = "1"; //Ferramenta
+            abyssesAndTools[1][1] = "0"; //Herança
+            abyssesAndTools[1][2] = "5"; //Posicao
+
+            abyssesAndTools[2][0] = "0"; //Abismo
+            abyssesAndTools[2][1] = "5"; //Duplicated Code (O programador recua até à casa onde estava antes de chegar a esta casa.)
+            abyssesAndTools[2][2] = "9"; //Posicao
+
+            abyssesAndTools[3][0] = "1"; //Abismo
+            abyssesAndTools[3][1] = "0"; //Herança
+            abyssesAndTools[3][2] = "11"; //Posicao
+
+            abyssesAndTools[4][0] = "0"; //Abismo
+            abyssesAndTools[4][1] = "5"; //Duplicated Code
+            abyssesAndTools[4][2] = "14"; //Posicao
+
+            abyssesAndTools[5][0] = "0"; //Abismo
+            abyssesAndTools[5][1] = "5"; //Duplicated Code
+            abyssesAndTools[5][2] = "17"; //Posicao
+
+            abyssesAndTools[6][0] = "0"; //Abismo
+            abyssesAndTools[6][1] = "5"; //Duplicated Code
+            abyssesAndTools[6][2] = "19"; //Posicao
+
+
+
+            //Criar o objeto do GameManager
+            GameManager g1 = new GameManager();
+
+
+            //Criar 2 jogadores (Deve pôr por ordem pelo ID mais baixo)
+            String[][] playerInfo = new String[2][4];
+
+
+            playerInfo[0][0] = "30";
+            playerInfo[0][1] = "Frederico";
+            playerInfo[0][2] = "Kotlin";
+            playerInfo[0][3] = "Purple";
+
+            playerInfo[1][0] = "20";
+            playerInfo[1][1] = "Pedro";
+            playerInfo[1][2] = "Java";
+            playerInfo[1][3] = "Blue";
+
+
+
+
+            //Função que irá criar o campo com 20 posições
+            g1.createInitialBoard(playerInfo,20,abyssesAndTools);
+
+            //Pedro-1 ; Frederico-1
+
+            //Pedro ganhou ferramenta
+            g1.moveCurrentPlayer(2);
+            g1.reactToAbyssOrTool();
+
+            //Pedro-3 ; Frederico-1
+
+            //Frederico ganhou ferramenta
+            g1.moveCurrentPlayer(2);
+            g1.reactToAbyssOrTool();
+
+            //Pedro-3 ; Frederico-3
+
+
+            g1.moveCurrentPlayer(2);
+            g1.reactToAbyssOrTool();
+
+            //Pedro-5 ; Frederico-3
+
+
+            g1.moveCurrentPlayer(6);
+            g1.reactToAbyssOrTool();
+
+            System.out.println(g1.getPosicoes());
+
+            //Pedro-5 ; Frederico-9
+
+
+            g1.moveCurrentPlayer(6);
+            g1.reactToAbyssOrTool();
+
+            System.out.println(g1.getPosicoes());
+
+
+
+/*
+        Ferramenta - 3 ; 5 ; 11
+        Abismo - 9 ; 14 ; 17 ; 19
+         */
+
+
+        }catch (InvalidInitialBoardException e) {
+            System.out.println(e.getMessage());
+            System.out.println(e.isInvalidAbyss());
+            System.out.println(e.getTypeId());
+
+        }
+
+
+
+
+    }
+
 
 
 }

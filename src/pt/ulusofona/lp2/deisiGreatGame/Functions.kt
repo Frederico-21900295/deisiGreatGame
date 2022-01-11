@@ -2,8 +2,7 @@ package pt.ulusofona.lp2.deisiGreatGame
 
 import kotlin.collections.contains
 
-
-enum class CommandType{ GET, POST}
+enum class CommandType{GET, POST}
 
 fun router() : (CommandType) -> ((GameManager, List<String>) -> String?)? {
 
@@ -89,7 +88,6 @@ fun getPolyglots (manager: GameManager): String {
     }
 }
 
-
 fun postMove(manager: GameManager,args: List<String>): String {
 
     manager.moveCurrentPlayer(args[1].toInt())
@@ -145,7 +143,6 @@ fun numeroOcurrencias(posicoes: List<Int>, este: Int): String {
     return total.toString()
 }
 
-
 fun getMostUsedAbysses(manager: GameManager, args: List<String>): String {
 
     return if (manager.casasComEfeito == null) {
@@ -158,16 +155,11 @@ fun getMostUsedAbysses(manager: GameManager, args: List<String>): String {
     }
 }
 
-
-
 fun numeroPisadas(it: String) : Int {
     val numero : Array<String> = it.split(" ").toTypedArray()
     println(numero[numero.size-1].toInt())
     return numero[numero.size-1].toInt()
 }
-
-
-
 
 fun main() {
     val playerInfo = Array(3) {
@@ -205,7 +197,7 @@ fun main() {
     abyssesAndTools[1][1] = "4" //Erro de sintaxe (O programador recua 1 casa)
     abyssesAndTools[1][2] = "4" //Posicao
 
-    val args =  listOf("GET","4","1")
+    val args =  listOf("GET","Ada")
 
     val manager = GameManager()
 
@@ -242,13 +234,13 @@ fun main() {
     manager.reactToAbyssOrTool()
 
 
-    //println(getPlayer(manager,args))
+    println(getPlayer(manager,args))
     //println(getPolyglots(manager))
     //println(getMostUsedPositions(manager,args))
 
-    println(postAbyss(manager,args))
+    //println(postAbyss(manager,args))
+    println("Verificar")
 
-    println(getMostUsedAbysses(manager,args))
+    //println(getMostUsedAbysses(manager,args))
+    println(getPolyglots(manager))
 }
-
-

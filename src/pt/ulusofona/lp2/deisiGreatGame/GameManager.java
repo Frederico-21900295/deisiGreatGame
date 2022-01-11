@@ -18,8 +18,6 @@ public class GameManager implements Serializable{
     private int numeroJogadores;
     private List<Integer> posicoes; // Posicao
 
-
-
     public GameManager() { }
 
     public GameManager(int tamanho) {
@@ -32,11 +30,9 @@ public class GameManager implements Serializable{
         return this.posicoes;
     }
 
-
     public void colocarInformacao(int posicao ) {
         this.posicoes.add(posicao);
     }
-
 
     /*Função que vai inicializar o jogo; onde vamos ver se está tudo em ordem para começar a jogar*/
     /*Do que estive a ver esta função ja esta com todas as exceções*/
@@ -94,19 +90,30 @@ public class GameManager implements Serializable{
                 }
             }
         }
+
+        for (String[] strings : playerInfo) {
+            for (int y = 0; y < 4; y++) {
+                if ((strings[y] == null) || (strings[y].isEmpty())) {
+                    throw new InvalidInitialBoardException("Array PlayerInfo está mal preenchido");
+                }
+            }
+        }
         /*
          Neste for é onde fazemos todas as validações pedidas pelo projeto; Validamos se os (nomes dos jogadores, o ID
          e a cor) são iguais ou se estão como null e caso seja retorna false
          */
         for (int i = 0; i < totalJogadores; i++) {
             for (int y = 0; y < totalJogadores; y++) {
-                if (i != y) {
-                    if ((playerInfo[i][1] == null) || (playerInfo[i][1].isEmpty())) {
-                        throw new InvalidInitialBoardException("O nome do jogador está vazio ou com o valor null");
-                    } else {
-                        if ((Objects.equals(playerInfo[i][0], playerInfo[y][0]))|| (playerInfo[i][1].equals(playerInfo[y][1])) ||
-                                (playerInfo[i][3].equals(playerInfo[y][3]))) {
-                            throw new InvalidInitialBoardException("Existem jogadores com a mesmo nome ou cor");
+                     if (i != y) { {
+                        if ((Objects.equals(playerInfo[i][0], playerInfo[y][0]))) {
+                            throw new InvalidInitialBoardException(("Não pode haver ID iguais"));
+                        }
+                        else if(playerInfo[i][1].equals(playerInfo[y][1])) {
+                            throw new InvalidInitialBoardException(("Não pode haver nomes iguais"));
+
+                        }
+                        else if (playerInfo[i][3].equals(playerInfo[y][3])) {
+                            throw new InvalidInitialBoardException("Existem jogadores com a mesma cor");
                         }
                     }
                 }
@@ -125,7 +132,6 @@ public class GameManager implements Serializable{
 
     }
 
-
     //Função para inicializar as ferramentas
     public void createInitialBoard(String[][] playerInfo, int worldSize, String[][] abyssesAndTools) throws InvalidInitialBoardException
     {
@@ -138,37 +144,53 @@ public class GameManager implements Serializable{
             for (String[] andTool : abyssesAndTools) {
                 aux++;
                 for (int y = 1; y < 3; y++) {
+                    /*
                     if (!andTool[y].matches("[+-]?\\d*(\\.\\d+)?") || andTool[y].isEmpty()) {
 
                         throw new InvalidInitialBoardException("Verificar o que fazer");
                     }
-                    converterInt = Integer.parseInt(andTool[y]);
-                    if (andTool[0].equals("0")) {
-                        if (((converterInt > 9 || converterInt < 0) && y == 1)) {
 
-                            throw new InvalidInitialBoardException("ABISMO");
-                        } else if (y == 2) {
-                            if (converterInt < 1 || converterInt >= worldSize) {
+                     */
 
-                                throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
+                    if (andTool[y] != null) {
+                        if (andTool[y].chars().allMatch(Character::isDigit) && !andTool[y].isEmpty() ) {
+
+
+                            converterInt = Integer.parseInt(andTool[y]);
+                            if (andTool[0].equals("0")) {
+                                if (((converterInt > 9 || converterInt < 0) && y == 1)) {
+
+                                    throw new InvalidInitialBoardException("ABISMO");
+                                } else if (y == 2) {
+                                    if (converterInt < 1 || converterInt >= worldSize) {
+
+                                        throw new InvalidInitialBoardException("ABISMO", Integer.parseInt(andTool[1]));
+                                    }
+
+                                }
+                            } else if (andTool[0].equals("1")) {
+                                if ((converterInt > 5 || converterInt < 0) && y == 1) {
+
+                                    throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
+                                } else if (y == 2) {
+                                    if (converterInt < 1 || converterInt >= worldSize) {
+
+                                        throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
+                                    }
+
+                                }
+                            } else {
+                                throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
                             }
-
                         }
-                    } else if (andTool[0].equals("1")) {
-                        if ((converterInt > 5 || converterInt < 0) && y == 1) {
-
-                            throw new InvalidInitialBoardException("FERRAMENTA", converterInt);
-                        } else if (y == 2) {
-                            if (converterInt < 1 || converterInt >= worldSize) {
-
-                                throw new InvalidInitialBoardException("FERRAMENTA", Integer.parseInt(andTool[1]));
-                            }
-
+                        else {
+                            throw new InvalidInitialBoardException("A variável abyssesAndTools está mal preenchida");
                         }
-                    } else {
-                        throw new InvalidInitialBoardException("ID diferente de 0 ou 1");
+                    }else {
+                        throw new InvalidInitialBoardException("A variável abyssesAndTools está mal preenchida");
                     }
                 }
+
             }
             for (int i= 0; i < aux; i++){
                 adicionarPremio(abyssesAndTools,i);
@@ -186,9 +208,9 @@ public class GameManager implements Serializable{
 
     }
 
-
     /*Função que vai imprimir o jogador que tem de jogar*/
-    public int getCurrentPlayerID() {
+    public int getCurrentPlayerID()
+    {
         int auxiliar = 1;
         for (Programmer player : players) {
             if (auxiliar == currentPlayer) {
@@ -200,8 +222,8 @@ public class GameManager implements Serializable{
         return 0;
     }
 
-
-    public JPanel getAuthorsPanel() {
+    public JPanel getAuthorsPanel()
+    {
         JPanel panel=new JPanel();
         panel.setLayout(new FlowLayout());
         JLabel label = new JLabel("  Deisi Great Game");
@@ -238,9 +260,9 @@ public class GameManager implements Serializable{
         return panel;
     }
 
-
     //Função que vai verificar se existe algum jogador na última casa do tabuleiro e caso haja o jogo acaba
-    public boolean gameIsOver() {
+    public boolean gameIsOver()
+    {
         int auxiliarNrJogadores = 0;
         List<Programmer> jogadores = getProgrammers();
         for (Programmer player : jogadores) {
@@ -259,8 +281,8 @@ public class GameManager implements Serializable{
         return auxiliarNrJogadores == numeroJogadores-1;
     }
 
-
-    public String getImagePng(int position) {
+    public String getImagePng(int position)
+    {
         if (position <= GameManager.boardSize && position > 0) {
             if (position == boardSize) {
                 return this.imagem = "glory.png";
@@ -278,7 +300,8 @@ public class GameManager implements Serializable{
         return null;
     }
 
-    public String getTitle(int position) {
+    public String getTitle(int position)
+    {
         for (CasaEfeito p : casasComEfeito) {
             if (p.getPosicao() == position) {
                 return p.getTipo();
@@ -287,7 +310,8 @@ public class GameManager implements Serializable{
         return null;
     }
 
-    public String getProgrammersInfo() {
+    public String getProgrammersInfo()
+    {
         StringBuilder frase = new StringBuilder();
         ArrayList <String> ferramentas ;
         int x = 0;
@@ -324,8 +348,8 @@ public class GameManager implements Serializable{
         return frase.toString();
     }
 
-
-    public List<Programmer> getProgrammers(boolean includeDefeated) {
+    public List<Programmer> getProgrammers(boolean includeDefeated)
+    {
         List<Programmer> jogadores = players;
         List<Programmer> jogadoresTodos = new ArrayList<>();
 
@@ -342,12 +366,14 @@ public class GameManager implements Serializable{
         }
     }
 
-    public List<Programmer> getProgrammers() {
+    public List<Programmer> getProgrammers()
+    {
         return players;
     }
 
     /*Função que vai imprimir que estão na posição X */
-    public List<Programmer> getProgrammers(int position) {
+    public List<Programmer> getProgrammers(int position)
+    {
         int auxiliar = 0;
         ArrayList<Programmer> jogadores = new ArrayList<>();
         for (Programmer j : players) {
@@ -374,9 +400,9 @@ public class GameManager implements Serializable{
 
     }
 
-
     /*Função que vai movimentar os jogadores */
-    public boolean moveCurrentPlayer(int nrSpaces) {
+    public boolean moveCurrentPlayer(int nrSpaces)
+    {
         if (nrSpaces > 6 || nrSpaces <= 0)
         {
             return false;
@@ -399,10 +425,8 @@ public class GameManager implements Serializable{
         return true;
     }
 
-
-
-
-    public String reactToAbyssOrTool() {
+    public String reactToAbyssOrTool()
+    {
         int id = getCurrentPlayerID();
         List<Programmer> jogadores = getProgrammers();
         String frase = null;
@@ -459,9 +483,9 @@ public class GameManager implements Serializable{
 
     }
 
-
     // Função que vai disponibilizar os resultados do jogo com o output desejado pelo projeto
-    public List<String> getGameResults() {
+    public List<String> getGameResults()
+    {
         List<String> resultados = new ArrayList<>();
 
         List<Integer> listaPosicoes = new ArrayList<>();
@@ -752,12 +776,8 @@ public class GameManager implements Serializable{
 
     }
 
-
-
-
-
-
-    private void addJogadores(int totalJogadores, String[][] playerInfo) {
+    private void addJogadores(int totalJogadores, String[][] playerInfo)
+    {
         List<Integer> listaId = new ArrayList<>();
         players = new ArrayList<>();
 
@@ -829,8 +849,6 @@ public class GameManager implements Serializable{
                 jogador4.colocarInformacao(1);
 
 
-
-
                 for (Integer id : listaId) {
                     if (id.equals(Integer.parseInt(playerInfo[0][0]))) {
                         players.add(jogador1);
@@ -856,9 +874,8 @@ public class GameManager implements Serializable{
 
     }
 
-
-
-    public void adicionarPremio(String[][] abyssesAndTools, int i){
+    public void adicionarPremio(String[][] abyssesAndTools, int i)
+    {
         String s;
         if (abyssesAndTools[i][0].equals("1")) {
             s = "Ferramenta";
@@ -941,8 +958,8 @@ public class GameManager implements Serializable{
         }
     }
 
-
-    public boolean loadGame(File file) {
+    public boolean loadGame(File file)
+    {
         try {
             int aux=0;
             String[] jogadoresId = new String[4];
@@ -1027,7 +1044,6 @@ public class GameManager implements Serializable{
 
             }
             myReader.close();
-
             if (aux!=17) {
                 System.out.println("Aqui");
                 return false;
@@ -1045,7 +1061,6 @@ public class GameManager implements Serializable{
                 String[][] abyssesAndTools = new String[tamanhoPremio][3];
                 for (int i = 0; i < tamanhoPremio; i++) {
                     for (int y=0; y < 3; y++) {
-
                         switch (y) {
                             case 0 -> abyssesAndTools[i][y] = mudarParaNumero(nomePremio[i]);
 
@@ -1064,9 +1079,6 @@ public class GameManager implements Serializable{
                     adicionarPremio(abyssesAndTools,i);
                 }
             }
-
-
-
             for (int i = 0; i < numeroPlayers; i++) {
                 for (int y=0; y < 4; y++) {
                     switch (y) {
@@ -1082,11 +1094,7 @@ public class GameManager implements Serializable{
                 }
             }
 
-
-
             addJogadores(numeroJogadores,playerInfo);
-
-
 
             int valor=0;
 
@@ -1105,7 +1113,8 @@ public class GameManager implements Serializable{
         }
     }
 
-    private String mudarParaNumero(String s) {
+    private String mudarParaNumero(String s)
+    {
 
         switch (s) {
             case "Herança","Erro de sintaxe","Abismo" -> {
@@ -1146,10 +1155,8 @@ public class GameManager implements Serializable{
         }
     }
 
-
-
-
-    public boolean saveGame(File file) {
+    public boolean saveGame(File file)
+    {
         try {
             String newLine = "\n";
             StringBuilder nomeJogadores = new StringBuilder();
@@ -1200,8 +1207,6 @@ public class GameManager implements Serializable{
 
 
     }
-
-
 
 }
 
